@@ -1,9 +1,8 @@
 <?php
-include_once( "TableModel.class.php" );
 
 class UserRightsModel extends TableModel 
 {
-	public $myTitle="Разрешенные действия";
+	public $myTitle="Access List";
 	
 	public function __construct( $php )
 	{
@@ -12,8 +11,8 @@ class UserRightsModel extends TableModel
 		
 		parent::__construct( $DB,$php,"user_rights",array(
 				"user_group_id"=>new HiddenColumn( "user_group_id", $user_id ),
-				"controller_id"=>new TextColumn( "controller_id","Контроллер","Укажите контроллер" ),
-				"allow_action"=>new TextColumn( "allow_action","Действие","Укажите действие" ),
+				"controller_id"=>new TextColumn( "controller_id","Controller","Specify controller" ),
+				"allow_action"=>new TextColumn( "allow_action","Action","Specify action" ),
 			)
 		);
 		$this->myOrder="controller_id,allow_action";

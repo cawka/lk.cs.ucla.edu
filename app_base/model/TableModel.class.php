@@ -1,5 +1,4 @@
 <?php
-include_once( "BaseModel.class.php" );
 
 class TableModel extends BaseModel
 {
@@ -304,7 +303,7 @@ class TableModel extends BaseModel
 		}
 		$sql.=implode( " AND ", $params );
 		if( $this->myDB->GetOne($sql) ) 
-			return "Не уникальная комбинация";
+			return "Non-unique combination";
 		else
 			return "";
 	}
@@ -314,8 +313,8 @@ class TableModel extends BaseModel
 		global $Auth; if( !$Auth->isAllowed("add") ) return "";
 
 		return $this->myHelper->link_popup( $this,"add",
-											$this->myHelper->img_button("new","Добавить"),
-											"Добавление",
+											$this->myHelper->img_button("new","Add"),
+											"Add",
 											$this->getColumnParams( ) );
 	}
 
@@ -325,8 +324,8 @@ class TableModel extends BaseModel
 
 		return $this->myHelper->link_popup( 
 						$this,"edit",
-						$this->myHelper->img_button("edit","Редактировать"),
-						"Редактирование",
+						$this->myHelper->img_button("edit","Edit"),
+						"Edit",
 						$this->getColumnParams( array($this->myId=>$row[$this->myId]) ) );
 	}
 	
@@ -336,9 +335,9 @@ class TableModel extends BaseModel
 
 		return $this->myHelper->link_popup_confirm( 
 						$this,"delete",
-						$this->myHelper->img_button("delete","Удалить"),
+						$this->myHelper->img_button("delete","Delete"),
 						$this->getColumnParams( array($this->myId=>$row[$this->myId]) ),
-						"Вы подтверждаете удаление?" );
+						"Are you sure?" );
 	}
 	
 //	public function getCtrl( $row, $action, $title, $question )
@@ -403,7 +402,7 @@ class TableModel extends BaseModel
 	{
 		global $LANG,$langdata;
 		$langdata=array(
-			"navi_page"=>"Страница",
+			"navi_page"=>"Page",
 		);
 		
 		if( $this->myElementCount<=$this->myElementsPerPage ) return ""; //no need to special navigation control

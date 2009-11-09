@@ -25,6 +25,8 @@ if( !$SETTINGS )
 	$theAPC->cache( "SETTINGS", $SETTINGS );
 }
 
+$COOKIES=new CookieHelper( "", 3600*24*365 );
+
 session_start( );
 
 ?>

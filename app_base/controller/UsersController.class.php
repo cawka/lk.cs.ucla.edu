@@ -1,7 +1,5 @@
 <?php
 
-require_once( BASEDIR . "/class/Mail.class.php" );
-
 class UsersController extends TableController 
 {
 	public function __construct( &$model,&$helper )
@@ -11,7 +9,7 @@ class UsersController extends TableController
 		);
 	}
 	
-	public function recoverLogin( &$tmpl, &$request )
+/*	public function recoverLogin( &$tmpl, &$request )
 	{
 
 		$this->myModel->recoverLogin( $request );
@@ -32,7 +30,7 @@ class UsersController extends TableController
 			return $this->showTemplateDB( $tmpl, $request, "recoverPasswordFail", "" );
 		}
 		
-	}
+	}*/
 }
 
 ?>

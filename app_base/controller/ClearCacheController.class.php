@@ -2,11 +2,6 @@
 
 class ClearCacheController extends BaseController 
 {
-//	function __construct( $php )
-//	{
-//		parent::__construct( $mode,$helper );
-//	}
-
 	function index( &$tmpl, &$request )
 	{
 		return $this->showTemplate( $tmpl,$request,"admin/clear_cache.tpl","" );

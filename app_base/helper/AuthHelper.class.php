@@ -12,7 +12,7 @@ class AuthHelper
 		$this->myController=$controller;
 //		$DB->debug=true;
 
-		if( $_SESSION['group']=="0" ) 
+		if( isUserLogged() || $_SESSION['group']=="0" ) 
 		{
 			return;
 		}
@@ -41,7 +41,7 @@ class AuthHelper
 	
 	public function canUseAction( $controller, $action )
 	{
-		if( $_SESSION['group']=="0" ||
+		if( isUserLogged() || $_SESSION['group']=="0" ||
 			$controller=="public" || 
 			isset($this->myRights[$controller]['all']) ||
 			isset($this->myRights[$controller][$action]) )
@@ -55,9 +55,9 @@ class AuthHelper
 	public function isAllowed( $action )
 	{
 		return $this->canUseAction( $this->myController, $action );
-		return 	$_SESSION[group]=="0" || 
-				$this->myRights['all']==1 || 
-				$this->myRights[$action]==1;
+//		return 	$_SESSION[group]=="0" || 
+//				$this->myRights['all']==1 || 
+//				$this->myRights[$action]==1;
 	}
 	
 	public function allowOrRedirect( $action )

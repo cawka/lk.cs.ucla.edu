@@ -1,11 +1,5 @@
 <?php
 
-include_once( "BaseController.class.php" );
-
-/**
- * Класс, реализующий работу по отображению и редактированию элементов таблицы
- *
- */
 class TableController extends BaseController
 {
 	private $myTemplate;

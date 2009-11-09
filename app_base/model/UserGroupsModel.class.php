@@ -1,22 +1,21 @@
 <?php
-include_once( "TableModel.class.php" );
 
 class UserGroupsModel extends TableModel 
 {
-	var $myTitle="Группы пользователей";
+	var $myTitle="User groups";
 	
 	function __construct( $php )
 	{
 		global $DB;
 		parent::__construct( $DB,$php,"user_groups",array(
-			new TextColumn( "name","Название группы пользователей","Введите название группы пользователей"),
+			new TextColumn( "name","User group name","Enter user group name"),
 		) );
 	}
 	
 	public function collectData( &$request )
 	{
 		parent::collectData( $request );
-		$this->myData=array_merge( array(array("name"=>"Публичный доступ")),$this->myData );
+		$this->myData=array_merge( array(array("name"=>"Public access")),$this->myData );
 	}
 }
 

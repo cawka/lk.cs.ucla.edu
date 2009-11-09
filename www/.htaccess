@@ -1,9 +1,12 @@
 ## Redirect 301 from all domains without www
 
-#Options +FollowSymlinks
-#RewriteEngine on
+#Options +FollowSymlinks 
+RewriteEngine on
 #rewritecond %{http_host} ^reklama.com.ua [nc]
 #rewriterule ^(.*)$ http://www.reklama.com.ua/$1 [r=301,nc]
 
-RewriteRule ^([a-z0-9A-Z_\-]+)\.html(.*)$	index.php?_m=staticPages&action=show&id=$1$2	[L,qsappend]
+RewriteRule ^([a-z0-9A-Z_\-]+)\.html$	index.php?_m=staticPages&action=show&id=$1	[L,qsappend]
+
+RewriteRule ^([a-z0-9A-Z_\-]+)/([a-z0-9A-Z_\-]+)$	index.php?_m=$1&action=$2	[L,qsappend]
+RewriteRule ^([a-z0-9A-Z_\-]+)/$			index.php?_m=$1&action=index	[L,qsappend]
 

@@ -9,11 +9,12 @@ class MySmarty extends Smarty
 		global $LANG,$langdata,$_GET,$SETTINGS,$_SESSION,$SID,$DISABLE_CACHE,$BROWSER_TYPE,$PRICES, $COOKIES,
 		$MY_MAX_PHOTO_SIZE;
 		
-        $this->template_dir = $template_dir;
+		$this->template_dir = $template_dir; //print $this->template_dir; die;
         $this->compile_dir = TEMPDIR . "/compile". (($subdir!="" )?"/$subdir":"");
         $this->cache_dir =   TEMPDIR . "/cache"   . (($subdir!="" )?"/$subdir":"");
         
-        $this->caching = !(isAdmin() || isAdmin(99));//!isUserLogged();
+		$this->caching = false;
+		//!(isAdmin() || isAdmin(99));//!isUserLogged();
         if( $DISABLE_CACHE==true ) $this->caching=false;
         
         $this->cache_lifetime=300;
@@ -32,10 +33,10 @@ class MySmarty extends Smarty
 		$this->register_function( "isAdmin", "isAdmin" );
 		$this->register_function( "isUserLogged", "isUserLogged" );
 			
-		if( !isUserLogged() )
-		{
-			$this->assign( "deflogin", $COOKIES->ReadCookie("deflogin") );
-		}
+//		if( !isUserLogged() )
+//		{
+//			$this->assign( "deflogin", $COOKIES->ReadCookie("deflogin") );
+//		}
 	
 		if( isUserLogged() )
 		{

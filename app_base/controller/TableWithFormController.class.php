@@ -1,5 +1,4 @@
 <?php
-include_once( "TableController.class.php" );
 
 class TableWithFormController extends TableController 
 {

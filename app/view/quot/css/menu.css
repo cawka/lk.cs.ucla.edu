@@ -1,0 +1,200 @@
+/* HORIZONTAL FREESTYLE MENU LAYOUT */
+
+
+.glink, .glink_s
+{
+ 	font-size: 13px;
+	font-weight:bold;
+	text-align:center;
+	cursor: pointer;
+}
+
+a.main
+{
+	display: block;
+	/*margin-left: -13px;*/
+	white-space: nowrap;
+	text-decoration: none;
+	padding-top: 11px;
+	height: 29px;
+	width: 100%;
+}
+
+.glink a.main, .glink a.main:visited {
+	display: block;
+  	color: #627171;
+	text-decoration: none;
+}
+
+.glink a.main:hover {
+	display: block;
+	color: #FF9600;
+	text-decoration: none;
+	background-color: #F3F3F3;
+}
+
+.glink_s a.main, .glink_s a.main:visited {
+	display: block;
+  	color: #627171;
+	text-decoration: none;
+  	background-color: #F3F3F3;
+}
+
+.glink_s a.main:hover {
+	display: block;
+	color: #FF9600;
+	text-decoration: none;
+  	background-color: #F3F3F3;
+}
+
+
+/* All <ul> tags in the menu including the first level */
+.menulist, .menulist  ul {
+ margin: 0;
+ padding: 0;
+ list-style: none;
+ width: 100%;
+ color: white;
+}
+
+/* Submenus (<ul> tags) are hidden and absolutely positioned downwards from their parent */
+.menulist ul {
+ display: none;
+ position: absolute;
+ left: 0px;
+ top: 1.0em; margin-top: 25px; /* I'm using ems and px to allow people to zoom their font */
+ width: 180px;
+}
+
+.lastmenu .menulist ul {
+	position: absolute;
+    left: auto;
+    right: 0px;
+}
+
+
+/* Second and third etc. level submenus - position across from parent instead */
+.menulist ul ul {
+	position: absolute;
+ top: 1px; margin-top: 0;
+ left: -180px;
+}
+
+/*
+ All menu items (<li> tags). 'float: left' lines them up horizontally, and they are
+ positioned relatively to correctly offset submenus. Also, they have overlapping borders.
+*/
+.menulist li
+{
+	display: block;
+	/*position: absolute;*/
+	float: left;
+ 	position: relative;
+ 	text-align: center;
+ 	width: 100%;
+}
+
+.menulist ul li {
+ float: left;
+ width: 180px;
+ /*min-width: 220px;*/
+ display: block;
+ position: relative;
+ left:0px;
+ color: #627171;
+ text-align: left;
+}
+
+/* Items in submenus - override float/border/margin from above, restoring default vertical style */
+.menulist ul>li:last-child {
+ margin-bottom: 1px; /* Mozilla fix */
+}
+
+/* Links inside the menu */
+.menulist ul li a, .menulist ul li a:visited {
+ display: block;
+ padding: 5px;
+ color: #627171;
+ font-weight: bold;
+ text-decoration: none;
+ background-color: #F3F3F3;
+ border: white 1px solid;
+}
+
+/* Lit  items: 'hover' is mouseover, 'highlighted' are parent items to visible menus */
+.menulist ul li a:hover, .menulist ul li a.highlighted:hover, .menulist ul li a:focus {
+ font-weight: bold;
+ color: #FF9600;
+ background-color: #F3F3F3;
+ border: white 1px solid;
+}
+
+.menulist  li a.highlighted {
+ font-weight: bold;
+ color: #FF9600;
+ background-color: #E3E3E3;
+}
+
+/* Only style submenu indicators within submenus. */
+.menulist a .subind {
+ display: none;
+}
+.menulist ul a .subind {
+ display: block;
+ float: right;
+}
+
+
+/* 'Escaped Comment' hack for horizontal menubar width in IE5/Mac */
+.menulist a {
+ float: left;
+}
+.menulist ul a {
+ float: none;
+}
+/* \*/
+.menulist a {
+ float: none;
+}
+/* */
+
+
+/*
+ HACKS: IE/Win:
+ A small height on <li> and <a> tags and floating prevents gaps in menu.
+ * html affects <=IE6 and *:first-child+html affects IE7.
+ You may want to move these to browser-specific style sheets.
+*/
+*:first-child+html .menulist ul li {
+ float: left;
+ width: 100%;
+}
+
+* html .menulist ul li {
+ float: left;
+ height: 1%;
+}
+* html .menulist ul a {
+ height: 1%;
+}
+/* End Hacks */
+
+* html .iehacktable
+{
+margin-left: -13px;
+}
+
+*:first-child+html .iehacktable
+{
+margin-left: -13px;
+}
+
+* html .lastmenu .menulist ul
+{
+    right: -17px;
+}
+
+*:first-child+html .lastmenu .menulist ul
+{
+    right: -17px;
+}

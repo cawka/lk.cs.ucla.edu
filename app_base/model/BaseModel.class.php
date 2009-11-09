@@ -3,8 +3,6 @@
 class BaseModel
 {
 	/**
-	 * Переменная для связи с базой данных
-	 *
 	 * @var ADOConnection
 	 */
 	public $myPhp;
@@ -12,23 +10,17 @@ class BaseModel
 	protected $myLang;
 
 	/**
-	 * ffddf
-	 *
 	 * @var BaseColumn[]
 	 */
 	public $myColumns=array();
 	public $myData;
 	
 	/**
-	 * Helper
-	 *
 	 * @var BaseTableHelper
 	 */
 	public $myHelper;
 	
 	/**
-	 * Конструктор класса
-	 *
 	 * @param adodb $db
 	 * @param string $php
 	 * @param string $template

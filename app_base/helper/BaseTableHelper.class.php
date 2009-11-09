@@ -9,16 +9,13 @@ class BaseTableHelper
 	
 	public function form_action( &$model, $action, $validate,$params=array(),&$options )
 	{
-		if( $action!="" ) $params=array_merge( array("action"=>$action), $params );
-		
-		$ret="<form action='/1.php' tmt:validate='$validate'";
+		$ret="<form action='/$model->myPhp/$action' ";// tmt:validate='$validate'";
 		foreach( $options as $key=>$value )
 		{
 			$ret.=" $key='$value'";
 		}
 		$ret.=">";
 
-		$ret.="<input type='hidden' name='_m' value='$model->myPhp' />";
 		foreach( $params as $key=>$value )
 		{
 			$ret.="<input type='hidden' name='$key' value='$value' />";
@@ -37,10 +34,9 @@ class BaseTableHelper
 	public function link_popup( &$model, $action, $name, $title, &$params, $method="get" )
 	{
 		$ret="";
-		$url="/1.php?_m=$model->myPhp";
-		if( $action!="" ) $params=array_merge( array("action"=>$action), $params );
+		$url="/$model->myPhp/$action";
 		$query=http_build_query( $params,'', '&amp;' );
-		if( $query!="" ) $url.="&amp;$query";
+		if( $query!="" ) $url.="?$query";
 		
 		$ret.="<a href=\"javascript:;\" onclick=\"window.open('$url',".
 				"'_blank','scrollbars=1,toolbar=0,resizable=1')\" >$name</a>";
@@ -50,10 +46,9 @@ class BaseTableHelper
 	public function link_popup_confirm( &$model, $action, $name, &$params, $confirm_text, $method="get" )
 	{
 		$ret="";
-		$url="/1.php?_m=$model->myPhp";
-		if( $action!="" ) $params=array_merge( array("action"=>$action), $params );
+		$url="/$model->myPhp/$action";
 		$query=http_build_query( $params,'', '&amp;' );
-		if( $query!="" ) $url.="&amp;$query";
+		if( $query!="" ) $url.="?$query";
 		
 		$ret.="<a href=\"javascript:;\" onclick=\"if( confirm('$confirm_text') ) window.open('$url',".
 				"'_blank','scrollbars=1,toolbar=0,resizable=1')\" >$name</a>";

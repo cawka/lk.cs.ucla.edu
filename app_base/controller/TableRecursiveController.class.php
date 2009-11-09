@@ -1,10 +1,5 @@
 <?php
 
-include_once( 'TableController.class.php' );
-
-/**
-* Расширение класса BaseTable для работы по технологии Ajax
-*/
 class TableRecursiveController extends TableController
 {
 	public function index( &$tmpl,$request )

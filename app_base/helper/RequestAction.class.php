@@ -23,8 +23,8 @@ class RequestAction
 	
 	function RequestAction( $controller,&$class, $nodelay=true )
 	{
-		global $DB,$LANG,$Auth;
-		$this->myTemplate=&new MySmarty( BASEDIR."/app/view/", $LANG );
+		global $DB,$LANG,$Auth,$SETTINGS;
+		$this->myTemplate=&new MySmarty( BASEDIR."/app/view/$SETTINGS[theme]/", $LANG );
 		
 		$Auth=new AuthHelper( $controller );
 		$this->myAuth=&$Auth;
@@ -33,7 +33,6 @@ class RequestAction
 
 		if( $_REQUEST['action']=='' ) $_REQUEST['action']='index';
 		if( $nodelay ) $this->parseInput( $class );
-		
 	}
 	
 	function parseInput( &$class )

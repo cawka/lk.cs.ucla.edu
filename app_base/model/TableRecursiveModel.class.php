@@ -1,5 +1,4 @@
 <?php
-include_once( "TableModel.class.php" );
 
 class TableRecursiveModel extends TableModel 
 {
