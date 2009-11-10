@@ -29,5 +29,16 @@ $COOKIES=new CookieHelper( "", 3600*24*365 );
 
 session_start( );
 
-?>
+function __autoload( $classname )
+{
+	preg_match( "/^(.+)(column|model|controller|helper)$/i",$classname,$matches );
+	$prefix=BASEDIR . "/app/" . strtolower($matches[2]);
+	$prefix2=BASEDIR . "/app_base/". strtolower($matches[2]);
 
+	if( is_file("$prefix/$classname.class.php") )
+	    include_once( "$prefix/$classname.class.php" );
+	else if( is_file("$prefix2/$classname.class.php") )
+	    include_once( "$prefix2/$classname.class.php" );
+}
+
+?>

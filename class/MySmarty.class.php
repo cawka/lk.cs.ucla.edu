@@ -38,6 +38,8 @@ class MySmarty extends Smarty
 //			$this->assign( "deflogin", $COOKIES->ReadCookie("deflogin") );
 //		}
 	
+		$this->assign( "menu", new MainMenuHelper() );
+
 		if( isUserLogged() )
 		{
 			$this->assign( "login",   $_SESSION['login'] );

@@ -37,3 +37,21 @@ function refresh_list( url,name,id,urladdon )
 		  }
 		).send( );
 }
+
+function updateImage( el, value )
+{
+	$(el+'_pic').src=value;
+	$(el).value=value;
+}
+
+function BrowserPopup( name )
+{
+	finder=new CKFinder();
+	
+	finder.BasePath='/lib/ckfinder/';
+	finder.SelectFunction="set_"+name;
+	finder.RememberLastFolder=true;
+
+	finder.Popup( );
+}
+

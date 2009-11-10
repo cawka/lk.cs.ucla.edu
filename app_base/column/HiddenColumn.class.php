@@ -10,7 +10,7 @@ class HiddenColumn extends BaseColumn
 		$this->myValue=$value;
 	}
 	
-	function getValue( &$row  )
+	function getValue( )
 	{
 		return $this->myValue;
 	}
@@ -30,14 +30,6 @@ class HiddenColumn extends BaseColumn
 	function extractValue( &$row )
 	{
 		return "";
-	}
-}
-
-class HiddenColumnExactValue extends HiddenColumn 
-{
-	function getInsert( &$req )
-	{
-		return $this->myValue;
 	}
 }
 

@@ -33,7 +33,7 @@ class TextIdColumn extends TextColumn
 	
 	function getInput( &$row )
 	{
-		return "<input type='text' name='new_$this->myName' value='".$this->getValue( $row )."'
+		return "<input type='text' name='new_$this->myName' value=\"".htmlentities($this->getValue( $row ))."\"
 				"//.(isset($this->myRequired)?"tmt:required='true' tmt:message='$this->myRequired'":"")."
 				."class=\"addann_input$this->myClass"
 				.(isset($this->myRequired)?" validate['required','length[6, -1]', 'alphanum']":"")

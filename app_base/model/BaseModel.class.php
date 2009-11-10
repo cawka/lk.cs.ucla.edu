@@ -2,10 +2,8 @@
 
 class BaseModel
 {
-	/**
-	 * @var ADOConnection
-	 */
 	public $myPhp;
+	public $myRefreshAction="";//default index action
 
 	protected $myLang;
 
@@ -20,16 +18,6 @@ class BaseModel
 	 */
 	public $myHelper;
 	
-	/**
-	 * @param adodb $db
-	 * @param string $php
-	 * @param string $template
-	 * @param string $template_form
-	 * @param string $tblname
-	 * @param BaseColumn[] $columns
-	 * @param string $id
-	 * @return BaseTable
-	 */
 	public function __construct( $php )
 	{
 		$this->myPhp=$php;

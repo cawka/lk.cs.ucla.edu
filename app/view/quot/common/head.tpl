@@ -30,7 +30,7 @@
 <script type="text/javascript" src="/lib/ckfinder/ckfinder.js"></script>
 {/if}
 </head>
-{strip}
+{*strip*}
 <body>
 <script type="text/javascript" src="/js/wz_tooltip.js"></script>
 <div class="min-width">
@@ -39,7 +39,6 @@
 			<div class="logo">
 				<a href="/index.html"><img class="logo_image" src="/images/{$SETTINGS.theme}/logo.jpeg" title="Leonard Kleinrock" /></a>
 			</div>
-			<div class="dotline"></div>
 			<div class="search" style="white-space:nowrap;">
 				{*<!-- Google CSE Search Box Begins  -->
 				<form action="/search.php" id="searchbox_006709068114398285328:zxae357nx_i">
@@ -90,8 +89,7 @@
 		<div class="dotline" />
 		    <table class="iehacktable" border="0" width="100%" cellpadding="0" cellspacing="1px" style="margin-top: 5px;">
 			<tr>
-
-
+{*
 
 <td class="glink" style="width: 12%">
 					<ul class="menulist" id="menu_about" >
@@ -136,24 +134,37 @@
 	</li>					</ul>
 
 				</td>
+*}
 
+{foreach from=$menu->myData item=i name="menu"}
+{if !$smarty.foreach.menu.first}
+<td width="5px"><div class="dotcolumn" style="height:25px" /></td>
 
+{/if}
+<td class="glink{if $i.isselected}_s{/if}{if $smarty.foreach.menu.last} lastmenu{/if}" style="width: {$i.width}">
+<ul class="menulist" id="menu_{$i.id}" >
+	{include file="common/menulevel.tpl" item=$i level=1}
 
-			{foreach from=$menu->myData item=i name="menu"}
-				{if !$smarty.foreach.menu.first}
-					<td width="5px"><div class="dotcolumn" style="height:25px" /></td>
-				{/if}
-				<td class="glink{if $i.isselected}_s{/if}{if $smarty.foreach.menu.last} lastmenu{/if}" style="width: 12%">
-					<ul class="menulist" id="menu_{$i.id}" >
-						{include file="common/menulevel.tpl" item=$i level=1}
-					</ul>
-				</td>
-			{/foreach}
+</ul>
+</td>
+
+{/foreach}
+<td class="glink" style="width:100px">
+<ul class="menulist" id="menuSpecial" >
+<li>
+{if isUserLogged()}
+<a style="float:right" class="smoothbox" href="/menu/?ajax=true&amp;percent=true&amp;height=90&amp;width=90" name='Edit' ><img style='margin:0;padding:0;display:inline' height='12px' src='/images/admin/edit.gif' alt='Edit menu items' onmouseover="Tip('Edit menu')" /></a>
+</li>
+</ul>
+</td>
+{/if}
 			</tr>
 			</table>
 		<div class="dotline" />
 	</div>
+</div>
+</div>
 	<div class="body">
-{/strip}
+{*/strip*}
 {/if}
 

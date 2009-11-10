@@ -1,4 +1,7 @@
 <?php
+
+require_once( "../../../../../../inc/init.php" );
+new PermissionsHelper();
 /*
  * ### CKFinder : Configuration File - Basic Instructions
  *
@@ -29,7 +32,7 @@ function CheckAuthentication()
 	//... where $_SESSION['IsAuthorized'] is set to "true" as soon as the
 	//user logs in your system.
 
-	return false;
+	return isUserLogged();
 }
 
 // LicenseKey : Paste your license key here. If left blank, CKFinder will be
@@ -52,7 +55,7 @@ Examples:
 
 ATTENTION: The trailing slash is required.
 */
-$baseUrl = '/ckfinder/userfiles/';
+$baseUrl = '/data/';
 
 /*
 $baseDir : the path to the local directory (in the server) which points to the
@@ -267,7 +270,7 @@ If possible, it is recommended to set more restrictive permissions, like 0755.
 Set to 0 to disable this feature.
 Note: not needed on Windows-based servers.
 */
-$config['ChmodFiles'] = 0777 ;
+$config['ChmodFiles'] = 0644 ;
 
 /*
 See comments above.

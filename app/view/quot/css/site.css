@@ -1,4 +1,4 @@
-@import "/css/table.css";
+@import "table.css";
 
 html, body {
  font-family: Tahoma, Arial, Helvetica, sans-serif;
@@ -72,21 +72,21 @@ a:hover {
 .dotline {
 	height: 5px;
 	width: 100%;
-	background-image: url(../quot/images/dotline.png);
+	background-image: url(../../images/quot/dotline.png);
 	background-repeat: repeat-x;
 }
 
 .bigline {
 	height: 20px; 
 	width: 80%; 
-	background-image: url(../quot/images/y_s_s.jpg); 
+	background-image: url(../../images/quot/y_s_s.jpg); 
 	background-repeat: repeat-x;
 }
 
 .dotcolumn { 
 	width: 5px;
 	height: 100%;
-	background-image: url(../quot/images/dotcolumn.png);
+	background-image: url(../../images/quot/dotcolumn.png);
 	background-repeat: repeat-y;
 }
 
@@ -99,7 +99,7 @@ a:hover {
 /********************************************************************************************/
 
 .shapka {
-  height: 128px;
+  height: 190px;
   /*background-color: #00FF33;*/
 }
 
@@ -108,7 +108,7 @@ a:hover {
 .shapka_left {
   float: left;
   width: 245px;
-  padding-right: 58px;
+  padding-right: 45px;
   height: 100%;
 }
 
@@ -173,6 +173,11 @@ a:hover {
  padding-top: 0px;
 }
 
+.shapka_right img {
+	width: 630px;
+	height: 200px;
+}
+
 .shapka_bar {
 	color: #647271;
 	text-align: right;
@@ -190,7 +195,6 @@ a:hover {
 }
 
 .shapka_picture{
-	padding-top: 12px;
 }
 
 /********************************************************************************************/
@@ -200,6 +204,8 @@ a:hover {
 .menubar {
 	clear: both;
 	margin-top: 15px;
+	margin-left: 300px;
+	height: 25px;
 }
 
 /********************************************************************************************/
@@ -516,6 +522,13 @@ a.file, a.file:link, a.file:active, a.file:visited, a.file:hover {
  width: 100px;
 }
 
+.addann_photo {
+ font-size: 10pt;
+ padding: 3px;
+ border: 1px solid #888888;
+ width: 200px;
+}
+
 .addann_select {
  font-size: 10pt;
  width: 100%;
@@ -534,8 +547,8 @@ a.file, a.file:link, a.file:active, a.file:visited, a.file:hover {
 
 .addann_textarea {
  padding: 3px;
- width: 344px;
- height: 100%;
+ width: 100%;
+ height: 200px;
  border: 1px solid #888888;
 }
 

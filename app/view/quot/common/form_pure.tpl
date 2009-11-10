@@ -42,7 +42,7 @@
 			<input name="edit" type="hidden" value="1" />
 			<input name="{$this->myId}" type="hidden" value="{$this->getId()}" />
 		{/if}
-		<input accesskey="s" type="submit" class="button" value="{$submit|default:"Save"}"> 
+		<input accesskey="s" type="submit" class="button" value="{$submit|default:"Save"}" /> 
 	</td>
 </tr>
 </table>

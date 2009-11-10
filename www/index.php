@@ -2,18 +2,6 @@
 include_once( "../inc/init.php" );
 include_once( BASEDIR . "/app_base/helper/RequestAction.class.php" );
 
-function __autoload( $classname )
-{
-	preg_match( "/^(.+)(column|model|controller|helper)$/i",$classname,$matches );
-	$prefix=BASEDIR . "/app/" . strtolower($matches[2]);
-	$prefix2=BASEDIR . "/app_base/". strtolower($matches[2]);
-
-	if( is_file("$prefix/$classname.class.php") )
-	    include_once( "$prefix/$classname.class.php" );
-	else if( is_file("$prefix2/$classname.class.php") )
-	    include_once( "$prefix2/$classname.class.php" );
-}
-
 $module=$_REQUEST['_m'];
 if( !isset($module) ) $module="index";
 

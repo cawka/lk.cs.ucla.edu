@@ -45,14 +45,16 @@ class TextColumn extends BaseColumn
 		if( !isset($ret) || $ret=="" )
 			return "NULL";
 		else
+		{
 			return $DB->qstr( stripslashes($ret) );
+		}
 	}
 	
 	function getInput( &$row )
 	{
 			$ret="<input id='$this->myName' class=\"addann_input$this->myClass".
 					(isset($this->myRequired)?" validate['required']":"").
-					"\" type='text' name='$this->myName' value='".$this->getValue( $row )."' ";
+					"\" type='text' name='$this->myName' value=\"".htmlentities($this->getValue( $row ))."\" ";
 		if( $this->myToolTip!="" ) $ret.=" onmouseover=\"Tip('$this->myToolTip')\" ";
 		if( $this->myLimit>0 ) $ret.=" MAXLENGTH='$this->myLimit' ";
 		$ret.= " $this->myAdditional />".

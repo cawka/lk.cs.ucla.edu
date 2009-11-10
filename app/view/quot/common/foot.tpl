@@ -1,5 +1,5 @@
 {if !isset($smarty.request.ajax)}
-{strip}
+{*strip*}
 
 </div>
 	<div class="footer">
@@ -17,23 +17,16 @@
 </div>
 <script type="text/javascript">
 {foreach from=$menu->myData item="i"}
-menu{$i.id|replace:"-":"_"} = new FSMenu('menu{$i.id}', true, 'display', 'block', 'none');
-{*
-//menu{$i.id|replace:"-":"_"}.animations[menu{$i.id|replace:"-":"_"}.animations.length] = FSMenu.animFade;
-//menu{$i.id|replace:"-":"_"}.animations[menu{$i.id|replace:"-":"_"}.animations.length] = FSMenu.animSwipeDown;
+menu{$i.id} = new FSMenu('menu{$i.id}', true, 'display', 'block', 'none');
+menu{$i.id}.hideOnClick = false;
+menu{$i.id}.hideDelay = 0;
+menu{$i.id}.switchDelay=0;
 
-*}
-menu{$i.id|replace:"-":"_"}.hideOnClick = false;
-menu{$i.id|replace:"-":"_"}.hideDelay = 0;
-menu{$i.id|replace:"-":"_"}.switchDelay=0;
-
-addEvent(window, 'load', new Function('menu{$i.id|replace:"-":"_"}.activateMenu("menu_{$i.id}",null)'));
-{*//addEvent(window, 'load', new Function('listMenu.activateMenu("listMenuRoot", arrow)'));
-*}
+addEvent(window, 'load', new Function('menu{$i.id}.activateMenu("menu_{$i.id}",null)'));
 {/foreach}
 </script>
 
 </body>
 </html>
-{/strip}
+{*/strip*}
 {/if}
