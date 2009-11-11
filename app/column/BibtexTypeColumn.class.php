@@ -5,7 +5,6 @@ class BibtexTypeColumn extends ListColumn
 		public function __construct( $name, $descr )
 		{
 				parent::ListColumn( $name, $descr, "Required", array(
-							"raw"=>"Raw BibTex entry",
 							"article"=>"Journal paper",
 							"conference"=>"Conference paper",
 							"book"=>"Book",
@@ -13,6 +12,8 @@ class BibtexTypeColumn extends ListColumn
 							"patent"=>"Patent",
 							"techreport"=>"Tech.Report",
 							"misc"=>"Misc",
+							"phdthesis"=>"PhD Thesis",
+							"raw"=>"Raw BibTex entry",
 						) 
 				);
 

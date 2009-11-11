@@ -8,7 +8,7 @@ class BibwikiModel extends TableModel
 						   "bibtex='incollection'"=>array("chapters","Chapters in Books"),
 						   "bibtex='patent'"=>array("patents","Patents"),
 						   "(bibtex='article' OR bibtex='conference')"=>array("articles","Papers Published in Professional and Scholarly Journals and in Procedings of Conferences and Symposia"),
-						   "bibtex='techreport'"=>array("techreports","Papers Published as Technical Reports"),
+						   "(bibtex='techreport' OR bibtex='phdthesis')"=>array("techreports","Papers Published as Technical Reports"),
 				   );
 
 	protected $current_search;
@@ -60,6 +60,7 @@ class BibwikiModel extends TableModel
 		switch( $request['bibtex'] )
 		{
 		case "article":
+		default:
 			$fields=array("author"=>array("required"=>true),
 						  "title"=>array("required"=>true),
 						  "journal"=>array("required"=>true),
@@ -159,8 +160,18 @@ class BibwikiModel extends TableModel
 							  "note"=>array(),
 					  );
 				break;
+		case "phdthesis":
+				$fields=array("author"=>array("required"=>true),
+							  "title"=>array("required"=>true),
+							  "school"=>array("required"=>true),
+							  "year"=>array("required"=>true),
+							  "address"=>array(),
+							  "month"=>array(),
+							  "type"=>array(),
+							  "note"=>array(),
+					  );
+				break;
 		case "raw":
-		default:
 				$fields=array();
 				$this->myColumns['entry']=new TextAreaColumn( "entry","Entry" );
 				break;
@@ -210,7 +221,7 @@ class BibwikiModel extends TableModel
 
 		if( !isset($this->myEntry['pdf']) && isset($this->myEntry['local-url']) )
 		{
-			$this->myEntry['pdf']=str_replace( '/Users/cawka/Documents/Papers/',"",$this->myEntry['local-url'] );
+			$this->myEntry['pdf']=preg_replace( "|^.*/data/files/|","",$this->myEntry['local-url'] );
 			$request['pdf']=$this->myEntry['pdf'];
 		}
 	
