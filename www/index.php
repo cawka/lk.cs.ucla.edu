@@ -2,6 +2,7 @@
 include_once( "../inc/init.php" );
 include_once( BASEDIR . "/app_base/helper/RequestAction.class.php" );
 
+//$DB->debug=true;
 $module=$_REQUEST['_m'];
 if( !isset($module) ) $module="index";
 

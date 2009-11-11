@@ -1,3 +1,4 @@
+{if !isset($smarty.request.ajax)}
 {if isUserLogged()}
 <div style="float:left"><a class="smoothbox" href="/staticPages/edit?id=bibwiki"><img style="margin: 0pt; padding: 0pt; display: inline;" src="/images/admin/edit.gif" alt="" onmouseover="Tip('Edit')" height="12px"></a></div>
 <div style="float:right"><a href="/login/logout">Logout</a></div>
@@ -26,7 +27,8 @@
             <td class="right"><!-- Actual content -->
 				{if isUserLogged()}{$this->myStatic->mainContent->getEditCtrl($this->myStatic->mainContent->myData)}{/if}
 				<div id='frame_0'>{eval var="`$this->myStatic->mainContent->myData.text` "}</div>
-
+{/if}{* !isset(smarty.request.ajax)*}
+				{if isUserLogged()}<div id="frame_">{/if}
 				{foreach name="outer" from=$this->myTypes item=type}
 				<h1><a name="{$type.0}">{$type.1}</a></h1>
 				<ol>
@@ -35,8 +37,10 @@
 					{$this->myHelper->format_reference($cat.entry)}
 					&nbsp;
 					{if isset($cat.pdf) && $cat.pdf!=""}
-					<a target="_blank" href="/papers/{$cat.pdf}"><img src="/images/pdf.png"></a>&nbsp;
+					<a target="_blank" href="/data/files/{$cat.pdf}"><img src="/images/pdf.png"></a>&nbsp;
 					{/if}
+					&nbsp;
+					<a class="smoothbox" href="/bibwiki/bibtex?id={$cat.id}&amp;width=50&amp;height=50" title='BibTex Export' >BibTex</a>
 					{if isUserLogged()}
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					{eval var=$this->getEditCtrl($cat)}
@@ -48,9 +52,12 @@
 				{if isUserLogged()}{$this->getAddCtrl()}{/if}
 				<br /><br /> 
 				{/foreach}
-            </td>
+				{if isUserLogged()}</div>{/if}
+{if !isset($smarty.request.ajax)}
+         </td>
         </tr>
     </tbody>
 </table>
 
 {include file="common/foot.tpl"}
+{/if}

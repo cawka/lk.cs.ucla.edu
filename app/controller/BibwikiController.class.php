@@ -19,6 +19,17 @@ class BibwikiController extends TableController
 	}
  */
 
+	protected function cacheId( &$request )
+	{
+
+		return "($request[action])".(isset($request[$this->myModel->myId])?"(".$request[$this->myModel->myId].")":"");
+	}
+
+	public function bibtex( &$tmpl, &$request )
+	{
+		return $this->showTemplate( $tmpl, $request, "bibwiki/show-bibtex.tpl", "getBibTex" );
+	}
+
 	public function add( &$tmpl, &$request )
 	{
 		$this->myModel->prepareFields( $request );

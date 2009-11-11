@@ -6,7 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="description" content="{$meta_descr|strip_tags}" />
 <meta name="keywords" content="{$meta_keywords|strip_tags}" />
-<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
 <link rel="stylesheet" href="/css/smoothbox.css" type="text/css" />
 <link rel="stylesheet" href="/css/{$SETTINGS.theme}/site.css" type="text/css" />

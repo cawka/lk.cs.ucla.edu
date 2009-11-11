@@ -31,9 +31,9 @@ class BaseController
 ////////////////////////////////////////////////////////////////////////////////////////
 // protected:
 	
-	protected function cacheId()
+	protected function cacheId( &$request )
 	{
-		return getRequest(array());
+		return ""; //getRequest(array()); !!! Controller should provide its own ID, otherwise no ID will be used
 	}
 	
 	protected function showTemplate( &$tmpl, &$request, $template, $model_method, $cache=true )
@@ -42,11 +42,12 @@ class BaseController
 		{
 			$tmpl->assign( "error", "Template [$template] not found" );
 			$template="common/error.tpl";
-			$tmpl->clear_cache( $template,$this->cacheId( ) );
+			$tmpl->clear_cache( $template,$this->cacheId($request) );
 		}
 		
-		if( !$cache ) { $tmpl->clear_cache( $template,$this->cacheId( ) ); }
-		if( !$tmpl->is_cached($template,$this->cacheId( )) )
+		if( !$cache ) { $tmpl->clear_cache( $template,$this->cacheId($request) ); }
+
+		if( !$tmpl->is_cached($template,$this->cacheId($request)) )
 		{
 			if( $model_method!="" ) call_user_method( $model_method, $this->myModel, $request );
 			$tmpl->assign_by_ref( "this", $this->myModel );
@@ -55,9 +56,9 @@ class BaseController
 		}
 		
 		if( !$this->myUseSmartyFetch )
-			$tmpl->display( $template, $this->cacheId() );		
+			$tmpl->display( $template, $this->cacheId($request) );		
 		else 
-			return $tmpl->fetch( $template, $this->cacheId() );	
+			return $tmpl->fetch( $template, $this->cacheId($request) );	
 	}
 	
 	protected function showTemplateDB( $tmpl, &$request, $static_page_id, $model_method, $cache=true )
@@ -71,11 +72,11 @@ class BaseController
 		{
 			$tmpl->assign( "error", "Template [$template] not found" );
 			$template="common/error.tpl";
-			$tmpl->clear_cache( $template,"($static_page_id)".$this->cacheId( ) );
+			$tmpl->clear_cache( $template,"($static_page_id)".$this->cacheId($request) );
 		}
 		
-		if( !$cache ) { $tmpl->clear_cache( $template,"($static_page_id)".$this->cacheId( ) ); }
-		if( !$tmpl->is_cached($template,"($static_page_id)".$this->cacheId( )) )
+		if( !$cache ) { $tmpl->clear_cache( $template,"($static_page_id)".$this->cacheId($request) ); }
+		if( !$tmpl->is_cached($template,"($static_page_id)".$this->cacheId( $request )) )
 		{
 			if( $model_method!="" ) call_user_method( $model_method, $this->myModel, $request );
 
@@ -93,9 +94,9 @@ class BaseController
 		}
 		
 		if( !$this->myUseSmartyFetch )
-			$tmpl->display( $template, $this->cacheId() );		
+			$tmpl->display( $template, $this->cacheId($request) );		
 		else 
-			return $tmpl->fetch( $template, $this->cacheId() );	
+			return $tmpl->fetch( $template, $this->cacheId($request) );	
 	}
 	
 	protected function postSave( &$tmpl,&$request ) 

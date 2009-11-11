@@ -268,6 +268,11 @@ class BibwikiModel extends TableModel
 		return parent::save_edit( $request );
 	}
 
+	public function getBibTex( &$request )
+	{
+		return parent::getRowToEdit( $request );
+	}
+
 	public function getRowToEdit( &$request )
 	{
 		parent::getRowToEdit( $request );

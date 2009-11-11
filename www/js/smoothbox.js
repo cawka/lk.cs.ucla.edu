@@ -34,12 +34,14 @@ function TB_bind(event){
     // get rel attribute for image groups
     var group = this.rel || false;
     // display the box for the elements href
-	
-	if( this.href.indexOf('?')>=0 )
-			this.href+="&ajax=true";
+
+	var href=this.href;
+
+	if( href.indexOf('?')>=0 )
+		href+="&ajax=true";
 	else
-			this.href+="?ajax=true";
-    TB_show(caption, this.href, group);
+		href+="?ajax=true";
+    TB_show(caption, href, group);
     this.onclick = TB_bind;
     return false;
 }
@@ -229,12 +231,11 @@ function TB_show(caption, url, rel){
     else { //code to show html pages
         var queryString = url.match(/\?(.+)/)[1];
         var params = TB_parseQuery(queryString);
-    
-	//	if( params['width']===null || params['height']===null )
-		{	
-			params['width']=90;
-			params['height']=90;
-		}
+   
+
+		if( params['width']===undefined ) params['width']=90;
+		if( params['height']===undefined ) params['height']=90;
+				
 //        if( params['percent']=="true" )
   //      {
             TB_WIDTH = (params['width']*1*window.getWidth()/100.0) + 30;

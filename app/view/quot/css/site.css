@@ -596,3 +596,13 @@ td {
 .cert {
  border: 1px solid #656A73;
 }
+
+pre {
+	padding: 1em;
+	border: 1px dashed #2f6fab;
+	color: black;
+	background-color: #f9f9f9;
+	line-height: 1.1em;
+	overflow: auto;
+}
+
