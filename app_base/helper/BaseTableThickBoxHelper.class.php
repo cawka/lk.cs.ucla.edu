@@ -15,12 +15,12 @@ class BaseTableThickBoxHelper extends BaseTableHelper
 		$url="/$model->myPhp/$action";
 		
 		$params=array_merge( $params, array(
-				"ajax"=>"true",
+//				"ajax"=>"true",
 //				"KeepThis"=>"true",
 //				"TB_iframe"=>"true",
-				"percent"=>"true",
-				"height"=>"90",
-				"width"=>"90",
+//				"percent"=>"true",
+//				"height"=>"90",
+//				"width"=>"90",
 			) );
 		$query=http_build_query( $params,'', '&amp;' );
 		if( $query!="" ) $url.="?$query";

@@ -1,5 +1,5 @@
 <li>
-	<a {if !isset($item.parent_id)}class="main"{/if} {if $item.link!=""}href="{$item.link}"{/if}>{$item.name}</a>
+	<a {if !isset($item.parent_id)}class="main"{/if} {if $item.link!=""}href="{$item.link}"{/if} {if $item.target!=""}target="{$item.target}"}{/if}>{$item.name}</a>
 	{if isset($item.sublevel) && (!isset($level) || $level>0)}
 	<ul>
 		{if isUserLogged()}

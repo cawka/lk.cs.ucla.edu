@@ -3,7 +3,7 @@
 {elseif $item.link==""}
 {$item.title}
 {else}
-<a href="{$item.link}">{$item.name}</a>
+<a {if $item.target!=""}target="{$item.target}"}{/if} href="{$item.link}">{$item.name}</a>
 {/if}
 {if $item.sublevel!==null}
 <ul>

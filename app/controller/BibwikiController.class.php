@@ -17,7 +17,19 @@ class BibwikiController extends TableController
 	{
 		return $this->showTemplate( $tmpl, $request, "bibwiki_authors.tpl", "prepareAuthors" );
 	}
- */	
+ */
+
+	public function add( &$tmpl, &$request )
+	{
+		$this->myModel->prepareFields( $request );
+		return parent::add( $tmpl, $request );
+	}
+
+	public function fields( &$tmpl, &$request )
+	{
+		return $this->showTemplate( $tmpl, $request, "common/form.tpl", "prepareFields" );
+	}
+
 	public function import( &$tmpl, &$request )
 	{
 		return $this->showTemplate( $tmpl, $request, "common/form.tpl", "prepareImport" );

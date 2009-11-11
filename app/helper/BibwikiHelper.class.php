@@ -4,9 +4,41 @@
  *
  */
 
+include_once( BASEDIR . "/class/OSBiB/format/BIBFORMAT.php" );
+require_once( BASEDIR . "/class/OSBiB/format/bibtexParse/PARSEENTRIES.php" );
 
 class BibwikiHelper extends BaseTableThickBoxHelper 
 {
+	private $bibformat;
+
+	function __construct( )
+	{
+		$this->bibformat=new BIBFORMAT( BASEDIR . "/class/OSBiB", TRUE );
+		list($info, $citation, $footnote, $styleCommon, $styleTypes) =
+		$this->bibformat->loadStyle( BASEDIR . "/class/OSBiB/styles/bibliography/", "ieee" );
+		$this->bibformat->getStyle( $styleCommon, $styleTypes, $footnote );
+//		$this->bibformat->cleanEntry=TRUE;
+		unset( $info, $citation, $footnote, $styleCommon, $styleTypes );
+	}
+
+	public function format_reference( &$entry )
+	{
+			$parse = NEW PARSEENTRIES( );
+			$parse->expandMacro = TRUE;
+			$parse->fieldExtract = TRUE;
+			$parse->removeDelimit = TRUE;
+			$parse->loadBibtexString( $entry );
+			$parse->extractEntries( );
+
+			list($preamble, $strings, $entries) = $parse->returnArrays();
+			foreach( $entries as &$entry ) $entry=preg_replace( "/{|}/","",$entry );
+			$this->bibformat->preProcess( $entries[0]['bibtexEntryType'], $entries[0] );
+			$ret=$this->bibformat->map(). " ".$entries[0]['note'];
+			unset( $parse );
+
+			return $ret;
+	}
+	
 	function parseAuthors( $authors )
 	{
 		$found_authors=array();

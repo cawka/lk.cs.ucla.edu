@@ -34,6 +34,11 @@ function TB_bind(event){
     // get rel attribute for image groups
     var group = this.rel || false;
     // display the box for the elements href
+	
+	if( this.href.indexOf('?')>=0 )
+			this.href+="&ajax=true";
+	else
+			this.href+="?ajax=true";
     TB_show(caption, this.href, group);
     this.onclick = TB_bind;
     return false;
@@ -224,17 +229,22 @@ function TB_show(caption, url, rel){
     else { //code to show html pages
         var queryString = url.match(/\?(.+)/)[1];
         var params = TB_parseQuery(queryString);
-        
-        if( params['percent']=="true" )
-        {
+    
+	//	if( params['width']===null || params['height']===null )
+		{	
+			params['width']=90;
+			params['height']=90;
+		}
+//        if( params['percent']=="true" )
+  //      {
             TB_WIDTH = (params['width']*1*window.getWidth()/100.0) + 30;
             TB_HEIGHT = (params['height']*1*window.getHeight()/100.0) + 40;
-        }
-        else
+    //    }
+        /*else
         {
             TB_WIDTH = (params['width']*1) + 30;
             TB_HEIGHT = (params['height']*1) + 40;
-        }
+        }*/
 //		TB_WIDTH = (params['width'] * 1) + 30;
 //        TB_HEIGHT = (params['height'] * 1) + 40;
         
@@ -277,7 +287,8 @@ function TB_show(caption, url, rel){
 				new Request.HTML({
                     method: 'get',
                     update: $("TB_ajaxContent"),
-                    onComplete: handlerFunc
+                    onComplete: handlerFunc,
+					evalScripts: true
                 }).get(url);
             }
     }

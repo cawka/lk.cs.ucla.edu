@@ -48,15 +48,15 @@ class BIBFORMAT
 		$this->bibtex = $bibtex;
 		if($this->bibtex)
 		{
-			include_once("../STYLEMAPBIBTEX.php");
+			include_once( BASEDIR . "/class/OSBiB/STYLEMAPBIBTEX.php");
 			$this->styleMap = new STYLEMAPBIBTEX();
 		}
 		else
 		{
-			include_once("../STYLEMAP.php");
+			include_once( BASEDIR . "/class/OSBiB/STYLEMAP.php");
 			$this->styleMap = new STYLEMAP();
 		}
-		include_once("../UTF8.php");
+		include_once( BASEDIR . "/class/OSBiB/UTF8.php" );
 		$this->utf8 = new UTF8();
 /**
 * Highlight preg pattern and CSS class for HTML display
@@ -109,7 +109,7 @@ class BIBFORMAT
 		$styleFile = file_exists($uc) ? $uc : $lc;
 		if(!$fh = fopen($styleFile, "r"))
 			return array(FALSE, FALSE, FALSE, FALSE, FALSE);
-		include_once("../PARSEXML.php");
+		include_once( BASEDIR . "/class/OSBiB/PARSEXML.php" );
 		$parseXML = new PARSEXML($this);
 		list($info, $citation, $footnote, $common, $types) = $parseXML->extractEntries($fh);
 		fclose($fh);
@@ -343,7 +343,7 @@ class BIBFORMAT
 				$this->editorSwitch = TRUE;
 			}
 		}
-		if($this->style['dateMonthNoDay'] && array_key_exists('date', $this->styleMap->$type) && 
+		if($this->style['dateMonthNoDay'] && isset($this->styleMap->$type) && array_key_exists('date', $this->styleMap->$type) && 
 			array_key_exists('dateMonthNoDayString', $this->style) && $this->style['dateMonthNoDayString'])
 		{
 			include_once($this->dir . "PARSESTYLE.php");
@@ -576,7 +576,7 @@ class BIBFORMAT
 * Output medium:
 * 'html', 'rtf', or 'plain'
 */
-		include_once($this->dir . "EXPORTFILTER.php");
+		include_once($this->dir . "format/EXPORTFILTER.php");
 		$this->export = new EXPORTFILTER($this, $this->output);
 // Don't think $template is used anymore
 		if($template)
@@ -936,7 +936,7 @@ class BIBFORMAT
 				$rewriteCreatorFieldBefore = $nameType . "_remainderString_before";
 				$rewriteCreatorFieldEach = $nameType . "_remainderString_each";
 			}
-			if(array_key_exists($rewriteCreatorField, $this->$type))
+			if(isset($this->$type) && array_key_exists($rewriteCreatorField, $this->$type))
 			{
 				if($firstInList)
 				{

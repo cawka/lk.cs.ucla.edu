@@ -4,6 +4,8 @@ class ListColumn extends BaseColumn
 {
 	var $myOptions;
 	var $myClass;
+	var $myAdditional="";
+	var $myAdditionalText="";
 	
 	function ListColumn( $name,$descr,$required=NULL,$options,$brief=false,$brmsg="",$class="" )
 	{
@@ -25,16 +27,16 @@ class ListColumn extends BaseColumn
 		
 	function getInput( &$row )
 	{
-		$ret="<select class='addann_select$this->myClass' name='$this->myName' ";
+		$ret="<select class='addann_select$this->myClass' name='$this->myName' id='$this->myName' ";
 		if( $this->myToolTip!="" ) $ret.=" onmouseover=\"Tip('$this->myToolTip')\" ";
-		$ret.=">\n";
+		$ret.="$this->myAdditional >\n";
 		foreach( $this->myOptions AS $key=>$value )
 		{
 			$ret.="<option value='$key'";
 			if( "$key"==$this->getValue($row) ) $ret.=" selected='selected'";
 			$ret.=">$value</option>\n";
 		}
-		$ret.="</select>\n";
+		$ret.="</select>$this->myAdditionalText\n";
 
 		return $ret;
 	}

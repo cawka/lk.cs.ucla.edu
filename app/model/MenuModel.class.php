@@ -19,11 +19,11 @@ class MenuModel extends TableModel
 						new TextColumn("link","Linked item"),
 						new IntegerColumn("display_order","Display order"),
 						new TextColumn("width","Main menu width"),
+						new TextColumn("target","Target"),
 						new HiddenColumn("parent_id",$parent_id ),
 					)
 				);
-				$this->mySortColumn="display_order";
-
+				$this->myOrder="display_order";
 //				$this->myRefreshAction="show";
 		}
 }

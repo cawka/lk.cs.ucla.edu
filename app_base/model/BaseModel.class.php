@@ -97,11 +97,11 @@ class BaseModel
 	
 	public function getQuery( )
 	{
-		$ret=urldecode( $_REQUEST['_p'] );
-		$ret2=http_build_query( $this->getColumnParams(),NULL,"&" );
-		if( $ret!="" && $ret2!="" ) $ret.="&";
-		return $ret.$ret2;
-//		return http_build_query( $this->getColumnParams(),NULL,"&" );
+//		$ret=urldecode( $_REQUEST['_p'] );
+//		$ret2=http_build_query( $this->getColumnParams(),NULL,"&" );
+//		if( $ret!="" && $ret2!="" ) $ret.="&";
+//		return $ret.$ret2;
+		return http_build_query( $this->getColumnParams(),NULL,"&" );
 	}
 	
 	function extractParentId( &$row )

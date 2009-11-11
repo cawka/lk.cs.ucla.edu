@@ -44,9 +44,9 @@ class TableModel extends BaseModel
 		$this->myIsOffset=$offsets;
 		
 //		if( !isset($_REQUEST['_p']) )
-		{
+//		{
 //			$tmp=array_merge( $_GET, $_POST );
-			$tmp=$_GET;
+/*			$tmp=$_GET;
 			unset( $tmp['_m'] );
 			unset( $tmp['action'] );
 			unset( $tmp['_p'] );
@@ -57,9 +57,9 @@ class TableModel extends BaseModel
 				$this->myUrlAddon="_p";
 				$this->myUrlAddonValue=urlencode($query);
 			}
-		}
+		}*/
 		
-		if( isset($_REQUEST['_p']) )
+/*		if( isset($_REQUEST['_p']) )
 		{
 //			print $_REQUEST['_p'];
 //			print urldecode( $_REQUEST['_p'] );
@@ -72,6 +72,7 @@ class TableModel extends BaseModel
 //				$_REQUEST[$p[0]]=$p[1];
 			}
 		}
+ */
 	}
 	
 	private function addSortColumns( $sort )

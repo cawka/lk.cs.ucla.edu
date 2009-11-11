@@ -11,7 +11,7 @@ Filter
 	columns=$this->mySearchColumns column_pool=$this->myColumns parent_request=""}
 {/if}
 
-<div style="margin-left: 10px;">
+<div>
 	{eval var=$this->getAddCtrl()}
 </div>				
 

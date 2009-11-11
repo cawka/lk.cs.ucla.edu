@@ -2,35 +2,175 @@
 
 class BibwikiModel extends TableModel 
 {
+	protected $myFields;
+	public $myTypes=array( "bibtex='book'"=>array("books","Books"),
+						   "bibtex='misc'"=>array("misc","Public Service Reports"),
+						   "bibtex='incollection'"=>array("chapters","Chapters in Books"),
+						   "bibtex='patent'"=>array("patents","Patents"),
+						   "(bibtex='article' OR bibtex='conference')"=>array("articles","Papers Published in Professional and Scholarly Journals and in Procedings of Conferences and Symposia"),
+						   "bibtex='techreport'"=>array("techreports","Papers Published as Technical Reports"),
+				   );
+
+	protected $current_search;
+
+	protected function extraWhere( &$request )
+	{
+			return $this->current_search;
+	}
+
+
 	public function __construct( $php )
 	{
 		global $DB;
-
-		$this->myIsAutoId=true;
-		
-		if( preg_match('|.*'.$url.'/(Section:[a-zA-Z_]+/)?([a-z]+)/?(.*)|', $_SERVER['REQUEST_URI'], $matches) )
-		{
-			switch( $matches[2] )
-			{
-			case "key":
-				$_REQUEST['key']=$matches[3];
-				unset( $_REQUEST['section'] );
-				break;
-			case "keywords":
-			case "authors":
-			case "import":
-				$_REQUEST['action']=$matches[2];					
-				break;
-			}
-		}
-		
 		parent::__construct( $DB,$php,"bibwiki",array(
-				"entry"=>new TextAreaColumn("entry","BibTeX Entry"),
-			) );
-		
+				"bibtex"=>new BibtexTypeColumn( "bibtex", "Publication type" ),
+				"pdf"=>new FileColumn( "pdf", "PDF" ),
+		) );
+
 		$this->myOrder="date DESC";
-/*		$this->myIsOffset=true;
-		$this->myElementsPerPage=30;*/
+	}
+
+	public function collectData( &$request )
+	{
+//		$this->myDB->debug=true;
+		foreach( $this->myTypes as $key=>$value )
+		{
+			$this->current_search=$key;
+			parent::collectData( $request );
+			array_push( $this->myTypes[$key], $this->myData );
+		}
+
+		$this->myStatic=new StaticPagesModel( "staticPages" );
+		$this->myStatic->myHelper=$this->myHelper;
+		$req=array( "id"=>"bibwiki" );
+//		$this->myDB->debug=true;
+		$this->myStatic->getRowToShow( $req );
+	}
+
+	public function prepareFields( &$request )
+	{
+		$this->myData=$request;
+		$this->getFields( $request );
+	}
+
+	protected function getFields( &$request )
+	{
+		if( isset($this->myFields) ) return;
+
+		switch( $request['bibtex'] )
+		{
+		case "article":
+			$fields=array("author"=>array("required"=>true),
+						  "title"=>array("required"=>true),
+						  "journal"=>array("required"=>true),
+						  "year"=>array("required"=>true),
+						  "volume"=>array(),
+						  "number"=>array(),
+						  "pages"=>array(),
+						  "month"=>array(),
+						  "note"=>array(),
+				  );
+				break;
+		case "conference":
+				$fields=array("author"=>array("required"=>true),
+							  "title"=>array("required"=>true),
+							  "booktitle"=>array("required"=>true),
+							  "year"=>array("required"=>true),
+							  "editor"=>array(),
+							  "volume"=>array(),
+							  "pages"=>array(),
+							  "number"=>array(),
+							  "organization"=>array(),
+							  "series"=>array(),
+							  "publisher"=>array(),
+							  "address"=>array(),
+							  "month"=>array(),
+							  "note"=>array(),
+					  );
+				break;
+		case "book":
+				$fields=array("title"=>array("required"=>true),
+							  "publisher"=>array("required"=>true),
+							  "year"=>array("required"=>true),
+							  "author"=>array(),
+							  "editor"=>array(),
+							  "volume"=>array(),
+							  "number"=>array(),
+							  "series"=>array(),
+							  "address"=>array(),
+							  "edition"=>array(),
+							  "month"=>array(),
+							  "note"=>array(),
+					  );
+				break;
+		case "inbook":
+				$fields=array("author"=>array("required"=>true),
+							  "title"=>array("required"=>true),
+							  "booktitle"=>array("required"=>true),
+							  "publisher"=>array("required"=>true),
+							  "year"=>array("required"=>true),
+							  "editor"=>array(),
+							  "volume"=>array(),
+							  "number"=>array(),
+							  "series"=>array(),
+							  "type"=>array(),
+							  "chapter"=>array(),
+							  "pages"=>array(),
+							  "address"=>array(),
+							  "edition"=>array(),
+							  "month"=>array(),
+							  "note"=>array(),
+					  );
+				break;
+		case "patent":
+				$fields=array("author"=>array("required"=>true),
+							  "title"=>array("required"=>true),
+							  "year"=>array(),
+							  "month"=>array(),
+							  "day"=>array(),
+							  "type"=>array(),
+							  "number"=>array(),
+							  "filing_number"=>array(),
+							  "nationality"=>array(),
+							  "yearfiled"=>array(),
+							  "monthfiled"=>array(),
+							  "dayfiled"=>array(),
+							  "note"=>array(),
+					  );
+				break;
+		case "techreport":
+				$fields=array("author"=>array("required"=>true),
+							  "title"=>array("required"=>true),
+							  "institution"=>array("required"=>true),
+							  "year"=>array("required"=>true),
+							  "type"=>array(),
+							  "number"=>array(),
+							  "address"=>array(),
+							  "month"=>array(),
+					  );
+				break;
+		case "misc":
+				$fields=array("title"=>array(),
+							  "howpublished"=>array(),
+							  "author"=>array(),
+							  "month"=>array(),
+							  "year"=>array(),
+							  "url"=>array(),
+							  "note"=>array(),
+					  );
+				break;
+		case "raw":
+		default:
+				$fields=array();
+				$this->myColumns['entry']=new TextAreaColumn( "entry","Entry" );
+				break;
+		}
+
+		foreach( $fields as $key=>$value )
+		{
+			array_push( $this->myColumns, new TextColumn($key, $key, isset($value['required'])?"Required":NULL) );
+		}
+		$this->myFields=$fields;
 	}
 	
 	private function qstr( $str )
@@ -54,151 +194,139 @@ class BibwikiModel extends TableModel
 	
 	private function denormalizeData( $bibentry, &$request ) //only one entry is allowed here
 	{
-		require_once( BASEDIR . "/class/OSBiB/format/bibtexParse/PARSEENTRIES.php" );
-
 		$parse = NEW PARSEENTRIES();
 		$parse->loadBibtexString( $bibentry );
 		$parse->extractEntries( );
 		$this->myEntry=$parse->entries[0];
+
+		$request['bibtex']=$this->myEntry['bibtexEntryType'];
 		
-		$this->updateDenormalizedColumns( );
+		$this->updateDenormalizedColumns( $request );
 	}
 	
-	private function updateDenormalizedColumns( )
+	private function updateDenormalizedColumns( &$request )
 	{
+		foreach( $this->myEntry as $key=>&$value ) $value=substr( $value,1,strlen($value)-2 );
+
 		if( !isset($this->myEntry['pdf']) && isset($this->myEntry['local-url']) )
 		{
 			$this->myEntry['pdf']=str_replace( '/Users/cawka/Documents/Papers/',"",$this->myEntry['local-url'] );
+			$request['pdf']=$this->myEntry['pdf'];
 		}
-		
-		foreach( $this->myEntry as $key=>&$value ) $value=trim( $value,"{}" );
+	
+		//$this->myDB->debug=true;
+		$this->myColumns['date']=
+			new HiddenExactValueColumn( "date",    $this->myDB->qstr($this->myEntry["year"]."-".
+												   $this->extractMonth( $this->myEntry["month"] )."-01") );
+	}
 
-		$authors=$this->myHelper->parseAuthors( $this->myEntry["author"] );
+	private function preprocessData( &$request )
+	{
+		$this->getFields( $request );
 
-		$this->myDB->debug=true;
-		$this->myColumns=array(
-			"entry"=>$this->myColumns["entry"],
-			new HiddenExactValueColumn("timestamp","NOW()"),
-			new HiddenExactValueColumn("keywords",$this->qstr($this->myEntry["keywords"]) ),
-			new HiddenExactValueColumn("title",   $this->qstr($this->myEntry["title"]) ),
-			new HiddenExactValueColumn( "first_author", $this->qstr($authors[0]["n"]) ),
-			new HiddenExactValueColumn( "authors", $this->qstr($this->myEntry["author"]) ),
-			new HiddenExactValueColumn( "date",    $this->qstr($this->myEntry["year"]."-".
-												   $this->extractMonth( $this->myEntry["month"] )."-01") ),
-			
-			new HiddenExactValueColumn("journal", $this->qstr(isset($this->myEntry["journal"])?$this->myEntry["journal"]:$this->myEntry["booktitle"]) ),
-			new HiddenExactValueColumn("file",    $this->qstr($this->myEntry["pdf"]) ),
-		);
+		if( $request['bibtex']=='raw' )
+		{
+			$this->denormalizeData( $request[$this->myColumns["entry"]->myName], $request );
+		}
+		else
+		{
+			$entry="@$request[bibtex]{id";
+			foreach( $this->myFields as $key=>$value )
+			{
+				if( $request[$key]!="" ) $entry.=",\n$key={".$request[$key]."}";
+			}
+			$entry.=",\ncomment={}}";
+
+			$this->myColumns=array(
+					$this->myColumns['bibtex'],
+					$this->myColumns['pdf'],
+					new HiddenExactValueColumn( 'entry', $this->myDB->qstr($entry) ),
+					);
+
+			if( isset($request['year']) )
+			{
+				$this->myColumns['date']=
+					new HiddenExactValueColumn( "date",$this->myDB->qstr($request["year"]."-".
+													   $this->extractMonth( $request["month"] )."-01") );
+			}
+			else
+				unset( $this->myColumns['date'] );
+		}
 	}
 
 	public function save_add( &$request )
 	{
-		$this->denormalizeData( $request[$this->myColumns["entry"]->myName], $request );
-		
+		$this->preprocessData( $request );
+
 		return parent::save_add( $request );
 	}
 	
 	public function save_edit( &$request )
 	{
-		$this->denormalizeData( $request[$this->myColumns["entry"]->myName], $request );
-//		$this->myDB->debug=true;
+		$this->preprocessData( $request );
+
 		return parent::save_edit( $request );
-//		die;
 	}
-	
-	
-/*	public function prepareKeywords( &$request )
+
+	public function getRowToEdit( &$request )
 	{
-		
-		$sql="SELECT keywords FROM $this->myTableName";
-		if( isset($request['section']) ) $sql.=" WHERE section=".$this->myDB->qstr( $request['section'] );
-		$res=$this->myDB->Execute( $sql );
+		parent::getRowToEdit( $request );
+		$this->getFields( $this->myData );
 
-		$this->myKeywords=array( );
-		$this->myKeywords2=array( );
-		$max=0;
-		while( $data=$res->FetchRow() )
+        $parse = NEW PARSEENTRIES();
+        $parse->loadBibtexString( $this->myData['entry'] );
+		$parse->extractEntries( );
+
+		list($preamble, $strings, $entries) = $parse->returnArrays();
+		$entry=&$entries[0];
+
+		foreach( $this->myFields as $key=>$value )
 		{
-			$list=explode(",",$data["keywords"] );
-			foreach( $list as $key )
-			{
-				$key=trim( $key );
-				if( $key=="" ) continue;
-				
-				if( !isset($this->myKeywords[$key]) ) 
-				{
-					$this->myKeywords[$key]=1;
-					array_push( $this->myKeywords2, $key );
-				}
-				else
-					$this->myKeywords[$key]++;
-					
-				if( $this->myKeywords[$key]>$max ) $max=$this->myKeywords[$key];
-//				$sum++;
-			}
-		}
-//		$avg=$sum/(double)count($this->myKeywords);
-		sort( $this->myKeywords2 );
-
-		foreach( $this->myKeywords as &$size )
-		{
-//			$size=2+(int) $size/$avg * 10.0;
-			$size=round( ($size/(double)$max)*20+5 );
-
+			//if( isset($entry[$key]) ) 
+			$this->myData[$key]=$entry[$key];
 		}
 	}
 	
-	public function prepareAuthors( &$request )
-	{
-		$sql="SELECT authors FROM $this->myTableName";
-		if( isset($request['section']) ) $sql.=" WHERE section=".$this->myDB->qstr( $request['section'] );
-		$res=$this->myDB->Execute( $sql );
-		$this->mySizes=array( );
-		$this->myAuthors=array( );
-		$max=0;
-		while( $data=$res->FetchRow() )
-		{
-			$list=$this->myHelper->parseAuthors( $data["authors"] );
-			foreach( $list as &$key_full )
-			{
-				$key=trim( $key_full["n"] );
-				if( $key=="" ) continue;
-				
-				if( !isset($this->mySizes[$key]) ) 
-				{
-					$this->mySizes[$key]=1;
-					$this->myAuthorDescr[$key]=$key_full["f"];
-					array_push( $this->myAuthors, $key );
-				}
-				else
-					$this->mySizes[$key]++;
-				if( $this->mySizes[$key]>$max ) $max=$this->mySizes[$key];
-			}
- 		}
-//		$avg=$sum/(double)count($this->mySizes);
-		sort( $this->myAuthors );
-		
-		foreach( $this->mySizes as &$size )
-		{
-//			$size=2+(int) $size/$avg * 10.0;
-			$size=round( ($size/(double)$max)*20+5 );
-		}
-	}
- */
 	public function prepareImport( &$request )
 	{
 		$this->myImplicitAction="import_save";
+		$request['bibtex']="raw";
+		$this->getFields( $request );
 	}
 	
 	public function import( &$request )
 	{
+		$request['bibtex']="raw";
 		$parse = NEW PARSEENTRIES();
-		$parse->loadBibtexString( $request[$this->myColumns["entry"]->myName] );
+		$parse->loadBibtexString( $request['entry'] );
 		$parse->extractEntries( );
-//		$this->myDB->debug=true;
-		$this->myImportStatus=array();
+
+		foreach( $parse->entries as &$entry )
+		{
+				$type=$entry['bibtexEntryType'];
+				$id=$entry['bibtexCitation'];
+				unset( $entry['bibtexEntryType'] );
+				unset( $entry['bibtexCitation'] );
+				$e="@$type{id";
+				foreach( $entry as $key=>$value )
+				{
+					$e.=",\n$key = $value";
+				}
+				$e.=",\n comment = {}}";
+
+				$req=array( "bibtex"=>"raw", "entry"=>$e );
+				$this->save_add( $req );
+				
+				print "$id<br />";
+		}
 		
-		foreach( $parse->entries as &$this->myEntry )
+		die;
+//		$this->myDB->debug=true;
+		//$this->myImportStatus=array();
+
+
+		
+/*		foreach( $parse->entries as &$this->myEntry )
 		{
 			$id=$this->myDB->GetOne( "SELECT id FROM $this->myTableName WHERE key=".$this->myDB->qstr($this->myEntry['bibtexCitation']) );
 			if( isset($id) )
@@ -213,7 +341,7 @@ class BibwikiModel extends TableModel
 			$id=parent::save_add( $request );
 			
 			array_push( $this->myImportStatus, array("id"=>$id,"key"=>$this->myEntry['bibtexCitation'],"status"=>"OK") );
-		}
+		}*/
 	}
 
 
@@ -221,8 +349,8 @@ class BibwikiModel extends TableModel
 	{
 		if( !isset($item) ) return "01";
 		$space=strpos( $item,' ' );
-		if( $space>=0 ) $item=substr( $item,0,$space );
-		return isset($this->Months[$item])?$this->Months[$item]:"01";
+		if( $space!==FALSE ) $item=substr( $item,0,$space );
+		return isset($this->Months[trim($item,"{}")])?$this->Months[trim($item,"{}")]:"01";
 	}
 
 	private $Months=array(

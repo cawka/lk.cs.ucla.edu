@@ -50,12 +50,21 @@
 <script type="text/javascript">
 {if isset($ajax)}
 {literal}
+window.addEvent('domready',function(){
     new FormCheck('{/literal}{$name|default:"kform"}{literal}', {
                             submitByAjax : true,
                             ajaxEvalScripts : true,
                             ajaxResponseDiv : $("TB_ajaxContent"),
-                            display: { indicateErrors : 2, errorsLocation : 3 }
+                            display: { indicateErrors : 2, errorsLocation : 3 },
+							onSubmit: function() 
+							{ 
+								CKEditors.each( function(value,key)
+												{
+													CKEDITOR.instances[key].updateElement(); 
+												} );
+							}
                            } );
+} );
 {/literal}
 {else}
 {literal}
@@ -65,3 +74,4 @@
 {/literal}
 {/if}
 </script>
+

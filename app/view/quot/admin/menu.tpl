@@ -11,7 +11,7 @@
 {foreach name="list" from=$this->myData item=cat}
 <tr>
 	<td>{$smarty.foreach.list.iteration}</td>
-	<td><a href="javascript:;" onclick="setEdit('{$cat.id}','{$cat.name}','{$cat.link}','{$cat.display_order}','{$cat.width}')">{$cat.name}</a></td>
+	<td><a href="javascript:;" onclick="setEdit('{$cat.id}','{$cat.name}','{$cat.link}','{$cat.display_order}','{$cat.width}','{$cat.target}')">{$cat.name}</a></td>
 	<td>{$cat.link}</td>
 	<td>{eval var=$this->getDeleteCtrl($cat)}</td>
 </tr>
@@ -21,7 +21,7 @@
 {/if}
 
 <script type="text/javascript">
-function setEdit(id,name,link,display_order,width)
+function setEdit(id,name,link,display_order,width,target)
 {literal}{
 	$('kform').adopt( new Element('input', {type:'hidden', name:'id', value:id}) );{/literal}
 	$('kform').set( 'action', '/{$this->myPhp}/save_edit' );
@@ -29,6 +29,7 @@ function setEdit(id,name,link,display_order,width)
 	$('link').set( 'value', link );
 	$('display_order').set( 'value', display_order );
 	$('width').set( 'value', width );
+	$('target').set( 'value', target );
 {literal}}{/literal}
 </script>
 

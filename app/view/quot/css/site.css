@@ -18,6 +18,11 @@ img, div, table, tr, td, p, form, h1, h2, h3, h4, h5, h6, ul, li, ol, .shapka in
 	font-size: 10pt;
 }
 
+ul, ol {
+	list-style-position: outside;
+	margin-left: 20px;
+}
+
 p {
 	margin: 7px 0 0 0;
 }
@@ -47,7 +52,7 @@ a:hover {
  margin-bottom: 10px;
  list-style-image:url(../quot/images/ul.png);
  list-style-type:none;
- list-style-position:outside;
+/* list-style-position:outside;*/
 /* list-style-position: inside;*/
 }
 
@@ -526,7 +531,7 @@ a.file, a.file:link, a.file:active, a.file:visited, a.file:hover {
  font-size: 10pt;
  padding: 3px;
  border: 1px solid #888888;
- width: 200px;
+ width: 300px;
 }
 
 .addann_select {
