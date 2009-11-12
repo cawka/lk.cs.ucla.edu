@@ -55,6 +55,7 @@ a.main
  list-style: none;
  width: 100%;
  color: white;
+ z-index: 10;
 }
 
 /* Submenus (<ul> tags) are hidden and absolutely positioned downwards from their parent */
