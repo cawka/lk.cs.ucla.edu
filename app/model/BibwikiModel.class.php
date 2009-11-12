@@ -104,7 +104,7 @@ class BibwikiModel extends TableModel
 							  "note"=>array(),
 					  );
 				break;
-		case "inbook":
+		case "incollection":
 				$fields=array("author"=>array("required"=>true),
 							  "title"=>array("required"=>true),
 							  "booktitle"=>array("required"=>true),

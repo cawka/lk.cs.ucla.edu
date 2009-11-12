@@ -37,7 +37,7 @@
 					{$this->myHelper->format_reference($cat.entry)}
 					&nbsp;
 					{if isset($cat.pdf) && $cat.pdf!=""}
-					<a target="_blank" href="/data/files/{$cat.pdf}"><img src="/images/pdf.png"></a>&nbsp;
+					<a target="_blank" href="/data/files/{$cat.pdf|replace:"/data/files/":""|replace:" ":"%20"|replace:"?":"%3F"}"><img src="/images/pdf.png"></a>&nbsp;
 					{/if}
 					&nbsp;
 					<a class="smoothbox" href="/bibwiki/bibtex?id={$cat.id}&amp;width=50&amp;height=50" title='BibTex Export' >BibTex</a>
