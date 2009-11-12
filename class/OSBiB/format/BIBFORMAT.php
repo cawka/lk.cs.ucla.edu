@@ -481,7 +481,7 @@ class BIBFORMAT
 			if($type == 'phdthesis')
 			{
 				$type = 'thesis';
-				$row['type'] = "PhD Thesis";
+				if( !isset($row['type']) ) $row['type']='PhD Thesis';
 			}
 			else if($type == 'booklet')
 				$type = 'miscellaneous';
@@ -490,7 +490,7 @@ class BIBFORMAT
 			else if($type == 'incollection')
 				$type = 'book_article';
 			else if($type == 'manual')
-				$type = 'report';
+					$type = 'report';
 		}
 /**
 * 'article' could be journal, newspaper or magazine article

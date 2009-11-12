@@ -100,12 +100,12 @@ class STYLEMAPBIBTEX
 			'genericMisc'		=>	'genericMisc',
 // Edit values if necessary
 			'book'			=>	'book',
-			'book_article'		=>	'inbook',
+			'book_article'		=>	'incollection',
 			'journal_article'	=>	'article',
 			'newspaper_article'	=>	'article',
 			'magazine_article'	=>	'article',
 			'proceedings'		=>	'proceedings',
-			'conference_paper'	=>	'incollection',
+			'conference_paper'	=>	'inbook',
 			'proceedings_article'	=>	'inproceedings',
 			'thesis'		=>	FALSE,
 			'web_article'		=>	FALSE,
@@ -125,7 +125,7 @@ class STYLEMAPBIBTEX
 			'legal_ruling'		=>	FALSE,
 			'case'			=>	FALSE,
 			'bill'			=>	FALSE,
-			'patent'		=>	FALSE,
+			'patent'		=>	'patent',
 			'personal'		=>	FALSE,
 			'unpublished'		=>	'unpublished',
 			'classical'		=>	FALSE,
@@ -140,6 +140,7 @@ class STYLEMAPBIBTEX
 		$this->basic = array(
 					'title'		=>	'title',
 					'year'		=>	'publicationYear',
+					'month'		=>  'publicationMonth',
 			);
 /**
 * Creator mapping.  OSBib uses 'creator1' .. 'creator5' for internally managing creator names such as 
@@ -182,6 +183,7 @@ class STYLEMAPBIBTEX
 		$this->genericBook['publisher'] = 'publisherName';
 		$this->genericBook['address'] = 'publisherLocation';
 		$this->genericBook['ISBN'] = 'ID';
+		$this->genericBook['pages'] = 'pages';
 // Generic Article type - in a collection like an article
 		$this->genericArticle = $this->basic;
 		$this->genericArticle['creator1'] = 'creator';
@@ -200,6 +202,7 @@ class STYLEMAPBIBTEX
 		$this->genericMisc['type'] = 'type';
 		$this->genericMisc['date'] = 'date';
 		$this->genericMisc['ISBN'] = 'ID';
+		$this->genericMisc['howpublished'] = 'howpublished';
 		
 // Resource specific mappings. The order here is the display order when editing/creating styles.
 // BOOK
@@ -221,7 +224,7 @@ class STYLEMAPBIBTEX
 		$this->book['ISBN'] = 'ISBN';
 // BOOK ARTICLE/CHAPTER
 		$this->book_article = $this->book;
-		$this->book_article['bookitle'] = 'book';
+		$this->book_article['booktitle'] = 'book';
 		$this->book_article[] = 'shortBook';
 		$this->book_article['pages'] = 'pages';
 // JOURNAL ARTICLE
@@ -277,7 +280,7 @@ class STYLEMAPBIBTEX
 		$this->thesis[] = 'label'; // 'thesis', 'dissertation'
 // 'type' is special and used in BIBFORMAT.php
 		$this->thesis['type'] = 'type'; // 'Master's', 'PhD', 'Doctoral', 'Diploma' etc.
-		$this->thesis['institution'] = 'institution';
+		$this->thesis['school'] = 'institution';
 		$this->thesis['address'] = 'institutionLocation';
 		$this->thesis[] = 'department';
 		$this->thesis['journal'] = 'journal';
@@ -306,6 +309,7 @@ class STYLEMAPBIBTEX
 		$this->miscellaneous['publisher'] = 'publisherName';
 		$this->miscellaneous['address'] = 'publisherLocation';
 		$this->miscellaneous['ISBN'] = 'ID';
+		$this->miscellaneous['howpublished']='howpublished';
 // REPORT/DOCUMENTATION
 		$this->report = $this->basic;
 		$this->report['creator1'] = 'author';
@@ -511,24 +515,33 @@ The following not used by BibTeX.  They are ignored as per $this->types above.
 		$this->statute['isbn'] = 'ID';
 // PATENT
 		$this->patent = $this->basic;
-		$this->patent['creator1'] = 'inventor';
-		$this->patent['creator2'] = 'issuingOrganisation';
-		$this->patent['creator3'] = 'agent';
-		$this->patent['creator4'] = 'intAuthor';
-		$this->patent['field8'] = 'patentNumber';
-		$this->patent['field2'] = 'versionNumber';
-		$this->patent['field3'] = 'applicationNumber';
-		$this->patent['field6'] = 'intTitle';
-		$this->patent['field5'] = 'intPatentNumber';
-		$this->patent['field7'] = 'intClassification';
-		$this->patent['field1'] = 'publishedSource';
-		$this->patent['field9'] = 'legalStatus';
-		$this->patent['field4'] = 'type';
-		$this->patent['publisherName'] = 'assignee';
-		$this->patent['publisherLocation'] = 'assigneeLocation';
-		$this->patent['date'] = 'issueDate';
-		$this->patent['year1'] = 'issueYear'; // override
-		$this->patent['isbn'] = 'ID';
+		$this->patent['creator1'] = 'creator';
+//		$this->patent['creator2'] = 'issuingOrganisation';
+//		$this->patent['creator3'] = 'agent';
+//		$this->patent['creator4'] = 'intAuthor';
+		$this->patent['number'] = 'patentNumber';
+//		$this->patent['field2'] = 'versionNumber';
+//		$this->patent['field3'] = 'applicationNumber';
+//		$this->patent['field6'] = 'intTitle';
+//		$this->patent['field5'] = 'intPatentNumber';
+//		$this->patent['field7'] = 'intClassification';
+//		$this->patent['field1'] = 'publishedSource';
+//		$this->patent['field9'] = 'legalStatus';
+		$this->patent['type'] = 'type';
+//		$this->patent['publisherName'] = 'assignee';
+//		$this->patent['publisherLocation'] = 'assigneeLocation';
+//		$this->patent['date'] = 'issueDate';
+//		$this->patent['year1'] = 'issueYear'; // override
+//		$this->patent['isbn'] = 'ID';
+
+		$this->patent['author'] = 'author';
+		//$this->patent['month'] = 'month';
+		$this->patent['day']   = 'day';
+		$this->patent['nationality'] = 'nationality';
+		$this->patent['yearfiled'] = 'yearfiled';
+		$this->patent['monthfiled'] = 'monthfiled';
+		$this->patent['dayfiled'] = 'dayfiled';
+
 // PERSONAL COMMUNICATION
 		$this->personal = $this->basic;
 		$this->personal['creator1'] = 'author';

@@ -15,8 +15,11 @@ class BibwikiHelper extends BaseTableThickBoxHelper
 	{
 		$this->bibformat=new BIBFORMAT( BASEDIR . "/class/OSBiB", TRUE );
 		list($info, $citation, $footnote, $styleCommon, $styleTypes) =
-		$this->bibformat->loadStyle( BASEDIR . "/class/OSBiB/styles/bibliography/", "ieee" );
+		$this->bibformat->loadStyle( BASEDIR . "/class/OSBiB/styles/bibliography/", "ieee2" );
 		$this->bibformat->getStyle( $styleCommon, $styleTypes, $footnote );
+
+//		print_r( $styleTypes );
+//		die;
 //		$this->bibformat->cleanEntry=TRUE;
 		unset( $info, $citation, $footnote, $styleCommon, $styleTypes );
 	}
