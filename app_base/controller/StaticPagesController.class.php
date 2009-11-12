@@ -11,8 +11,10 @@ class StaticPagesController extends TableController
 
 	protected function cacheId( &$request )
 	{
-		if( $request['action']=="show" ) return "(show)(".$request[$this->myModel->myId].")";
-		return "(list)";
+		$add="";
+		if( isset($request['ajax']) ) $add="(ajax)";
+		if( $request['action']=="show" ) return "(show)(".$request[$this->myModel->myId].")$add";
+		return "(list)$add";
 	}
 
 //	public function save_edit( &$tmpl, &$request )

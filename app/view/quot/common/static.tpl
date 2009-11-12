@@ -1,4 +1,4 @@
-{if isUserLogged()}
+{if !isset($smarty.request.ajax) && isUserLogged()}
 <div style="float:left">{$this->getEditCtrl($this->myData)}</div>
 <div style="float:right"><a href="/login/logout">Logout</a></div>
 <div style="clear:both"></div>
@@ -12,7 +12,16 @@
 }
 {strip}
 
+{if $this->menuContent->myData.text=="" && !isset($menu->mySubData)}
+	{if isUserLogged()}{$this->menuContent->getEditCtrl($this->menuContent->myData)}<br/>{/if}
 
+	{if isUserLogged()}<div style="float:right">{$this->mainContent->getEditCtrl($this->mainContent->myData)}</div>{/if}
+	{if !isset($smarty.request.ajax)}<div id='frame_0'>{/if}
+	{eval var="`$this->mainContent->myData.text` "}
+	{if !isset($smarty.request.ajax)}</div>{/if}
+{else}
+
+{if !isset($smarty.request.ajax)}
 <table width="100%">
     <tbody>
         <tr>
@@ -28,11 +37,17 @@
                 {*if $this->myData.sp_title.0!=' '}<div class="title">{$this->myData.st_title|mxupper}</div>{/if*}
 				
 				{if isUserLogged()}{$this->mainContent->getEditCtrl($this->mainContent->myData)}{/if}
-				<div id='frame_0'>{eval var="`$this->mainContent->myData.text` "}</div>
+				<div id='frame_0'>
+{/if}
+				{eval var="`$this->mainContent->myData.text` "}
+{if !isset($smarty.request.ajax)}
+</div>
             </td>
         </tr>
     </tbody>
 </table>
+{/if}
+{/if}
 
 {/strip}
 {include file="common/foot.tpl"}
