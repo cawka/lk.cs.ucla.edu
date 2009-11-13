@@ -52,8 +52,10 @@ class RequestAction
 	
 	function actionUndefined( )
 	{
-		$this->myTemplate->assign( "error", "action '$_REQUEST[action]' undefined" );
-		$this->myTemplate->display( "common/error.tpl" );
+		$t=new ErrorHelper();
+		$t->get404( );
+//		$this->myTemplate->assign( "error", "action '$_REQUEST[action]' undefined" );
+//		$this->myTemplate->display( "common/error.tpl" );
 	}
 }
 

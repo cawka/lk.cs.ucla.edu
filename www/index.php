@@ -18,8 +18,9 @@ if( !class_exists($model) )      $model     ="BaseModel";
 
 if( !class_exists($controller) ) 
 {
-	print "No controller [$controller] found";
-	exit( 1 );
+	$t=new ErrorHelper( );
+	$t->get404( );
+	exit;
 }
 
 

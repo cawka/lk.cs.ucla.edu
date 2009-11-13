@@ -234,7 +234,7 @@ function TB_show(caption, url, rel){
    
 
 		if( params['width']===undefined ) params['width']=90;
-		if( params['height']===undefined ) params['height']=90;
+		if( params['height']===undefined ) params['height']=80;
 				
 //        if( params['percent']=="true" )
   //      {

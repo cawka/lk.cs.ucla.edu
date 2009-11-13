@@ -3,7 +3,6 @@
 <div style="float:right"><a href="/login/logout">Logout</a></div>
 <div style="clear:both"></div>
 {/if}
-
 {include file="common/head.tpl" 
 	title=$this->myData.sp_title 
 	meta_descr=$this->myData.sp_meta_descr 
@@ -50,4 +49,5 @@
 {/if}
 
 {/strip}
-{include file="common/foot.tpl"}
+{include file="common/foot.tpl" 
+	lastmodified=$this->myData.lastmodified}

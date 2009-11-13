@@ -64,8 +64,10 @@ class AuthHelper
 	{
 		if( !$this->isAllowed($action) ) 
 		{
-			header( "Location: $this->myDefaultRedirect" );
-			exit( 0 );
+			//header( "Location: $this->myDefaultRedirect" );
+			//exit( 0 );
+			$t=new ErrorHelper( );
+			$t->get403( );
 		}
 	}
 }

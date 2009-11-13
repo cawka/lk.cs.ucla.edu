@@ -8,6 +8,11 @@
 		<td width="33%" align="center">
 			Copyright 2009 Leonard Kleinrock. &nbsp; All rights reserved
 		</td>
+{if isset($lastmodified)}
+		<td width="33%" align="center">
+			Last modified on {$lastmodified|date_format}
+		</td>
+{/if}
 		<td width="33%" align="center">
 			Email: <a href="mailto:lk@cs.ucla.edu">lk@cs.ucla.edu</a>
 		</td>

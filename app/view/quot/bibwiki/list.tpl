@@ -59,5 +59,6 @@
     </tbody>
 </table>
 
-{include file="common/foot.tpl"}
+{include file="common/foot.tpl" 
+	lastmodified=$this->myStatic->myData.lastmodified}}
 {/if}

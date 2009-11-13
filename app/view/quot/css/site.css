@@ -7,6 +7,9 @@ html, body {
  margin: 2px;
  padding: 0;
  background: white;
+ min-height: 100%;
+ height: auto !important;
+ height: 100%;
 }
 
 img, div, table, tr, td, p, form, h1, h2, h3, h4, h5, h6, ul, li, ol, .shapka input, textarea {
