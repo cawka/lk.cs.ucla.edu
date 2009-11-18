@@ -11,23 +11,35 @@ class BibwikiModel extends TableModel
 						   "(bibtex='techreport' OR bibtex='phdthesis')"=>array("techreports","Papers Published as Technical Reports"),
 				   );
 
-	protected $current_search;
+//	protected $current_search;
 
-	protected function extraWhere( &$request )
-	{
-			return $this->current_search;
-	}
+//	protected function extraWhere( &$request )
+//	{
+//			return $this->current_search . parent->extraWhere;
+//	}
 
 
 	public function __construct( $php )
 	{
 		global $DB;
+//		$DB->debug=true;
 		parent::__construct( $DB,$php,"bibwiki",array(
 				"bibtex"=>new BibtexTypeColumn( "bibtex", "Publication type" ),
 				"pdf"=>new FileColumn( "pdf", "PDF" ),
 		) );
 
+		$this->mySearchColumns=array(
+				            array( "column"=>new BooleanColumn("pdf","Pdfs attached"), "type"=>"custom", "where"=>"(pdf IS NULL OR pdf='')" ),
+					);
+		
 		$this->myOrder="date DESC";
+
+		$this->mySortColumns=array(
+	            "date"=>array(
+                       "asc"=>"date",
+                       "desc"=>"date DESC",
+				),
+		);
 	}
 
 	public function collectData( &$request )
@@ -35,7 +47,7 @@ class BibwikiModel extends TableModel
 //		$this->myDB->debug=true;
 		foreach( $this->myTypes as $key=>$value )
 		{
-			$this->current_search=$key;
+			$this->myExtraWhere=$key;
 			parent::collectData( $request );
 			array_push( $this->myTypes[$key], $this->myData );
 		}
