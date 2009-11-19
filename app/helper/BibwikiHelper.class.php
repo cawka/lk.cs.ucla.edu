@@ -37,6 +37,10 @@ class BibwikiHelper extends BaseTableThickBoxHelper
 			foreach( $entries as &$entry ) $entry=preg_replace( "/{|}/","",$entry );
 			$this->bibformat->preProcess( $entries[0]['bibtexEntryType'], $entries[0] );
 			$ret=$this->bibformat->map(). " ".$entries[0]['note'];
+			if( isset($entries[0]['url']) && $entries[0]['url']!="" )
+			{
+				$ret.=" <a href=\"".$entries[0]['url']."\" target=\"_blank\"><img alt=\"link\" src=\"/images/external.png\" /></a>";
+			}
 			unset( $parse );
 
 			return $ret;

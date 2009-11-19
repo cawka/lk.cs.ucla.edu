@@ -23,6 +23,7 @@ class BibwikiModel extends TableModel
 	{
 		global $DB;
 //		$DB->debug=true;
+//		print_r( $_SERVER );
 		parent::__construct( $DB,$php,"bibwiki",array(
 				"bibtex"=>new BibtexTypeColumn( "bibtex", "Publication type" ),
 				"pdf"=>new FileColumn( "pdf", "PDF" ),
@@ -82,6 +83,7 @@ class BibwikiModel extends TableModel
 						  "pages"=>array(),
 						  "month"=>array(),
 						  "note"=>array(),
+						  "url"=>array(),
 				  );
 				break;
 		case "conference":
@@ -99,6 +101,7 @@ class BibwikiModel extends TableModel
 							  "address"=>array(),
 							  "month"=>array(),
 							  "note"=>array(),
+							  "url"=>array(),
 					  );
 				break;
 		case "book":
@@ -114,6 +117,7 @@ class BibwikiModel extends TableModel
 							  "edition"=>array(),
 							  "month"=>array(),
 							  "note"=>array(),
+							  "url"=>array(),
 					  );
 				break;
 		case "incollection":
@@ -133,6 +137,7 @@ class BibwikiModel extends TableModel
 							  "edition"=>array(),
 							  "month"=>array(),
 							  "note"=>array(),
+							  "url"=>array(),
 					  );
 				break;
 		case "patent":
@@ -149,6 +154,7 @@ class BibwikiModel extends TableModel
 							  "monthfiled"=>array(),
 							  "dayfiled"=>array(),
 							  "note"=>array(),
+							  "url"=>array(),
 					  );
 				break;
 		case "techreport":
@@ -160,6 +166,7 @@ class BibwikiModel extends TableModel
 							  "number"=>array(),
 							  "address"=>array(),
 							  "month"=>array(),
+							  "url"=>array(),
 					  );
 				break;
 		case "misc":
@@ -181,6 +188,7 @@ class BibwikiModel extends TableModel
 							  "month"=>array(),
 							  "type"=>array(),
 							  "note"=>array(),
+							  "url"=>array(),
 					  );
 				break;
 		case "raw":
@@ -395,6 +403,11 @@ class BibwikiModel extends TableModel
 		"November"=>"11",
 		"December"=>"12",
 	);	
+	
+	public function getQuery( )
+	{
+		return "";
+	}
 }
 
 ?>

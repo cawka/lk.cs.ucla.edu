@@ -236,7 +236,7 @@ class TableModel extends BaseModel
 		}
 		$ret.=" WHERE $this->myId";
 		if( $id!="" ) $ret.="='$id'"; else $ret.=" IS NULL ";
-		
+
 		$this->myDB->Execute( $ret );
 		foreach( $this->myColumns as $col ) $col->postUpdate( $id,$request );
 	}

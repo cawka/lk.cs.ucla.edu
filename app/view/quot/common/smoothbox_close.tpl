@@ -2,12 +2,15 @@
 	{if $this->myParentId!="TB_ajaxContent"}
 	TB_remove( );
 	{/if}
+	var req="/{$this->myPhp}/{$this->myRefreshAction}";
+	if( selfUrl!==undefined ) req=selfUrl;
 
+	var mydata="";
 	var q="{$this->getQuery()}";
 	if( q!="" ) mydata=q;
-	mydata+="&ajax=true";
+	mydata+="ajax=true";
 	
-		new Request.HTML( {literal}{{/literal} url:"/{$this->myPhp}/{$this->myRefreshAction}", 
+		new Request.HTML( {literal}{{/literal} url: req, 
 			method: "get",
 			data: mydata,
 			evalScripts: true,
