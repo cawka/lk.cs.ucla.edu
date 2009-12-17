@@ -44,7 +44,10 @@
 {if isUserLogged()}<script type="text/javascript" src="/js/wz_tooltip.js"></script>{/if}
 
 <div id="container">
-	<div id="banner"><h1>Alexander Afanasyev's Home Page</h1></div>
+	<div id="banner">
+<div style="text-align: center"><img src="/images/baltic_sea.jpeg" alt="Shore of the Baltic Sea"/></div>
+<h1>Alexander Afanasyev</h1>
+</div>
 	<!-- Begin Top Menu -->
 	<ul id="navlist">
 {foreach from=$menu->myData item=i name="menu"}

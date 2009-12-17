@@ -30,8 +30,13 @@ var selfUrl="{$smarty.server.REQUEST_URI}";
 					{$this->myHelper->format_reference($cat.entry)|replace:"A. Afanasyev":"<b>A. Afanasyev</b>"}
 					&nbsp;
 					{if isset($cat.pdf) && $cat.pdf!=""}
-					<a target="_blank" href="/data/files/{$cat.pdf|replace:"/data/files/":""|replace:" ":"%20"|replace:"?":"%3F"}">[PDF]{*<img alt="pdf" src="/images/pdf.png">*}</a>
+					<a target="_blank" href="{$cat.pdf}">[PDF]{*<img alt="pdf" src="/images/pdf.png">*}</a>
 					{/if}
+					&nbsp;
+					{if isset($cat.slides) && $cat.slides!=""}
+					<a target="_blank" href="{$cat.slides}">[SLIDES]</a>
+					{/if}
+
 					&nbsp;
 					<a class="smoothbox" href="/bibwiki/bibtex?id={$cat.id}&amp;width=50&amp;height=50" title='BibTex Export' >[BibTex]</a>
 					{if isUserLogged()}
@@ -49,5 +54,5 @@ var selfUrl="{$smarty.server.REQUEST_URI}";
 {if !isset($smarty.request.ajax)}
 
 {include file="common/foot.tpl" 
-	lastmodified=$this->myStatic->myData.lastmodified}}
+	lastmodified=$this->myStatic->myData.lastmodified}
 {/if}

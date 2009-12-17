@@ -27,6 +27,7 @@ class BibwikiModel extends TableModel
 		parent::__construct( $DB,$php,"bibwiki",array(
 				"bibtex"=>new BibtexTypeColumn( "bibtex", "Publication type" ),
 				"pdf"=>new FileColumn( "pdf", "PDF" ),
+				"slides"=>new FileColumn( "slides", "Slides in PDF or PPT format" ),
 		) );
 
 		$this->mySearchColumns=array(
@@ -271,6 +272,7 @@ class BibwikiModel extends TableModel
 			$this->myColumns=array(
 					$this->myColumns['bibtex'],
 					$this->myColumns['pdf'],
+					$this->myColumns['slides'],
 					new HiddenExactValueColumn( 'entry', $this->myDB->qstr($entry) ),
 					);
 

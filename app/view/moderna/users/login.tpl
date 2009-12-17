@@ -1,8 +1,8 @@
 {include file="common/head.tpl" title=$this->myTitle onload="document.form1.login.focus();"}
 
 <div class="contentinside">
-<h3>Login</h3>
-<center>
+{*<h3>Login</h3>
+<center>*}
 
 {form_ctrl name="form1" action="login" id="form1" model=$this data=$this->myData method="post" validate="true"}
 <table width="500px" border="0" cellpadding="0" cellspacing="0">

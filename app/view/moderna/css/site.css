@@ -11,16 +11,17 @@ width : 99.5%;
 margin-left : auto;
 margin-right : auto;
 padding : 0;
-line-height : 130%;
+/*line-height : 130%;*/
 }
 #banner {
-height : 70px;
-padding : 0;
+/*height : 184px;*/
+padding-top : 5px;
 /*background : #f7f7f7 url(images/image00.jpg) no-repeat;*/
 color : #333;
 }
 #banner h1 {margin : 0;
 padding : 5px;
+/*float: left;*/
 background : transparent;
 color : #000;
 }
@@ -31,6 +32,7 @@ text-align : left;
 letter-spacing : 3px;
 color : #fff;
 background : #476042;
+line-height: 1.5em;
 }
 #navlist li {
 list-style : none;
@@ -83,7 +85,7 @@ border-left : 1px dashed #333;
 color : #555;
 background-color : #f7f7f7;
 }
-#content p {
+p {
 margin : 10px;
 }
 #sidebar-a {
@@ -110,6 +112,7 @@ margin : 0;
 background : #476042;
 color : #f7f7f7;
 font-size : 75%;
+line-height: 1.5em;
 }
 
 a {
@@ -189,3 +192,29 @@ width: 30.5%;
 .col3center {
 margin: 0 3%;
 }
+
+/* //-- yui-grids style overrides -- */
+.yui-gf { margin-bottom: 1em; padding-bottom: 1em; border-bottom: 1px solid #ccc;  }
+.yui-u p { margin: 0; margin-bottom: 10px; }
+.first h2 { font-size: 15pt; margin-bottom: 1em; text-transform: none; }
+/* //-- core typography and style -- */
+
+/* //-- section styles -- */
+
+.job { position: relative; margin-bottom: 0.5em; padding-bottom: 0.5em; border-bottom: 1px solid #ccc; z-index: 0; }
+.job h2 { text-transform: none; font-size: 100%; padding: 0; margin: 0; background: none; }
+.job h3 { font-weight: normal; font-style: italic; text-transform: none; background: none; font-size: 100%; margin: 0; padding: 0; color: #555555; margin-right: 100px;}
+.job h4 { position: absolute; top: 0.35em; right: 0; text-transform: none; font-size: 100%; background: none; color: black; padding:0; margin:0; }
+.job p { margin: 0em 0 0.1em 0; }
+
+.last { border: none; }
+.skills-list {  }
+.skills-list ul { margin: 0; }
+.skills-list li { margin: 3px 0; padding: 3px 0; }
+.skills-list li span { font-size: 152%; display: block; margin-bottom: -2px; padding: 0 }
+.talent { width: 32%; float: left }
+.talent h2 { margin-bottom: 6px; }
+
+#srt-ttab { margin-bottom: 100px; text-align: center;  }
+#srt-ttab img.last { margin-top: 20px }
+
