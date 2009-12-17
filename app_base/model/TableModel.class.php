@@ -315,23 +315,25 @@ class TableModel extends BaseModel
 			return "";
 	}
 
-	public function getAddCtrl( )
+	public function getAddCtrl( $link="" )
 	{
 		global $Auth; if( !$Auth->isAllowed("add") ) return "";
+		if( $link=="" ) $link=$this->myHelper->img_button("new","Add");
 
 		return $this->myHelper->link_popup( $this,"add",
-											$this->myHelper->img_button("new","Add"),
+											$link,
 											"Add",
 											$this->getColumnParams( ) );
 	}
 
-	public function getEditCtrl( &$row )
+	public function getEditCtrl( &$row, $link="" )
 	{
 		global $Auth; if( !$Auth->isAllowed("edit") ) return "";
+		if( $link=="" ) $link=$this->myHelper->img_button("edit","Edit");
 
 		return $this->myHelper->link_popup( 
 						$this,"edit",
-						$this->myHelper->img_button("edit","Edit"),
+						$link,
 						"Edit",
 						$this->getColumnParams( array($this->myId=>$row[$this->myId]) ) );
 	}

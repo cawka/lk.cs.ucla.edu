@@ -4,7 +4,7 @@ $dbengine="mysql";
 $dbuser  ="cawka";
 $dbpasswd="mymegapassword";
 $dbhost  ="localhost";
-$dbschema="lk4";
+$dbschema="cawka";
 
 $MY_MAX_PHOTO_SIZE=3000000;
 

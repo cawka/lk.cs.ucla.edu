@@ -1,35 +1,18 @@
+<br/><br/>
 {if !isset($smarty.request.ajax)}
 {*strip*}
-
-</div>
-	<div class="footer">
-		<hr />
-		<table width="100%"><tr>
-		<td width="33%" align="center">
-			Copyright 2009 Leonard Kleinrock. &nbsp; All rights reserved
-		</td>
+	</div>
+<br/>
+	<div id="footer">
+		<a href="http://mailhide.recaptcha.net/d?k=01AkOqvipc-oi-UdWJ2oFbkg==&amp;c=sEnupUlCKOR8Mzqg1Q6ri_0Zra6jA0FVck8jpf9dnV4=" onclick="window.open('http://mailhide.recaptcha.net/d?k=01AkOqvipc-oi-UdWJ2oFbkg==&amp;c=sEnupUlCKOR8Mzqg1Q6ri_0Zra6jA0FVck8jpf9dnV4=', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;" title="Reveal this e-mail address">contact</a>
+		|
+		Copyright 2009 Alexander Afanasyev
 {if isset($lastmodified)}
-		<td width="33%" align="center">
-			Last modified on {$lastmodified|date_format}
-		</td>
+		|
+		Last modified on {$lastmodified|date_format}
 {/if}
-		<td width="33%" align="center">
-			Email: <a href="mailto:lk@cs.ucla.edu">lk@cs.ucla.edu</a>
-		</td>
-		</tr></table>
-		<br/><br/>
 	</div>
 </div>
-<script type="text/javascript">
-{foreach from=$menu->myData item="i"}
-menu{$i.id} = new FSMenu('menu{$i.id}', true, 'display', 'block', 'none');
-menu{$i.id}.hideOnClick = false;
-menu{$i.id}.hideDelay = 0;
-menu{$i.id}.switchDelay=0;
-
-addEvent(window, 'load', new Function('menu{$i.id}.activateMenu("menu_{$i.id}",null)'));
-{/foreach}
-</script>
 
 </body>
 </html>
