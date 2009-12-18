@@ -1,3 +1,4 @@
+{strip}
 {if !isset($smarty.request.ajax)}
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -6,24 +7,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="description" content="{$meta_descr|strip_tags}" />
 <meta name="keywords" content="{$meta_keywords|strip_tags}" />
-
-{*<link rel="shortcut icon" href="{$GLOBAL_PREFIX}favicon.ico" type="image/x-icon" />
-<link rel="apple-touch-icon" href="{$GLOBAL_PREFIX}apple-touch-icon.png" />*}
-
+{*
+<link rel="shortcut icon" href="{$GLOBAL_PREFIX}favicon.ico" type="image/x-icon" />
+<link rel="apple-touch-icon" href="{$GLOBAL_PREFIX}apple-touch-icon.png" />
+*}
 <link rel="stylesheet" href="{$GLOBAL_PREFIX}css/smoothbox.css" type="text/css" />
 
 <link rel="stylesheet" href="{$GLOBAL_PREFIX}css/{$SETTINGS.theme}/site.css" type="text/css" />
-
 {if isUserLogged()}
 <link rel="stylesheet" href="{$GLOBAL_PREFIX}lib/formcheck/theme/classic/formcheck.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="{$GLOBAL_PREFIX}css/admin.css" type="text/css" media="screen" />
-
 {/if}
-
-{*<link rel="stylesheet" href="{$GLOBAL_PREFIX}css/{$SETTINGS.theme}/menu.css" type="text/css" />
-<link rel="stylesheet" href="{$GLOBAL_PREFIX}css/{$SETTINGS.theme}/menu_fallback.css" id="fsmenu-fallback" type="text/css" />*}
-
-
+{*
+<link rel="stylesheet" href="{$GLOBAL_PREFIX}css/{$SETTINGS.theme}/menu.css" type="text/css" />
+<link rel="stylesheet" href="{$GLOBAL_PREFIX}css/{$SETTINGS.theme}/menu_fallback.css" id="fsmenu-fallback" type="text/css" />
+*}
 <script type="text/javascript">var GLOBAL_PREFIX="{$GLOBAL_PREFIX}";</script>
 <script type="text/javascript" src="{$GLOBAL_PREFIX}js/mootools-nc.js"></script>
 <script type="text/javascript" src="{$GLOBAL_PREFIX}js/smoothbox.js"></script>
@@ -41,14 +39,13 @@
 <script type="text/javascript" src="{$GLOBAL_PREFIX}lib/ckfinder/ckfinder.js"></script>
 {/if}
 </head>
-{*strip*}
 <body>
 {if isUserLogged()}<script type="text/javascript" src="{$GLOBAL_PREFIX}js/wz_tooltip.js"></script>{/if}
 
 <div id="container">
 	<div id="banner">
 <div style="text-align: center"><img src="{$GLOBAL_PREFIX}images/baltic_sea.jpeg" alt="Shore of the Baltic Sea"/></div>
-<h1>Alexander Afanasyev</h1>
+<h1><a href="{$GLOBAL_PREFIX}index.html">Alexander Afanasyev</a></h1>
 </div>
 	<!-- Begin Top Menu -->
 	<ul id="navlist">
@@ -85,6 +82,4 @@
 
 	<div id="content">
 {/if}
-
-
-
+{/strip}
