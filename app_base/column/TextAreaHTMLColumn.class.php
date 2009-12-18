@@ -15,7 +15,9 @@ window.addEvent('domready', function(){
 </script>
 ";
 		 */
-			
+
+		global $GLOBAL_PREFIX;
+
 		return "<script type='text/javascript'>
 window.addEvent('domready',function(){
         if (CKEDITOR.instances['$this->myName']) {
@@ -25,8 +27,8 @@ window.addEvent('domready',function(){
 		var editor=CKEDITOR.replace( '$this->myName', {height: 400} );
 		CKEditors.set( '$this->myName', '$this->myName' );
 
-		CKFinder.SetupCKEditor( editor, '/lib/ckfinder/' );
-		CKEDITOR.config.contentsCss='/css/$SETTINGS[theme]/site.css';
+		CKFinder.SetupCKEditor( editor, '".$GLOBAL_PREFIX."lib/ckfinder/' );
+		CKEDITOR.config.contentsCss='".$GLOBAL_PREFIX."css/$SETTINGS[theme]/site.css';
 	} );
 		</script>";
 		
