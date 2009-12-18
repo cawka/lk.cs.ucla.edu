@@ -27,8 +27,8 @@ $AUTH=array(
 	"bibwiki"      => array( "index"=>1, "bibtex"=>1 ),
 );
 
-$GLOBAL_PREFIX="/~cawka/cawka/";
-$GLOBAL_PREFIX_FS="/home/cawka/www/cawka/";
+$GLOBAL_PREFIX="/afanasyev/";
+$GLOBAL_PREFIX_FS="/home/cawka/www/afanasyev/";
 
 date_default_timezone_set( "Europe/Riga" );
 ?>
