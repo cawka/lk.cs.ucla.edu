@@ -1,6 +1,6 @@
 {if !isset($smarty.request.ajax) && isUserLogged()}
 <div style="float:left">{$this->getEditCtrl($this->myData)}</div>
-<div style="float:right"><a href="/login/logout">Logout</a></div>
+<div style="float:right"><a href="{$GLOBAL_PREFIX}login/logout">Logout</a></div>
 <div style="clear:both"></div>
 {/if}
 {include file="common/head.tpl" 
@@ -13,13 +13,17 @@
 }
 {strip}
 
+<script type="text/javascript">
+//var selfUrl="{$smarty.server.REQUEST_URI}";
+</script>
+
 {if !isset($smarty.request.ajax)}
 	{*if $this->myData.sp_title.0!=' '}<div class="title">{$this->myData.st_title|mxupper}</div>{/if*}
 	
 	{if isUserLogged()}{$this->mainContent->getEditCtrl($this->mainContent->myData)}{/if}
 	<div id='frame_0'>
 {/if}
-		{eval var="`$this->mainContent->myData.text` "}
+		{eval var="`$this->mainContent->myData.text` "|replace:"\"/data/":"\"`$GLOBAL_PREFIX`data/"}
 {if !isset($smarty.request.ajax)}
 	</div>
 {/if}

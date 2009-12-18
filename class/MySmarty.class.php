@@ -16,7 +16,7 @@ class MySmarty extends Smarty
 
 	public function is_cached( $template, $cache_id=NULL, $compile_id=NULL )
 	{
-		global $SETTINGS;
+		global $SETTINGS, $GLOBAL_PREFIX;
 
 		$ret=parent::is_cached( $template, $cache_id, $compile_id );
 		if( !$ret )
@@ -31,15 +31,11 @@ class MySmarty extends Smarty
 	        $this->assign( "HTTP_HOST", $_SERVER['HTTP_HOST'] );
 			
 			$this->assign_by_ref( "SETTINGS", $SETTINGS );
+			$this->assign( "GLOBAL_PREFIX", $GLOBAL_PREFIX ); 
 		        
-			$this->register_function( "isAdmin", "isAdmin" );
+//			$this->register_function( "isAdmin", "isAdmin" );
 			$this->register_function( "isUserLogged", "isUserLogged" );
 				
-	//		if( !isUserLogged() )
-	//		{
-	//			$this->assign( "deflogin", $COOKIES->ReadCookie("deflogin") );
-	//		}
-		
 			$this->assign( "menu", new MainMenuHelper() );
 	
 			if( isUserLogged() )

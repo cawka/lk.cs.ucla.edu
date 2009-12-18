@@ -1,3 +1,3 @@
-<link rel="stylesheet" href="/css/quot/diff.css" type="text/css" />
+<link rel="stylesheet" href="{$GLOBAL_PREFIX}css/{$SETTINGS.theme}/diff.css" type="text/css" />
 
-{$this->myHelper->diff($this->myData.text_orig,$this->myData.text)}
+{eval var=$this->myHelper->diff($this->myData.text_orig,$this->myData.text)}

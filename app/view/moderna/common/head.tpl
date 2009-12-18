@@ -7,56 +7,58 @@
 <meta name="description" content="{$meta_descr|strip_tags}" />
 <meta name="keywords" content="{$meta_keywords|strip_tags}" />
 
-{*<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-<link rel="apple-touch-icon" href="/apple-touch-icon.png" />*}
+{*<link rel="shortcut icon" href="{$GLOBAL_PREFIX}favicon.ico" type="image/x-icon" />
+<link rel="apple-touch-icon" href="{$GLOBAL_PREFIX}apple-touch-icon.png" />*}
 
-<link rel="stylesheet" href="/css/smoothbox.css" type="text/css" />
+<link rel="stylesheet" href="{$GLOBAL_PREFIX}css/smoothbox.css" type="text/css" />
 
-<link rel="stylesheet" href="/css/{$SETTINGS.theme}/site.css" type="text/css" />
+<link rel="stylesheet" href="{$GLOBAL_PREFIX}css/{$SETTINGS.theme}/site.css" type="text/css" />
 
 {if isUserLogged()}
-<link rel="stylesheet" href="/lib/formcheck/theme/classic/formcheck.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="/css/admin.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="{$GLOBAL_PREFIX}lib/formcheck/theme/classic/formcheck.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="{$GLOBAL_PREFIX}css/admin.css" type="text/css" media="screen" />
 
 {/if}
 
-{*<link rel="stylesheet" href="/css/{$SETTINGS.theme}/menu.css" type="text/css" />
-<link rel="stylesheet" href="/css/{$SETTINGS.theme}/menu_fallback.css" id="fsmenu-fallback" type="text/css" />*}
+{*<link rel="stylesheet" href="{$GLOBAL_PREFIX}css/{$SETTINGS.theme}/menu.css" type="text/css" />
+<link rel="stylesheet" href="{$GLOBAL_PREFIX}css/{$SETTINGS.theme}/menu_fallback.css" id="fsmenu-fallback" type="text/css" />*}
 
-<script type="text/javascript" src="/js/mootools-nc.js"></script>
-<script type="text/javascript" src="/js/smoothbox.js"></script>
 
-<script type="text/javascript" src="/js/site.js"></script>
-<script type="text/javascript" src="/js/cookie.js"></script>
-{*<script type="text/javascript" src="/lib/fsmenu/fsmenu.js"></script>*}
+<script type="text/javascript">var GLOBAL_PREFIX="{$GLOBAL_PREFIX}";</script>
+<script type="text/javascript" src="{$GLOBAL_PREFIX}js/mootools-nc.js"></script>
+<script type="text/javascript" src="{$GLOBAL_PREFIX}js/smoothbox.js"></script>
+
+<script type="text/javascript" src="{$GLOBAL_PREFIX}js/site.js"></script>
+<script type="text/javascript" src="{$GLOBAL_PREFIX}js/cookie.js"></script>
+{*<script type="text/javascript" src="{$GLOBAL_PREFIX}lib/fsmenu/fsmenu.js"></script>*}
 
 {if isUserLogged()}
-<script type="text/javascript" src="/js/mootools-more.js"></script>
-<script type="text/javascript" src="/lib/formcheck/lang/en.js"> </script>
-<script type="text/javascript" src="/lib/formcheck/formcheck.js"> </script>
+<script type="text/javascript" src="{$GLOBAL_PREFIX}js/mootools-more.js"></script>
+<script type="text/javascript" src="{$GLOBAL_PREFIX}lib/formcheck/lang/en.js"> </script>
+<script type="text/javascript" src="{$GLOBAL_PREFIX}lib/formcheck/formcheck.js"> </script>
 
-<script type="text/javascript" src="/lib/ckeditor/ckeditor.js"></script>
-<script type="text/javascript" src="/lib/ckfinder/ckfinder.js"></script>
+<script type="text/javascript" src="{$GLOBAL_PREFIX}lib/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="{$GLOBAL_PREFIX}lib/ckfinder/ckfinder.js"></script>
 {/if}
 </head>
 {*strip*}
 <body>
-{if isUserLogged()}<script type="text/javascript" src="/js/wz_tooltip.js"></script>{/if}
+{if isUserLogged()}<script type="text/javascript" src="{$GLOBAL_PREFIX}js/wz_tooltip.js"></script>{/if}
 
 <div id="container">
 	<div id="banner">
-<div style="text-align: center"><img src="/images/baltic_sea.jpeg" alt="Shore of the Baltic Sea"/></div>
+<div style="text-align: center"><img src="{$GLOBAL_PREFIX}images/baltic_sea.jpeg" alt="Shore of the Baltic Sea"/></div>
 <h1>Alexander Afanasyev</h1>
 </div>
 	<!-- Begin Top Menu -->
 	<ul id="navlist">
 {foreach from=$menu->myData item=i name="menu"}
 
-		<li{if $i.isselected} id="current"{/if}><a{if $i.isselected} id="current"{/if}{if $i.link!=""} href="{$i.link}"{/if}{if $i.target!=""} target="{$i.target}"}{/if}>{$i.name}</a></li>
+		<li{if $i.isselected} id="current"{/if}><a{if $i.isselected} id="current"{/if}{if $i.link!=""} href="{$GLOBAL_PREFIX}{$i.link}"{/if}{if $i.target!=""} target="{$i.target}"}{/if}>{$i.name}</a></li>
 
 {/foreach}
 {if isUserLogged()}
-		<li><a style="float:right" class="smoothbox" href="/menu/" name='Edit' ><img style='margin:0;padding:0;display:inline' height='12px' src='/images/admin/edit.gif' alt='Edit menu items' onmouseover="Tip('Edit menu')" /></a></li>
+		<li><a style="float:right" class="smoothbox" href="{$GLOBAL_PREFIX}menu/" name='Edit' ><img style='margin:0;padding:0;display:inline' height='12px' src='{$GLOBAL_PREFIX}images/admin/edit.gif' alt='Edit menu items' onmouseover="Tip('Edit menu')" /></a></li>
 {/if}
 	</ul>
 	<!-- End Top Menu -->

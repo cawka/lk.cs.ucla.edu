@@ -58,7 +58,7 @@ function TB_show(caption, url, rel){
         $('TB_overlay').setOpacity(0);
         TB_overlaySize();
         new Element('div').setProperty('id', 'TB_load').injectInside(document.body);
-        $('TB_load').innerHTML = "<img src='/images/loading.gif' />";
+        $('TB_load').innerHTML = "<img src='"+GLOBAL_PREFIX+"images/loading.gif' />";
         TB_load_position();
         
         $('TB_overlay').set('tween', {
@@ -70,7 +70,7 @@ function TB_show(caption, url, rel){
     
     if (!$("TB_load")) {
         new Element('div').setProperty('id', 'TB_load').injectInside(document.body);
-        $('TB_load').innerHTML = "<img src='/images/loading.gif' />";
+        $('TB_load').innerHTML = "<img src='"+GLOBAL_PREFIX+"images/loading.gif' />";
         TB_load_position();
     }
     

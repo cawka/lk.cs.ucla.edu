@@ -22,6 +22,8 @@ class LoginController extends BaseController
 	
 	public function login( &$tmpl, &$request )
 	{
+		global $GLOBAL_PREFIX;
+
 		if( isUserLogged() ) return $this->logout( &$tmpl, $request );
 		$this->myModel->clearSessionData( );	
 
@@ -40,11 +42,11 @@ class LoginController extends BaseController
 			$this->index( $tmpl, $request );
 			exit( 0 );
 		}
-		
+
 		if( isset($request['redirect']) )
 			header( "Location: $request[redirect]" );
 		else
-			header( "Location: /" );
+			header( "Location: $GLOBAL_PREFIX" );
 	}
 }
 

@@ -10,8 +10,9 @@ class RevisionsColumn extends BaseColumn
 	
 	function getInput( &$request )
 	{
+		global $GLOBAL_PREFIX;
 		
-		return "<a href='/textRevisions/?text_id=$request[id]'>Show revisions</a>";
+		return "<a href='".$GLOBAL_PREFIX."textRevisions/?text_id=$request[id]'>Show revisions</a>";
 	}
 }
 

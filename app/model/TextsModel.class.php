@@ -22,7 +22,8 @@ class TextsModel extends TableModel
 					)
 				);
 
-				$this->myRefreshAction="show";
+				$this->RefreshByReload=true;
+//				$this->myRefreshAction="show";
 		}
 
 		protected function rowId( $request )

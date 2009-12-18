@@ -54,8 +54,9 @@ Examples:
 	$baseUrl = '/userfiles/';
 
 ATTENTION: The trailing slash is required.
-*/
-$baseUrl = '/data/';
+ */
+
+$baseUrl = $GLOBAL_PREFIX.'data/';
 
 /*
 $baseDir : the path to the local directory (in the server) which points to the
@@ -72,7 +73,8 @@ Examples:
 
 ATTENTION: The trailing slash is required.
 */
-$baseDir = resolveUrl($baseUrl);
+#$baseDir = resolveUrl($baseUrl);
+$baseDir = $GLOBAL_PREFIX_FS.'data/';
 
 /*
  * ### Advanced Settings

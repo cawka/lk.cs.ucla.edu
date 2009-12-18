@@ -24,7 +24,7 @@ class MenuModel extends TableModel
 					)
 				);
 				$this->myOrder="display_order";
-//				$this->myRefreshAction="show";
+				$this->myRefreshAction="index";
 		}
 }
 

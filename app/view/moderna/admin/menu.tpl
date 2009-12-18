@@ -24,7 +24,7 @@
 function setEdit(id,name,link,display_order,width,target)
 {literal}{
 	$('kform').adopt( new Element('input', {type:'hidden', name:'id', value:id}) );{/literal}
-	$('kform').set( 'action', '/{$this->myPhp}/save_edit' );
+	$('kform').set( 'action', '{$GLOBAL_PREFIX}{$this->myPhp}/save_edit' );
 	$('name').set( 'value', name );
 	$('link').set( 'value', link );
 	$('display_order').set( 'value', display_order );

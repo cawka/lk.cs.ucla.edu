@@ -2,6 +2,8 @@
 
 #Options +FollowSymlinks 
 RewriteEngine on
+RewriteBase /~cawka/cawka
+
 #rewritecond %{http_host} ^reklama.com.ua [nc]
 #rewriterule ^(.*)$ http://www.reklama.com.ua/$1 [r=301,nc]
 

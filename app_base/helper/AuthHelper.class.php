@@ -2,9 +2,9 @@
 
 class AuthHelper 
 {
-	private $myRights;
-	private $myDefaultRedirect="/";	
-	private $myController;
+	protected $myRights;
+	protected $myDefaultRedirect="/";	
+	protected $myController;
 	
 	public function __construct( $controller )
 	{

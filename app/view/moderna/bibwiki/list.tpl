@@ -1,7 +1,7 @@
 {if !isset($smarty.request.ajax)}
 {if isUserLogged()}
-<div style="float:left"><a class="smoothbox" href="/staticPages/edit?id=bibwiki"><img style="margin: 0pt; padding: 0pt; display: inline;" src="/images/admin/edit.gif" alt="" onmouseover="Tip('Edit')" height="12px"></a></div>
-<div style="float:right"><a href="/login/logout">Logout</a></div>
+<div style="float:left"><a class="smoothbox" href="{$GLOBAL_PREFIX}staticPages/edit?id=bibwiki"><img style="margin: 0pt; padding: 0pt; display: inline;" src="{$GLOBAL_PREFIX}images/admin/edit.gif" alt="" onmouseover="Tip('Edit')" height="12px"></a></div>
+<div style="float:right"><a href="{$GLOBAL_PREFIX}login/logout">Logout</a></div>
 <div style="clear:both"></div>
 {/if}
 
@@ -30,7 +30,7 @@ var selfUrl="{$smarty.server.REQUEST_URI}";
 					{$this->myHelper->format_reference($cat.entry)|replace:"A. Afanasyev":"<b>A. Afanasyev</b>"}
 					&nbsp;
 					{if isset($cat.pdf) && $cat.pdf!=""}
-					<a target="_blank" href="{$cat.pdf}">[PDF]{*<img alt="pdf" src="/images/pdf.png">*}</a>
+					<a target="_blank" href="{$cat.pdf}">[PDF]{*<img alt="pdf" src="{$GLOBAL_PREFIX}images/pdf.png">*}</a>
 					{/if}
 					&nbsp;
 					{if isset($cat.slides) && $cat.slides!=""}
@@ -38,7 +38,7 @@ var selfUrl="{$smarty.server.REQUEST_URI}";
 					{/if}
 
 					&nbsp;
-					<a class="smoothbox" href="/bibwiki/bibtex?id={$cat.id}&amp;width=50&amp;height=50" title='BibTex Export' >[BibTex]</a>
+					<a class="smoothbox" href="{$GLOBAL_PREFIX}bibwiki/bibtex?id={$cat.id}&amp;width=50&amp;height=50" title='BibTex Export' >[BibTex]</a>
 					{if isUserLogged()}
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					{eval var=$this->getEditCtrl($cat)}

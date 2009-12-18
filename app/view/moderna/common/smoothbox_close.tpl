@@ -1,16 +1,19 @@
 <script type="text/javascript">
-	{if $this->myParentId!="TB_ajaxContent"}
+{if isset($this->RefreshByReload)}
 	TB_remove( );
-	{/if}
-	var req="/{$this->myPhp}/{$this->myRefreshAction}";
-	if( selfUrl!==undefined ) req=selfUrl;
-
-	var mydata="";
-	var q="{$this->getQuery()}";
-	if( q!="" ) mydata=q;
-	mydata+="ajax=true";
+	window.location.reload();
+{else}
+	var req="{$GLOBAL_PREFIX}{$this->myPhp}/{$this->myRefreshAction}";
+{if $this->myParentId!="TB_ajaxContent"}
+	if( typeof(selfUrl)!="undefined" ) req=selfUrl;
+	TB_remove( );
+{/if}
 	
-		new Request.HTML( {literal}{{/literal} url: req, 
+	var mydata="{$this->getQuery()}";
+	if( mydata!="" ) mydata+="&";
+	mydata+="ajax=true";
+
+	new Request.HTML( {literal}{{/literal} url: req, 
 			method: "get",
 			data: mydata,
 			evalScripts: true,
@@ -18,5 +21,5 @@
 			onComplete: TB_init
 			{literal}}{/literal}
 		).send();
-;
+{/if}
 </script>
