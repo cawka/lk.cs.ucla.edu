@@ -30,11 +30,11 @@ var selfUrl="{$smarty.server.REQUEST_URI}";
 					{$this->myHelper->format_reference($cat.entry)|replace:"A. Afanasyev":"<b>A. Afanasyev</b>"}
 					&nbsp;
 					{if isset($cat.pdf) && $cat.pdf!=""}
-					<a target="_blank" href="{$cat.pdf}">[PDF]{*<img alt="pdf" src="{$GLOBAL_PREFIX}images/pdf.png">*}</a>
+					<a target="_blank" href="{$cat.pdf|replace:"/data":"`$GLOBAL_PREFIX`data"}">[PDF]{*<img alt="pdf" src="{$GLOBAL_PREFIX}images/pdf.png">*}</a>
 					{/if}
 					&nbsp;
 					{if isset($cat.slides) && $cat.slides!=""}
-					<a target="_blank" href="{$cat.slides}">[SLIDES]</a>
+					<a target="_blank" href="{$cat.slides|replace:"/data":"`$GLOBAL_PREFIX`data"}">[SLIDES]</a>
 					{/if}
 
 					&nbsp;
