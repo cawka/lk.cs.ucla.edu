@@ -17,11 +17,15 @@ $DB->Execute( "SET NAMES utf8" );
 
 $theAPC=new APC( false, 300 );
 
+spl_autoload_register( "my_autoload" );
+
 $COOKIES=new CookieHelper( "", 3600*24*365 );
 
 session_start( );
 
-function __autoload( $classname )
+new SearchKeywordEmailerHelper( );
+
+function my_autoload( $classname )
 {
 	preg_match( "/^(.+)(column|model|controller|helper)$/i",$classname,$matches );
 	$prefix=BASEDIR . "/app/" . strtolower($matches[2]);
@@ -32,4 +36,5 @@ function __autoload( $classname )
 	else if( is_file("$prefix2/$classname.class.php") )
 	    include_once( "$prefix2/$classname.class.php" );
 }
+
 ?>

@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL & ~E_NOTIFY);
-ini_set('display_errors', '1');
+#error_reporting(E_ALL & ~E_NOTICE);
+#ini_set('display_errors', '1');
 
 include_once( "../inc/init.php" );
 include_once( BASEDIR . "/app_base/helper/RequestAction.class.php" );
@@ -24,6 +24,7 @@ if( !class_exists($controller) )
 	$t->get404( );
 	exit;
 }
+
 
 new RequestAction( 
 	$module,

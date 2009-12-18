@@ -53,9 +53,13 @@
 	<!-- Begin Top Menu -->
 	<ul id="navlist">
 {foreach from=$menu->myData item=i name="menu"}
-
+{if $i.display_order<0}
+	{if isUserLogged()}
+		<li{if $i.isselected} id="current"{/if}><a style="float:right"{if $i.isselected} id="current"{/if}{if $i.link!=""} href="{$GLOBAL_PREFIX}{$i.link}"{/if}{if $i.target!=""} target="{$i.target}"}{/if}>{$i.name}</a></li>
+	{/if}
+{else}
 		<li{if $i.isselected} id="current"{/if}><a{if $i.isselected} id="current"{/if}{if $i.link!=""} href="{$GLOBAL_PREFIX}{$i.link}"{/if}{if $i.target!=""} target="{$i.target}"}{/if}>{$i.name}</a></li>
-
+{/if}
 {/foreach}
 {if isUserLogged()}
 		<li><a style="float:right" class="smoothbox" href="{$GLOBAL_PREFIX}menu/" name='Edit' ><img style='margin:0;padding:0;display:inline' height='12px' src='{$GLOBAL_PREFIX}images/admin/edit.gif' alt='Edit menu items' onmouseover="Tip('Edit menu')" /></a></li>
