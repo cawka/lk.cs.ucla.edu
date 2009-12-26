@@ -9,7 +9,7 @@
 
 
 {foreach name="list" from=$this->myData item="i"}
-{assign var="newdate" value="$i.date"|date_format:"%A, %B %e, %Y"}
+{assign var="newdate" value=$i.date|date_format:"%A, %B %e, %Y"}
 {if $newdate!=$date}
 	{if $date!=""}</table>{/if}
 	{assign var="date" value=$newdate}
@@ -37,7 +37,7 @@
         <td class='referer-query'><a target="_blank" href="{$i.referer}">{$i.keywords}</a><br />
         </td>
         <td class='referer-time'>{$i.date|date_format:"%I:%M%p"}</td>
-        <td class='referer-service'>Google</td>
+        <td class='referer-service'>{$i.engine}</td>
 		<td class='referer-country'><a target="_blank" href="http://www.geoiptool.com/en/?IP={$i.ip}">{$i.ip}</a></td>
         <td class='referer-delete'>{eval var=$this->getDeleteCtrl($i)}</td>
       </tr>

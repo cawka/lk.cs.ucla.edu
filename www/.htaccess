@@ -10,8 +10,11 @@ rewritecond %{http_host} ^www.lever.cs.ucla.edu [nc]
 rewriterule ^(.*)$ http://lasr.cs.ucla.edu/afanasyev/$1 [r=301,nc]
 
 
+RewriteCond %{REQUEST_fileNAME} !-f
 RewriteRule ^([a-z0-9A-Z_\-]+)\.html$	index.php?_m=staticPages&action=show&id=$1	[L,qsappend]
 
 RewriteRule ^([a-z0-9A-Z_\-]+)/([a-z0-9A-Z_\-]+)$	index.php?_m=$1&action=$2	[L,qsappend]
+
+RewriteCond %{REQUEST_fileNAME} !-d
 RewriteRule ^([a-z0-9A-Z_\-]+)/$			index.php?_m=$1&action=index	[L,qsappend]
 
