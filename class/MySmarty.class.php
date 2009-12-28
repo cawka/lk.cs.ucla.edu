@@ -6,6 +6,8 @@ class MySmarty extends Smarty
 {
 	function MySmarty( $template_dir, $subdir="" )
 	{
+		parent::__construct( );
+
 		$this->template_dir = $template_dir; 
         $this->compile_dir = TEMPDIR . "/compile". (($subdir!="" )?"/$subdir":"");
         $this->cache_dir =   TEMPDIR . "/cache"   . (($subdir!="" )?"/$subdir":"");

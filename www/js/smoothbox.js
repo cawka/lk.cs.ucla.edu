@@ -21,6 +21,10 @@ function TB_init(){
     $$("a.smoothbox").each(function(el){
         el.onclick = TB_bind
     });
+
+    $$("a.smoothbox_small").each(function(el){
+        el.onclick = TB_bind_small
+    });
 }
 
 function TB_bind(event){
@@ -42,6 +46,29 @@ function TB_bind(event){
 	else
 		href+="?ajax=true";
     TB_show(caption, href, group);
+    this.onclick = TB_bind;
+    return false;
+}
+
+function TB_bind_small(event){
+    var event = new Event(event);
+    // stop default behaviour
+    event.preventDefault();
+    // remove click border
+    this.blur();
+    // get caption: either title or name attribute
+    var caption = this.title || this.name || "";
+    // get rel attribute for image groups
+    var group = this.rel || false;
+    // display the box for the elements href
+
+	var href=this.href;
+
+	if( href.indexOf('?')>=0 )
+		href+="&ajax=true";
+	else
+		href+="?ajax=true";
+    TB_show(caption, href+"&height=50&width=50", group);
     this.onclick = TB_bind;
     return false;
 }

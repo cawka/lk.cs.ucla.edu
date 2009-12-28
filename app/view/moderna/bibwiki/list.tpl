@@ -38,7 +38,7 @@ var selfUrl="{$smarty.server.REQUEST_URI}";
 					{/if}
 
 					&nbsp;
-					<a class="smoothbox" href="{$GLOBAL_PREFIX}bibwiki/bibtex?id={$cat.id}&amp;width=50&amp;height=50" title='BibTex Export' >[BibTex]</a>
+					<a class="smoothbox_small" href="{$GLOBAL_PREFIX}bibwiki/bibtex?id={$cat.id}" title='BibTex Export' >[BibTex]</a>
 					{if isUserLogged()}
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					{eval var=$this->getEditCtrl($cat)}

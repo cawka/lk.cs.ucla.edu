@@ -2,13 +2,8 @@
 
 class TableModel extends BaseModel
 {
-	/**
-	 * Переменная для связи с базой данных
-	 *
-	 * @var ADOConnection
-	 */
 	public $myDB;
-	protected $myLang; ///< if not null, use language feature of the table
+	protected $myLang; 
 	public $myUrlAddon="";
 	public $myUrlAddonValue="";
 	
@@ -42,37 +37,6 @@ class TableModel extends BaseModel
 		$this->myLang=$lang;
 		$this->myUrlAddon=$urladdon;
 		$this->myIsOffset=$offsets;
-		
-//		if( !isset($_REQUEST['_p']) )
-//		{
-//			$tmp=array_merge( $_GET, $_POST );
-/*			$tmp=$_GET;
-			unset( $tmp['_m'] );
-			unset( $tmp['action'] );
-			unset( $tmp['_p'] );
-			unset( $tmp['ajax'] ); unset( $tmp['width'] ); unset( $tmp['height'] );
-			$query=http_build_query( $tmp );
-			if( $query!="" ) 
-			{
-				$this->myUrlAddon="_p";
-				$this->myUrlAddonValue=urlencode($query);
-			}
-		}*/
-		
-/*		if( isset($_REQUEST['_p']) )
-		{
-//			print $_REQUEST['_p'];
-//			print urldecode( $_REQUEST['_p'] );
-//			$this->myUrlAddon.=$_REQUEST['_p'];
-			$params=explode( "&",urldecode( $_REQUEST['_p'] ) );
-			foreach( $params as $param )
-			{
-				$p=explode( "=", $param );
-//				print_r( $p );
-//				$_REQUEST[$p[0]]=$p[1];
-			}
-		}
- */
 	}
 	
 	private function addSortColumns( $sort )

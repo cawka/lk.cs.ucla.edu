@@ -303,7 +303,7 @@ class BibwikiModel extends TableModel
 
 	public function getBibTex( &$request )
 	{
-		return parent::getRowToEdit( $request );
+		return $this->getRowToEdit( $request );
 	}
 
 	public function getRowToEdit( &$request )
