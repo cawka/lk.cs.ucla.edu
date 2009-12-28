@@ -11,8 +11,7 @@
 	meta_keywords=$this->myStatic->myData.sp_meta
 	top_pic=$this->myStatic->myData.sp_top_figure
 
-	menuContent=$this->myStatic->menuContent
-}
+	menuContent=$this->myStatic->menuContent}
 
 <script type="text/javascript">
 var selfUrl="{$smarty.server.REQUEST_URI}";

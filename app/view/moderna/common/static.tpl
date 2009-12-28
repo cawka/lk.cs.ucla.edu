@@ -10,8 +10,7 @@
 	meta_keywords=$this->myData.sp_meta
 	top_pic=$this->myData.sp_top_figure
 
-	menuContent=$this->menuContent
-}
+	menuContent=$this->menuContent}
 
 {if !isset($smarty.request.ajax)}
 	{*if $this->myData.sp_title.0!=' '}<div class="title">{$this->myData.st_title|mxupper}</div>{/if*}
