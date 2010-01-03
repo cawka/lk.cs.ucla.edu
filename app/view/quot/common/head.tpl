@@ -99,7 +99,7 @@
 		{if isset($menu->mySubData)}
             {include file="common/submenu.tpl"}
 
-			<br/><p align="right"><a class="smoothbox" href="/menu/?parent_id={$menu->mySubData.0.parent_id}">Edit submenu</a></p>
+			{if isUserLogged()}<br/><p align="right"><a class="smoothbox" href="/menu/?parent_id={$menu->mySubData.0.parent_id}">Edit submenu</a></p>{/if}
         {/if}
 	</td>
 	<td class="right">
