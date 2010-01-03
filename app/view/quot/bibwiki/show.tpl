@@ -1,8 +1,8 @@
 {knownlink link=$this->myData.key title="wikiinfo"}<br/>
 {if isset($this->myData.file) && $this->myData.file!=""}
-<a target="_blank" href="/papers/{$this->myData.file}"><img style="display:inline; border:0" src="{$wgScriptPath}/images/admin/pdf.png"></a>
-{/if}
-<a style="border:0" target="_blank" href="http://scholar.google.com/scholar?q=allintitle:{$this->myData.title|urlencode}"><img style="display:inline; border:0; vertical-align: top" src="{$wgScriptPath}/images/admin/scholar.png"></a>
+<a target="_blank" href="{$GLOBAL_PREFIX}papers/{$this->myData.file}"><img style="display:inline; border:0" src="{images/admin/pdf.png"></a>
+$GLOBAL_PREFIX}{/if}
+<a style="border:0" target="_blank" href="http://scholar.google.com/scholar?q=allintitle:{$this->myData.title|urlencode}"><img style="display:inline; border:0; vertical-align: top" src="{$GLOBAL_PREFIX}images/admin/scholar.png"></a>
 <br/><br/>
 
 {*refdescr bib=$this->myData.entry*}

@@ -1,9 +1,9 @@
-{if $item.link==$smarty.server.REQUEST_URI}
-<b>{$item.name}</b>
+{if "`$GLOBAL_PREFIX``$item.link`"==$smarty.server.REQUEST_URI}
+<b>{$item.name}</b> {if isset($item.description)}<br/><small>{$item.description}</small>{/if}
 {elseif $item.link==""}
 {$item.title}
 {else}
-<a {if $item.target!=""}target="{$item.target}"}{/if} href="{$item.link}">{$item.name}</a>
+<a {if $item.target!=""}target="{$item.target}"}{/if} href="{$GLOBAL_PREFIX}{$item.link}">{$item.name}</a> {if isset($item.description)}<br/><small>{$item.description}</small>{/if}
 {/if}
 {if $item.sublevel!==null}
 <ul>

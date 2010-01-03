@@ -1,7 +1,9 @@
+{strip}
 {if !isset($smarty.request.ajax)}
-{*strip*}
-
-</div>
+</td>
+</tr>
+</table>
+	</div>
 	<div class="footer">
 		<hr />
 		<table width="100%"><tr>
@@ -10,7 +12,7 @@
 		</td>
 {if isset($lastmodified)}
 		<td width="33%" align="center">
-			Last modified on {$lastmodified|date_format}
+		Last modified on {$lastmodified|date_format}
 		</td>
 {/if}
 		<td width="33%" align="center">
@@ -33,5 +35,6 @@ addEvent(window, 'load', new Function('menu{$i.id}.activateMenu("menu_{$i.id}",n
 
 </body>
 </html>
-{*/strip*}
+
 {/if}
+{/strip}

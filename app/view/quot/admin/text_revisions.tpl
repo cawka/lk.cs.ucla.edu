@@ -5,9 +5,9 @@
 	<li>
 	{$i.modified|date_format:"%D %T"}
 	&nbsp;
-	<a class="smoothbox" href="/textRevisions/show?id={$i.id}">Show</a>
+	<a class="smoothbox" href="{$GLOBAL_PREFIX}textRevisions/show?id={$i.id}">Show</a>
 	&nbsp;
-	<a class="smoothbox" href="/textRevisions/diff?id={$i.id}">Diff</a>
+	<a class="smoothbox" href="{$GLOBAL_PREFIX}textRevisions/diff?id={$i.id}">Diff</a>
 {*	&nbsp;
 	&nbsp;
 	&nbsp;

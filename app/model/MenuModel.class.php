@@ -16,6 +16,7 @@ class MenuModel extends TableModel
 
 				parent::__construct( $DB, $php, "menu", array(
 						new TextColumn("name","Menu item","Required"),
+						new TextColumn("description","Description"),
 						new TextColumn("link","Linked item"),
 						new IntegerColumn("display_order","Display order"),
 						new TextColumn("width","Main menu width"),
