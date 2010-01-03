@@ -21,6 +21,10 @@ function TB_init(){
     $$("a.smoothbox").each(function(el){
         el.onclick = TB_bind
     });
+
+    $$("a.smoothbox_small").each(function(el){
+        el.onclick = TB_bind_small
+    });
 }
 
 function TB_bind(event){
@@ -46,6 +50,29 @@ function TB_bind(event){
     return false;
 }
 
+function TB_bind_small(event){
+    var event = new Event(event);
+    // stop default behaviour
+    event.preventDefault();
+    // remove click border
+    this.blur();
+    // get caption: either title or name attribute
+    var caption = this.title || this.name || "";
+    // get rel attribute for image groups
+    var group = this.rel || false;
+    // display the box for the elements href
+
+	var href=this.href;
+
+	if( href.indexOf('?')>=0 )
+		href+="&ajax=true";
+	else
+		href+="?ajax=true";
+    TB_show(caption, href+"&height=50&width=50", group);
+    this.onclick = TB_bind;
+    return false;
+}
+
 // called when the user clicks on a smoothbox link
 function TB_show(caption, url, rel){
 
@@ -58,7 +85,7 @@ function TB_show(caption, url, rel){
         $('TB_overlay').setOpacity(0);
         TB_overlaySize();
         new Element('div').setProperty('id', 'TB_load').injectInside(document.body);
-        $('TB_load').innerHTML = "<img src='/images/loading.gif' />";
+        $('TB_load').innerHTML = "<img src='"+GLOBAL_PREFIX+"images/loading.gif' />";
         TB_load_position();
         
         $('TB_overlay').set('tween', {
@@ -70,7 +97,7 @@ function TB_show(caption, url, rel){
     
     if (!$("TB_load")) {
         new Element('div').setProperty('id', 'TB_load').injectInside(document.body);
-        $('TB_load').innerHTML = "<img src='/images/loading.gif' />";
+        $('TB_load').innerHTML = "<img src='"+GLOBAL_PREFIX+"images/loading.gif' />";
         TB_load_position();
     }
     

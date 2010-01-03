@@ -1,37 +1,36 @@
+{strip}
+<br/><br/>
 {if !isset($smarty.request.ajax)}
 {*strip*}
-
-</div>
-	<div class="footer">
-		<hr />
-		<table width="100%"><tr>
-		<td width="33%" align="center">
-			Copyright 2009 Leonard Kleinrock. &nbsp; All rights reserved
-		</td>
+	</div>
+<br/>
+	<div id="footer">
+		<a href="http://mailhide.recaptcha.net/d?k=01AkOqvipc-oi-UdWJ2oFbkg==&amp;c=sEnupUlCKOR8Mzqg1Q6ri_0Zra6jA0FVck8jpf9dnV4=" onclick="window.open('http://mailhide.recaptcha.net/d?k=01AkOqvipc-oi-UdWJ2oFbkg==&amp;c=sEnupUlCKOR8Mzqg1Q6ri_0Zra6jA0FVck8jpf9dnV4=', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;" title="Reveal this e-mail address">contact</a>&nbsp;
+		|&nbsp;
+		Copyright 2009 Alexander Afanasyev&nbsp;
 {if isset($lastmodified)}
-		<td width="33%" align="center">
-			Last modified on {$lastmodified|date_format}
-		</td>
+		|&nbsp;
+		Last modified on {$lastmodified|date_format}
 {/if}
-		<td width="33%" align="center">
-			Email: <a href="mailto:lk@cs.ucla.edu">lk@cs.ucla.edu</a>
-		</td>
-		</tr></table>
-		<br/><br/>
 	</div>
 </div>
+<br/>
+
+{literal}
 <script type="text/javascript">
-{foreach from=$menu->myData item="i"}
-menu{$i.id} = new FSMenu('menu{$i.id}', true, 'display', 'block', 'none');
-menu{$i.id}.hideOnClick = false;
-menu{$i.id}.hideDelay = 0;
-menu{$i.id}.switchDelay=0;
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-2395047-1']);
+  _gaq.push(['_trackPageview']);
 
-addEvent(window, 'load', new Function('menu{$i.id}.activateMenu("menu_{$i.id}",null)'));
-{/foreach}
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+  })();
 </script>
-
+{/literal}
 </body>
 </html>
 {*/strip*}
 {/if}
+{/strip}

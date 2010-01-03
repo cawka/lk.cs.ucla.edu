@@ -14,7 +14,7 @@
 <tr>
 	<td>{$smarty.foreach.list.iteration}</td>
 	<td>{$cat.id}</td>
-	<td><a href="/{$cat.id}.html">{$cat.sp_title}</a><br/>
+	<td><a href="{$GLOBAL_PREFIX}{$cat.id}.html">{$cat.sp_title}</a><br/>
 	<small>{$cat.sp_text|strip_tags|truncate:"400"}</small></td>
 	<td>{eval var=$this->getEditCtrl($cat)}</td>
 	<td>{eval var=$this->getDeleteCtrl($cat)}</td>

@@ -9,7 +9,9 @@ class BaseTableHelper
 	
 	public function form_action( &$model, $action, $validate,$params=array(),&$options )
 	{
-		$ret="<form action='/$model->myPhp/$action' ";// tmt:validate='$validate'";
+		global $GLOBAL_PREFIX;
+
+		$ret="<form action='$GLOBAL_PREFIX$model->myPhp/$action' ";// tmt:validate='$validate'";
 		foreach( $options as $key=>$value )
 		{
 			$ret.=" $key='$value'";
@@ -33,8 +35,10 @@ class BaseTableHelper
 	
 	public function link_popup( &$model, $action, $name, $title, &$params, $method="get" )
 	{
+		global $GLOBAL_PREFIX;
+
 		$ret="";
-		$url="/$model->myPhp/$action";
+		$url="$GLOBAL_PREFIX$model->myPhp/$action";
 		$query=http_build_query( $params,'', '&amp;' );
 		if( $query!="" ) $url.="?$query";
 		
@@ -45,8 +49,10 @@ class BaseTableHelper
 
 	public function link_popup_confirm( &$model, $action, $name, &$params, $confirm_text, $method="get" )
 	{
+		global $GLOBAL_PREFIX;
+
 		$ret="";
-		$url="/$model->myPhp/$action";
+		$url="$GLOBAL_PREFIX$model->myPhp/$action";
 		$query=http_build_query( $params,'', '&amp;' );
 		if( $query!="" ) $url.="?$query";
 		
@@ -57,7 +63,9 @@ class BaseTableHelper
 	
 	public function img_button( $button, $name )
 	{
-		return "<img style='margin:0;padding:0;display:inline' height='12px' src='/images/admin/$button.gif' alt='$name' onmouseover=\"Tip('$name')\" />";
+		global $GLOBAL_PREFIX;
+
+		return "<img style='margin:0;padding:0;display:inline' height='12px' src='$GLOBAL_PREFIX"."images/admin/$button.gif' alt='$name' onmouseover=\"Tip('$name')\" />";
 	}
 }
 

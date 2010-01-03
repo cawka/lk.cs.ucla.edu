@@ -1,7 +1,7 @@
 {if !isset($smarty.request.ajax)}
 {if isUserLogged()}
-<div style="float:left"><a class="smoothbox" href="/staticPages/edit?id=bibwiki"><img style="margin: 0pt; padding: 0pt; display: inline;" src="/images/admin/edit.gif" alt="" onmouseover="Tip('Edit')" height="12px"></a></div>
-<div style="float:right"><a href="/login/logout">Logout</a></div>
+<div style="float:left"><a class="smoothbox" href="{$GLOBAL_PREFIX}staticPages/edit?id=bibwiki"><img style="margin: 0pt; padding: 0pt; display: inline;" src="{$GLOBAL_PREFIX}images/admin/edit.gif" alt="" onmouseover="Tip('Edit')" height="12px"></a></div>
+<div style="float:right"><a href="{$GLOBAL_PREFIX}login/logout">Logout</a></div>
 <div style="clear:both"></div>
 {/if}
 
@@ -10,40 +10,34 @@
 	meta_descr=$this->myStatic->myData.sp_meta_descr 
 	meta_keywords=$this->myStatic->myData.sp_meta
 	top_pic=$this->myStatic->myData.sp_top_figure
-}
+
+	menuContent=$this->myStatic->menuContent}
 
 <script type="text/javascript">
 var selfUrl="{$smarty.server.REQUEST_URI}";
 </script>
 
-<table width="100%">
-    <tbody>
-        <tr>
-            <td class="left">
-				{if isset($menu->mySubData)}
-                    {include file="common/submenu.tpl"}
-                {/if}
-
-				{if isUserLogged()}{$this->myStatic->menuContent->getEditCtrl($this->myStatic->menuContent->myData)}{/if}
-				<div id='frame_1'>{eval var="`$this->myStatic->menuContent->myData.text` "}</div>
-            </td>
-            <td class="right"><!-- Actual content -->
 				{if isUserLogged()}{$this->myStatic->mainContent->getEditCtrl($this->myStatic->mainContent->myData)}{/if}
 				<div id='frame_0'>{eval var="`$this->myStatic->mainContent->myData.text` "}</div>
 {/if}{* !isset(smarty.request.ajax)*}
 				{if isUserLogged()}<div id="frame_">{/if}
 				{foreach name="outer" from=$this->myTypes item=type}
-				<h1><a name="{$type.0}">{$type.1}</a></h1>
+				<h5>{*<a name="{$type.0}">*}{$type.1}{*</a>*}</h5>
 				<ol>
 				{foreach name="list" from=$type.2 item=cat}
-				<li style="margin-top:7px">
-					{$this->myHelper->format_reference($cat.entry)}
+				<li style="margin-top:14px">
+					{$this->myHelper->format_reference($cat.entry)|replace:"A. Afanasyev":"<b>A. Afanasyev</b>"}
 					&nbsp;
 					{if isset($cat.pdf) && $cat.pdf!=""}
-					<a target="_blank" href="/data/files/{$cat.pdf|replace:"/data/files/":""|replace:" ":"%20"|replace:"?":"%3F"}"><img alt="pdf" src="/images/pdf.png"></a>&nbsp;
+					<a target="_blank" href="{$cat.pdf|regex_replace:"%^/data%":"`$GLOBAL_PREFIX`data"}">[PDF]{*<img alt="pdf" src="{$GLOBAL_PREFIX}images/pdf.png">*}</a>
 					{/if}
 					&nbsp;
-					<a class="smoothbox" href="/bibwiki/bibtex?id={$cat.id}&amp;width=50&amp;height=50" title='BibTex Export' >BibTex</a>
+					{if isset($cat.slides) && $cat.slides!=""}
+					<a target="_blank" href="{$cat.slides|regex_replace:"%^/data%":"`$GLOBAL_PREFIX`data"}">[SLIDES]</a>
+					{/if}
+
+					&nbsp;
+					<a class="smoothbox_small" href="{$GLOBAL_PREFIX}bibwiki/bibtex?id={$cat.id}" title='BibTex Export' >[BibTex]</a>
 					{if isUserLogged()}
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					{eval var=$this->getEditCtrl($cat)}
@@ -52,16 +46,12 @@ var selfUrl="{$smarty.server.REQUEST_URI}";
 				</li>
 				{/foreach}
 				</ol>
-				{if isUserLogged()}{$this->getAddCtrl()}{/if}
-				<br /><br /> 
+				<br /> 
 				{/foreach}
+				{if isUserLogged()}{$this->getAddCtrl("Add/import new publication")}{/if}
 				{if isUserLogged()}</div>{/if}
 {if !isset($smarty.request.ajax)}
-         </td>
-        </tr>
-    </tbody>
-</table>
 
 {include file="common/foot.tpl" 
-	lastmodified=$this->myStatic->myData.lastmodified}}
+	lastmodified=$this->myStatic->myData.lastmodified}
 {/if}

@@ -3,12 +3,12 @@
 class BibwikiModel extends TableModel 
 {
 	protected $myFields;
-	public $myTypes=array( "bibtex='book'"=>array("books","Books"),
-						   "bibtex='misc'"=>array("misc","Public Service Reports"),
-						   "bibtex='incollection'"=>array("chapters","Chapters in Books"),
-						   "bibtex='patent'"=>array("patents","Patents"),
+	public $myTypes=array( //"bibtex='book'"=>array("books","Books"),
+						   //"bibtex='misc'"=>array("misc","Public Service Reports"),
+						   //"bibtex='incollection'"=>array("chapters","Chapters in Books"),
+						   //"bibtex='patent'"=>array("patents","Patents"),
 						   "(bibtex='article' OR bibtex='conference')"=>array("articles","Papers Published in Professional and Scholarly Journals and in Procedings of Conferences and Symposia"),
-						   "(bibtex='techreport' OR bibtex='phdthesis')"=>array("techreports","Papers Published as Technical Reports"),
+						   "(bibtex='techreport' OR bibtex='phdthesis' or bibtex='misc')"=>array("techreports","Papers Published as Technical Reports"),
 				   );
 
 //	protected $current_search;
@@ -27,6 +27,7 @@ class BibwikiModel extends TableModel
 		parent::__construct( $DB,$php,"bibwiki",array(
 				"bibtex"=>new BibtexTypeColumn( "bibtex", "Publication type" ),
 				"pdf"=>new FileColumn( "pdf", "PDF" ),
+				"slides"=>new FileColumn( "slides", "Slides in PDF or PPT format" ),
 		) );
 
 		$this->mySearchColumns=array(
@@ -271,6 +272,7 @@ class BibwikiModel extends TableModel
 			$this->myColumns=array(
 					$this->myColumns['bibtex'],
 					$this->myColumns['pdf'],
+					$this->myColumns['slides'],
 					new HiddenExactValueColumn( 'entry', $this->myDB->qstr($entry) ),
 					);
 
@@ -301,7 +303,7 @@ class BibwikiModel extends TableModel
 
 	public function getBibTex( &$request )
 	{
-		return parent::getRowToEdit( $request );
+		return $this->getRowToEdit( $request );
 	}
 
 	public function getRowToEdit( &$request )

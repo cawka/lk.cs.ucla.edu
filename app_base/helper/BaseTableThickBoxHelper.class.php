@@ -11,8 +11,10 @@ class BaseTableThickBoxHelper extends BaseTableHelper
 	
 	public function link_popup( &$model, $action, $name, $title, &$params, $method="get" )
 	{
+		global $GLOBAL_PREFIX;
+
 		$ret="";
-		$url="/$model->myPhp/$action";
+		$url="$GLOBAL_PREFIX$model->myPhp/$action";
 		
 		$params=array_merge( $params, array(
 //				"ajax"=>"true",
@@ -31,9 +33,11 @@ class BaseTableThickBoxHelper extends BaseTableHelper
 
 	public function link_popup_confirm( &$model, $action, $name, &$params, $confirm_text, $method="get" )
 	{
+		global $GLOBAL_PREFIX;
+
 		$url=http_build_query( $params,'', '&amp;' );
 		
-		$ret="<a href=\"javascript:;\" onclick=\"if( confirm('$confirm_text') ) del('/$model->myPhp/$action','$url','$model->myParentId')\" >$name</a>";
+		$ret="<a href=\"javascript:;\" onclick=\"if( confirm('$confirm_text') ) del('$GLOBAL_PREFIX$model->myPhp/$action','$url','$model->myParentId')\" >$name</a>";
 		return $ret;
 	}
 }

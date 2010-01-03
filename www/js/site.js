@@ -50,7 +50,7 @@ function BrowserPopup( name )
 {
 	finder=new CKFinder();
 	
-	finder.BasePath='/lib/ckfinder/';
+	finder.BasePath=GLOBAL_PREFIX+'/lib/ckfinder/';
 	finder.SelectFunction="set_"+name;
 	finder.RememberLastFolder=true;
 
@@ -70,7 +70,7 @@ function changeBibtexType( field )
 	if( BibTexHash.has('id') ) mydata+="&id="+BibTexHash.get('id');
 
 	new Request.HTML( {
-		url : "/bibwiki/fields",
+		url : GLOBAL_PREFIX+"/bibwiki/fields",
 		method : "get",
 		data : mydata,
 		update : $("TB_ajaxContent"),

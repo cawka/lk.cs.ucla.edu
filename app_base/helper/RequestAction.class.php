@@ -26,12 +26,12 @@ class RequestAction
 		global $DB,$LANG,$Auth,$SETTINGS;
 		$this->myTemplate=&new MySmarty( BASEDIR."/app/view/$SETTINGS[theme]/", $LANG );
 		
-		$Auth=new AuthHelper( $controller );
+		$Auth=new AuthNoDBHelper( $controller );
 		$this->myAuth=&$Auth;
-		
+
 		$this->myTemplate->assign_by_ref( "Auth", $this->myAuth );
 
-		if( $_REQUEST['action']=='' ) $_REQUEST['action']='index';
+		if( !isset($_REQUEST['action']) || $_REQUEST['action']=='' ) $_REQUEST['action']='index';
 		if( $nodelay ) $this->parseInput( $class );
 	}
 	

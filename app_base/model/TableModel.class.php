@@ -2,13 +2,8 @@
 
 class TableModel extends BaseModel
 {
-	/**
-	 * Переменная для связи с базой данных
-	 *
-	 * @var ADOConnection
-	 */
 	public $myDB;
-	protected $myLang; ///< if not null, use language feature of the table
+	protected $myLang; 
 	public $myUrlAddon="";
 	public $myUrlAddonValue="";
 	
@@ -42,37 +37,6 @@ class TableModel extends BaseModel
 		$this->myLang=$lang;
 		$this->myUrlAddon=$urladdon;
 		$this->myIsOffset=$offsets;
-		
-//		if( !isset($_REQUEST['_p']) )
-//		{
-//			$tmp=array_merge( $_GET, $_POST );
-/*			$tmp=$_GET;
-			unset( $tmp['_m'] );
-			unset( $tmp['action'] );
-			unset( $tmp['_p'] );
-			unset( $tmp['ajax'] ); unset( $tmp['width'] ); unset( $tmp['height'] );
-			$query=http_build_query( $tmp );
-			if( $query!="" ) 
-			{
-				$this->myUrlAddon="_p";
-				$this->myUrlAddonValue=urlencode($query);
-			}
-		}*/
-		
-/*		if( isset($_REQUEST['_p']) )
-		{
-//			print $_REQUEST['_p'];
-//			print urldecode( $_REQUEST['_p'] );
-//			$this->myUrlAddon.=$_REQUEST['_p'];
-			$params=explode( "&",urldecode( $_REQUEST['_p'] ) );
-			foreach( $params as $param )
-			{
-				$p=explode( "=", $param );
-//				print_r( $p );
-//				$_REQUEST[$p[0]]=$p[1];
-			}
-		}
- */
 	}
 	
 	private function addSortColumns( $sort )
@@ -315,23 +279,25 @@ class TableModel extends BaseModel
 			return "";
 	}
 
-	public function getAddCtrl( )
+	public function getAddCtrl( $link="" )
 	{
 		global $Auth; if( !$Auth->isAllowed("add") ) return "";
+		if( $link=="" ) $link=$this->myHelper->img_button("new","Add");
 
 		return $this->myHelper->link_popup( $this,"add",
-											$this->myHelper->img_button("new","Add"),
+											$link,
 											"Add",
 											$this->getColumnParams( ) );
 	}
 
-	public function getEditCtrl( &$row )
+	public function getEditCtrl( &$row, $link="" )
 	{
 		global $Auth; if( !$Auth->isAllowed("edit") ) return "";
+		if( $link=="" ) $link=$this->myHelper->img_button("edit","Edit");
 
 		return $this->myHelper->link_popup( 
 						$this,"edit",
-						$this->myHelper->img_button("edit","Edit"),
+						$link,
 						"Edit",
 						$this->getColumnParams( array($this->myId=>$row[$this->myId]) ) );
 	}

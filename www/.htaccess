@@ -2,11 +2,19 @@
 
 #Options +FollowSymlinks 
 RewriteEngine on
-#rewritecond %{http_host} ^reklama.com.ua [nc]
-#rewriterule ^(.*)$ http://www.reklama.com.ua/$1 [r=301,nc]
+RewriteBase /afanasyev
 
+rewritecond %{http_host} ^www.lasr.cs.ucla.edu [OR]
+rewritecond %{http_host} ^lever.cs.ucla.edu [OR]
+rewritecond %{http_host} ^www.lever.cs.ucla.edu [nc]
+rewriterule ^(.*)$ http://lasr.cs.ucla.edu/afanasyev/$1 [r=301,nc]
+
+
+RewriteCond %{REQUEST_fileNAME} !-f
 RewriteRule ^([a-z0-9A-Z_\-]+)\.html$	index.php?_m=staticPages&action=show&id=$1	[L,qsappend]
 
 RewriteRule ^([a-z0-9A-Z_\-]+)/([a-z0-9A-Z_\-]+)$	index.php?_m=$1&action=$2	[L,qsappend]
+
+RewriteCond %{REQUEST_fileNAME} !-d
 RewriteRule ^([a-z0-9A-Z_\-]+)/$			index.php?_m=$1&action=index	[L,qsappend]
 
