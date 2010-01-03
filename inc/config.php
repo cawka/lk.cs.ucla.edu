@@ -2,12 +2,12 @@
 
 $dbengine="mysql";
 $dbuser  ="cawka";
-$dbpasswd="9.2#57@c6X3z";
+$dbpasswd="mymegapassword";
 $dbhost  ="localhost";
-$dbschema="cawka";
+$dbschema="lk4";
 
 $SETTINGS=array(
-	"theme" => "moderna",
+	"theme" => "quot",
 	"index" => "index.html",
 	"user.email" => "cawka1@gmail.com",
 	"user.name" => "Alexander Afanasyev",
@@ -23,8 +23,10 @@ $AUTH=array(
 	"bibwiki"      => array( "index"=>1, "bibtex"=>1 ),
 );
 
-$GLOBAL_PREFIX="/afanasyev/";
-$GLOBAL_PREFIX_FS="/home/cawka/www/afanasyev/";
+#$GLOBAL_PREFIX="/afanasyev/";
+#$GLOBAL_PREFIX_FS="/home/cawka/www/afanasyev/";
+$GLOBAL_PREFIX="/";
+$GLOBAL_PREFIX_FS="/Users/cawka/Devel/lk/www/";
 
 $CACHE_SERVERS=array(/*array( "host"=>"127.0.0.1", "port"=>"11211", "weight"=>100 ),*/);
 date_default_timezone_set( "Europe/Riga" );

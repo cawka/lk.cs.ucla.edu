@@ -2,12 +2,12 @@
 
 #Options +FollowSymlinks 
 RewriteEngine on
-RewriteBase /afanasyev
+RewriteBase /
 
-rewritecond %{http_host} ^www.lasr.cs.ucla.edu [OR]
-rewritecond %{http_host} ^lever.cs.ucla.edu [OR]
-rewritecond %{http_host} ^www.lever.cs.ucla.edu [nc]
-rewriterule ^(.*)$ http://lasr.cs.ucla.edu/afanasyev/$1 [r=301,nc]
+#rewritecond %{http_host} ^www.lasr.cs.ucla.edu [OR]
+#rewritecond %{http_host} ^lever.cs.ucla.edu [OR]
+#rewritecond %{http_host} ^www.lever.cs.ucla.edu [nc]
+#rewriterule ^(.*)$ http://lasr.cs.ucla.edu/afanasyev/$1 [r=301,nc]
 
 
 RewriteCond %{REQUEST_fileNAME} !-f
