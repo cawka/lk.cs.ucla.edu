@@ -21,8 +21,17 @@ class BibwikiController extends TableController
 
 	protected function cacheId( &$request )
 	{
-
-		return "($request[action])".(isset($request[$this->myModel->myId])?"(".$request[$this->myModel->myId].")":"");
+		switch( $request['action'] )
+		{
+		case "bibtex":
+			return "bibwiki|show|$request[id]|$request[ajax]";
+			break;
+		case "index":
+		default:
+			return "bibwiki|index|$request[type]";
+			break;
+		}
+#		return "$request[action]|".(isset($request[$this->myModel->myId])?"|".$request[$this->myModel->myId]."":"");
 	}
 
 	public function bibtex( &$tmpl, &$request )
