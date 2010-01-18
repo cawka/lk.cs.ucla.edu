@@ -26,10 +26,23 @@ class BibwikiModel extends TableModel
 //		$DB->debug=true;
 //		print_r( $_SERVER );
 		parent::__construct( $DB,$php,"bibwiki",array(
-				"biblio_type"=>new HiddenColumn("biblio_type", $_REQUEST['biblio_type'] ),
-				"bibtex"=>new BibtexTypeColumn( "bibtex", "Publication type" ),
-				"pdf"=>new FileColumn( "pdf", "PDF" ),
-				"slides"=>new FileColumn( "slides", "Slides in PDF or PPT format" ),
+			"biblio_type1"=>new HiddenColumn("biblio_type", $_REQUEST['biblio_type'] ),
+			"biblio_type"=>new ListColumn("biblio_type","Section","required", array(
+				"books"=>"Books",
+				"book_chapters"=>"Chapters",
+				"articles"=>"Articles",
+				"service_reports"=>"Public Service Reports",
+				"patents"=>"Patents",
+				"public_reports"=>"Public Reports",
+				"techreports"=>"Technical Reports",
+				"presentations"=>"Presentations",
+				"press_releases"=>"Press Releases",
+				"white_papers"=>"White Papers",
+				"tutorials"=>"Tutorials",
+			) ),
+			"bibtex"=>new BibtexTypeColumn( "bibtex", "Publication type" ),
+			"pdf"=>new FileColumn( "pdf", "PDF" ),
+			"slides"=>new FileColumn( "slides", "Slides in PDF or PPT format" ),
 		) );
 
 		$this->mySearchColumns=array(
