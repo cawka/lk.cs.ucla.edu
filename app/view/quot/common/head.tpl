@@ -49,7 +49,7 @@
 		</div>
 		<div class="shapka_right">
 			<div class="shapka_picture">
-				<img src="{$top_pic|default:"/images/top.jpeg"}" alt="Leonard Kleinrock" />
+				<img src="{$top_pic|default:"/data/images/default.jpg"}" alt="Leonard Kleinrock" />
 			</div>
 		</div>
 	</div>
