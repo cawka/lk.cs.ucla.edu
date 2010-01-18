@@ -1,10 +1,10 @@
 <?php
 
 $dbengine="mysql";
-$dbuser  ="cawka";
-$dbpasswd="mymegapassword";
+$dbuser  ="lk";
+$dbpasswd="=ra8rav9jasW";
 $dbhost  ="localhost";
-$dbschema="lk4";
+$dbschema="lk";
 
 $SETTINGS=array(
 	"theme" => "quot",
@@ -23,10 +23,8 @@ $AUTH=array(
 	"bibwiki"      => array( "index"=>1, "bibtex"=>1 ),
 );
 
-#$GLOBAL_PREFIX="/afanasyev/";
-#$GLOBAL_PREFIX_FS="/home/cawka/www/afanasyev/";
 $GLOBAL_PREFIX="/";
-$GLOBAL_PREFIX_FS="/Users/cawka/Devel/lk/www/";
+$GLOBAL_PREFIX_FS="/home/lk/site/www/";
 
 $CACHE_SERVERS=array(/*array( "host"=>"127.0.0.1", "port"=>"11211", "weight"=>100 ),*/);
 date_default_timezone_set( "Europe/Riga" );
