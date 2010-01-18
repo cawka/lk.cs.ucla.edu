@@ -1,6 +1,6 @@
 {if !isset($smarty.request.ajax)}
 {if isUserLogged()}
-<div style="float:left"><a class="smoothbox" href="{$GLOBAL_PREFIX}staticPages/edit?id=bibwiki"><img style="margin: 0pt; padding: 0pt; display: inline;" src="{$GLOBAL_PREFIX}images/admin/edit.gif" alt="" onmouseover="Tip('Edit')" height="12px"></a></div>
+<div style="float:left"><a class="smoothbox" href="{$GLOBAL_PREFIX}staticPages/edit?id=bibwiki-{$smarty.request.biblio_type}"><img style="margin: 0pt; padding: 0pt; display: inline;" src="{$GLOBAL_PREFIX}images/admin/edit.gif" alt="" onmouseover="Tip('Edit')" height="12px"></a></div>
 <div style="float:right"><a href="{$GLOBAL_PREFIX}login/logout">Logout</a></div>
 <div style="clear:both"></div>
 {/if}
@@ -22,10 +22,8 @@ var selfUrl="{$smarty.server.REQUEST_URI}";
 				<div id='frame_0'>{eval var="`$this->myStatic->mainContent->myData.text` "}</div>
 {/if}{* !isset(smarty.request.ajax)*}
 				{if isUserLogged()}<div id="frame_">{/if}
-				{foreach name="outer" from=$this->myTypes item=type}
-				<h5><a name="{$type.0}">{$type.1}</a></h5>
 				<ol>
-				{foreach name="list" from=$type.2 item=cat}
+				{foreach name="list" from=$this->myData item=cat}
 				<li style="margin-top:14px">
 					{$this->myHelper->format_reference($cat.entry)|replace:"L. Kleinrock":"<b>L. Kleinrock</b>"}
 					&nbsp;
@@ -47,8 +45,6 @@ var selfUrl="{$smarty.server.REQUEST_URI}";
 				</li>
 				{/foreach}
 				</ol>
-				<br /> 
-				{/foreach}
 				{if isUserLogged()}</div>{/if}
 {if !isset($smarty.request.ajax)}
 

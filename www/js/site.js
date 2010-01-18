@@ -59,14 +59,14 @@ function BrowserPopup( name )
 
 var BibTexHash=new Hash();
 
-function changeBibtexType( field )
+function changeBibtexType( field, biblio_type )
 {
 	//step 1. Save all variables.
 	var form=field.getParent("form");
 
 	form.getElements("input").each( function(e){if( e.get('type')=='text' || e.get('type')=='hidden' ) BibTexHash.set(e.get('name'),e.get('value'));} );
 
-	var mydata="bibtex="+field.options[field.selectedIndex].value+"&ajax=true";
+	var mydata="bibtex="+field.options[field.selectedIndex].value+"&biblio_type="+biblio_type+"&ajax=true";
 	if( BibTexHash.has('id') ) mydata+="&id="+BibTexHash.get('id');
 
 	new Request.HTML( {

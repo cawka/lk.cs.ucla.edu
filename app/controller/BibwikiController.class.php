@@ -28,7 +28,7 @@ class BibwikiController extends TableController
 			break;
 		case "index":
 		default:
-			return "bibwiki|index|$request[type]";
+			return "bibwiki|index|$request[biblio_type]";
 			break;
 		}
 #		return "$request[action]|".(isset($request[$this->myModel->myId])?"|".$request[$this->myModel->myId]."":"");

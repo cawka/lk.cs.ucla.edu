@@ -26,7 +26,7 @@ class BibwikiModel extends TableModel
 //		$DB->debug=true;
 //		print_r( $_SERVER );
 		parent::__construct( $DB,$php,"bibwiki",array(
-				"type"=>new HiddenColumn("type", $_REQUEST['type'] ),
+				"biblio_type"=>new HiddenColumn("biblio_type", $_REQUEST['biblio_type'] ),
 				"bibtex"=>new BibtexTypeColumn( "bibtex", "Publication type" ),
 				"pdf"=>new FileColumn( "pdf", "PDF" ),
 				"slides"=>new FileColumn( "slides", "Slides in PDF or PPT format" ),
@@ -50,7 +50,7 @@ class BibwikiModel extends TableModel
 	{
 		$this->myStatic=new StaticPagesModel( "staticPages" );
 		$this->myStatic->myHelper=$this->myHelper;
-		$req=array( "id"=>"bibwiki" );
+		$req=array( "id"=>"bibwiki-$request[biblio_type]" );
 		$this->myStatic->getRowToShow( $req );
 
 		parent::collectData( $request );
@@ -242,10 +242,13 @@ class BibwikiModel extends TableModel
 			$request['pdf']=$this->myEntry['pdf'];
 		}
 	
-		//$this->myDB->debug=true;
-		$this->myColumns['date']=
-			new HiddenExactValueColumn( "date",    $this->myDB->qstr($this->myEntry["year"]."-".
-												   $this->extractMonth( $this->myEntry["month"] )."-01") );
+		if( isset($this->myEntry["year"]) && $this->myEntry["year"]!="" &&
+			(1900<=$this->myEntry["year"] && $this->myEntry["year"]<=2200) )
+		{
+			$this->myColumns['date']=
+				new HiddenExactValueColumn( "date",    $this->myDB->qstr($this->myEntry["year"]."-".
+					$this->extractMonth( $this->myEntry["month"] )."-01") );
+		}
 	}
 
 	private function preprocessData( &$request )
@@ -269,10 +272,12 @@ class BibwikiModel extends TableModel
 					$this->myColumns['bibtex'],
 					$this->myColumns['pdf'],
 					$this->myColumns['slides'],
+					$this->myColumns['biblio_type'],
 					new HiddenExactValueColumn( 'entry', $this->myDB->qstr($entry) ),
 					);
 
-			if( isset($request['year']) )
+			if( isset($request['year']) && $request["year"]!="" &&
+	            (1900<=$request["year"] && $request["year"]<=2200) )
 			{
 				$this->myColumns['date']=
 					new HiddenExactValueColumn( "date",$this->myDB->qstr($request["year"]."-".
@@ -285,6 +290,7 @@ class BibwikiModel extends TableModel
 
 	public function save_add( &$request )
 	{
+//		$this->myDB->debug=true;
 		$this->preprocessData( $request );
 
 		return parent::save_add( $request );
