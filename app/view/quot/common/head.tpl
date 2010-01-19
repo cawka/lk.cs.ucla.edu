@@ -64,7 +64,7 @@
 	{/if}
 <td class="glink{if $i.isselected}_s{/if}{if $smarty.foreach.menu.last} lastmenu{/if}" style="width: {$i.width}">
 <ul class="menulist" id="menu_{$i.id}" >
-	{include file="common/menulevel.tpl" item=$i level=1}
+	{include file="common/menulevel.tpl" item=$i level=2}
 
 </ul>
 </td>

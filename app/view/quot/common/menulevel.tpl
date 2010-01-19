@@ -7,7 +7,7 @@
 		{/if}
 
 		{foreach from=$item.sublevel item="i"}
-		{include file="common/menulevel.tpl" item=$i morelevel="true" level=0}
+		{include file="common/menulevel.tpl" item=$i morelevel="true" level=$level-1}
 		{/foreach}
 	</ul>
 	{else}

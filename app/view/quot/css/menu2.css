@@ -1,0 +1,119 @@
+/* HORIZONTAL FREESTYLE MENU LAYOUT */
+
+.glink, .glink_s
+{
+ 	font-size: 13px;
+	font-weight:bold;
+	text-align:center;
+	cursor: pointer;
+}
+
+a.main
+{
+	display: block;
+	/*margin-left: -13px;*/
+	white-space: nowrap;
+	text-decoration: none;
+	padding-top: 11px;
+	height: 29px;
+	width: 100%;
+}
+
+.glink a.main, .glink a.main:visited {
+	display: block;
+  	color: #627171;
+	text-decoration: none;
+}
+
+.glink a.main:hover {
+	display: block;
+	color: #FF9600;
+	text-decoration: none;
+	background-color: #F3F3F3;
+}
+
+.glink_s a.main, .glink_s a.main:visited {
+	display: block;
+  	color: #627171;
+	text-decoration: none;
+  	background-color: #D3D3D3;
+}
+
+.glink_s a.main:hover {
+	display: block;
+	color: #FF9600;
+	text-decoration: none;
+  	background-color: #F3F3F3;
+}
+
+/* Root */
+ul.menulist {
+ margin: 0;
+ padding: 0;
+ list-style: none;
+ width: 100%;
+ color: white;
+/* z-index: 10;*/
+}
+
+ul.menulist li {
+  margin: 0;
+  border: 0 none;
+  padding: 0;
+  float: left; /*For Gecko*/
+  display: inline;
+  list-style: none;
+  position: relative;
+  height: 24px;
+}
+
+/* Submenus (<ul> tags) are hidden and absolutely positioned downwards from their parent */
+ul.menulist ul {
+  margin: 0;
+  border: 0 none;
+  padding: 0;
+  /*width: 160px;*/
+  width: auto;
+  list-style: none;
+  display: none;
+  position: absolute;
+  top: 24px;
+  left: 0;
+}
+
+ul.menulist ul li {
+  width: 160px;
+  float: left; /*For IE 7 lack of compliance*/
+  display: block !important;
+  display: inline; /*For IE*/
+}
+
+/* 2nd Menu */
+ul.menulist li:hover li a,
+ul.menulist li.iehover li a {
+  float: none;
+}
+
+ul.menulist ul ul {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 160px;
+}
+
+/* Do Not Move - Must Come Before display:block for Gecko */
+ul.menulist li:hover ul ul,
+ul.menulist li.iehover ul ul {
+  display: none;
+}
+
+ul.menulist li:hover ul,
+ul.menulist ul li:hover ul {
+  display: block;
+}
+
+ul.menulist li.iehover ul,
+ul.menulist ul li.iehover ul {
+  display: block;
+}
+
