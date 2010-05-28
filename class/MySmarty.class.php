@@ -24,6 +24,7 @@ class MySmarty extends Smarty
 		if( !$ret )
 		{
 	        array_push( $this->plugins_dir, BASEDIR . "/app_base/plugins/" );
+	        array_push( $this->plugins_dir, BASEDIR . "/app/plugins/" );
 	        
 	        if( !is_dir($this->compile_dir) ) mkdir( $this->compile_dir,0755,true );
 	        if( !is_dir($this->cache_dir) ) mkdir( $this->cache_dir,0755,true );
