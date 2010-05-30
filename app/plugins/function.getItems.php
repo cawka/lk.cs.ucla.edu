@@ -11,7 +11,7 @@ function smarty_function_getItems( $params,&$smarty )
 	);
 	$controller->myUseSmartyFetch=true;
 
-	$params=array( "type"=>"awards" );
-	return "x".$controller->index( $smarty, $params )."y"; 
+	$smarty->assign( "type", $params['type'] );
+	return $controller->index( $smarty, $params ); 
 }
 

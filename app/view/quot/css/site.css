@@ -467,10 +467,10 @@ a.file, a.file:link, a.file:active, a.file:visited, a.file:hover {
 
 /* //-- section styles -- */
 
-.job { position: relative; margin-bottom: 0.5em; padding-bottom: 0.5em; border-bottom: 1px solid #ccc; z-index: 0; }
+.job { margin-bottom: 0.5em; padding-bottom: 0.5em; border-bottom: 1px solid #ccc; }
 .job h2 { text-transform: none; font-size: 100%; padding: 0; margin: 0; background: none; }
 .job h3 { font-weight: normal; font-style: italic; text-transform: none; background: none; font-size: 100%; margin: 0; padding: 0; color: #555555; margin-right: 100px;}
-.job h4 { position: absolute; top: 0.35em; right: 0; text-transform: none; font-size: 100%; background: none; color: black; padding:0; margin:0; }
+h4.job_year { float:right; color:black; padding:0; margin:0; }
 .job p { margin: 0em 0 0.1em 0; }
 
 .last { border: none; }

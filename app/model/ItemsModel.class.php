@@ -1,6 +1,6 @@
 <?php
 
-class NewsModel extends TableModel
+class ItemsModel extends TableModel
 {
 	public $myTitle="";
 	
@@ -9,13 +9,17 @@ class NewsModel extends TableModel
 		global $DB,$langdata;
 		
 		parent::__construct( $DB,$php, "items", array(
-			new HiddenColumn("type"),
+			new HiddenType2Column( "type", "Type" ),
+			new TextColumn("bold_title","Bold title"),
 			new TextColumn("title","Title"),
 			new TextAreaColumn("descr","Description"),
 			new TextColumn("link","Link (if available)"),
+			new PhotoColumn("image","Image (if available)",NULL,0,0),
 			new TextColumn("years","Years"),
 			) );
 		$this->myOrder="years DESC";
+
+		$this->RefreshByReload=true;
 //		$this->myElementsPerPage=30;
 		
 //		$this->mySortColumns=array( 

@@ -159,6 +159,11 @@ class TableModel extends BaseModel
 		}
 	}
 
+	public function getDefaultRow( &$request )
+	{
+		$this->myData=$request;
+	}
+
 	protected function rowId( $request )
 	{
 			$ret=$this->myId;

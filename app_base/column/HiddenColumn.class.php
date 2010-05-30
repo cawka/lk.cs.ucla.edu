@@ -33,35 +33,6 @@ class HiddenColumn extends BaseColumn
 	}
 }
 
-class HiddenColumnType2 extends BaseColumn 
-{
-	var $myValue;
-	
-	function HiddenColumnType2( $name )
-	{
-		parent::BaseColumn( $name,"",false,NULL );
-//		print $this->myName;
-//		die;
-	}
-	
-	function getValue( &$row )
-	{
-		return $row[$this->myName];
-	}
-	
-	function getInput( &$row )
-	{
-		if( isset($this->myValue) )
-		{
-			return "<input type='hidden' name='$this->myName' value='".$this->getValue($row)."' />";
-		}
-		else  
-		{
-			return "";
-		}
-	}
-}
-
 class HiddenColumnType3 extends BaseColumn 
 {
 	var $myField;
