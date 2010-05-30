@@ -25,6 +25,7 @@ $AUTH=array(
 
 $GLOBAL_PREFIX="/";
 $GLOBAL_PREFIX_FS="/home/lk/site/www/";
+$GLOBAL_PREFIX_FS="/Users/cawka/Devel/lk/www/";
 
 $CACHE_SERVERS=array(/*array( "host"=>"127.0.0.1", "port"=>"11211", "weight"=>100 ),*/);
 date_default_timezone_set( "Europe/Riga" );

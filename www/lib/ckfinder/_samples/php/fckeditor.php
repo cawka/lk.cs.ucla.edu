@@ -3,7 +3,7 @@
  * CKFinder
  * ========
  * http://ckfinder.com
- * Copyright (C) 2007-2009, CKSource - Frederico Knabben. All rights reserved.
+ * Copyright (C) 2007-2010, CKSource - Frederico Knabben. All rights reserved.
  *
  * The software, this file and its contents are subject to the CKFinder
  * License. Please read the license.txt file before using, installing, copying,
@@ -35,23 +35,23 @@ require_once '../../ckfinder.php' ;
 if ( !class_exists( 'FCKeditor' ) )
 {
 	echo
-		'<br><strong><span style="color: #ff0000">Error</span>: FCKeditor not found</strong>. ' .
+		'<br><strong><span class="error">Error</span>: FCKeditor not found</strong>. ' .
 		'This sample assumes that FCKeditor (not included with CKFinder) is installed in ' .
 		'the "fckeditor" sibling folder of the CKFinder installation folder. If you have it installed in ' .
 		'a different place, just edit this file, changing the wrong paths in the include ' .
-		'(line 17) and the "BasePath" values (line 35).' ;
+		'(line 31) and the "BasePath" values (line 47).' ;
 }
 else
 {
 	$fckeditor = new FCKeditor( 'FCKeditor1' ) ;
 	$fckeditor->BasePath	= '../../../fckeditor/' ;
 	$fckeditor->Value		= '<p>Just click the <b>Image</b> or <b>Link</b> button, and then <b>&quot;Browse Server&quot;</b>.</p>' ;
-	
+
 	// Just call CKFinder::SetupFCKeditor before calling Create() or CreateHtml()
 	// in FCKeditor. The second parameter (optional), is the path for the
 	// CKFinder installation (default = "/ckfinder/").
 	CKFinder::SetupFCKeditor( $fckeditor, '../../' ) ;
-	
+
 	$fckeditor->Create() ;
 }
 

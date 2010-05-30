@@ -50,11 +50,11 @@ function BrowserPopup( name )
 {
 	finder=new CKFinder();
 	
-	finder.BasePath='/lib/ckfinder/';
-	finder.SelectFunction="set_"+name;
-	finder.RememberLastFolder=true;
+	finder.basePath='/lib/ckfinder/';
+	finder.selectActionFunction="set_"+name;
+	finder.rememberLastFolder=true;
 
-	finder.Popup( );
+	finder.popup( );
 }
 
 var BibTexHash=new Hash();

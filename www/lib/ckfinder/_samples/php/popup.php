@@ -3,7 +3,7 @@
  * CKFinder
  * ========
  * http://ckfinder.com
- * Copyright (C) 2007-2009, CKSource - Frederico Knabben. All rights reserved.
+ * Copyright (C) 2007-2010, CKSource - Frederico Knabben. All rights reserved.
  *
  * The software, this file and its contents are subject to the CKFinder
  * License. Please read the license.txt file before using, installing, copying,
@@ -23,7 +23,7 @@
 	</h1>
 	<hr />
 	<p>
-	The example of opening CKFinder in a popup window is available in the &quot;_samples/js&quot; directory. Click <a href="../js/popup.html">here</a> to open it.
+	The example of opening CKFinder in a popup window is available in the &quot;_samples&quot; directory. Click <a href="../popup.html">here</a> to open it.
 	</p>
 </body>
 </html>

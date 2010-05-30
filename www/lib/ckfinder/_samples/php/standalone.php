@@ -3,7 +3,7 @@
  * CKFinder
  * ========
  * http://ckfinder.com
- * Copyright (C) 2007-2009, CKSource - Frederico Knabben. All rights reserved.
+ * Copyright (C) 2007-2010, CKSource - Frederico Knabben. All rights reserved.
  *
  * The software, this file and its contents are subject to the CKFinder
  * License. Please read the license.txt file before using, installing, copying,
@@ -31,12 +31,15 @@
 // This is a sample function which is called when a file is selected in CKFinder.
 function ShowFileInfo( fileUrl, data )
 {
-	alert( 'The selected file URL is "' + fileUrl + '"' ) ;
-
+	var msg = 'The selected URL is: ' + fileUrl + '\n\n';
 	// Display additional information available in the "data" object.
 	// For example, the size of a file (in KB) is available in the data["fileSize"] variable.
-	for ( _info in data )
-		alert( 'data["' + _info + '"]' + ' = ' + data[_info] ) ;
+	if ( fileUrl != data['fileUrl'] )
+		msg += 'File url: ' + data['fileUrl'] + '\n';
+	msg += 'File size: ' + data['fileSize'] + 'KB\n';
+	msg += 'Last modifed: ' + data['fileDate'];
+
+	alert( msg );
 }
 
 	</script>

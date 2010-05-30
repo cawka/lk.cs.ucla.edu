@@ -23,14 +23,15 @@ new PermissionsHelper();
  */
 function CheckAuthentication()
 {
-	//WARNING : DO NOT simply return "true". By doing so, you are allowing
-	//"anyone" to upload and list the files in your server. You must implement
-	//some kind of session validation here. Even something very simple as...
+	// WARNING : DO NOT simply return "true". By doing so, you are allowing
+	// "anyone" to upload and list the files in your server. You must implement
+	// some kind of session validation here. Even something very simple as...
 
 	// return isset($_SESSION['IsAuthorized']) && $_SESSION['IsAuthorized'];
 
-	//... where $_SESSION['IsAuthorized'] is set to "true" as soon as the
-	//user logs in your system.
+	// ... where $_SESSION['IsAuthorized'] is set to "true" as soon as the
+	// user logs in your system. To be able to use session variables don't
+	// forget to add session_start() at the top of this file.
 
 	return isUserLogged();
 }
@@ -39,6 +40,13 @@ function CheckAuthentication()
 // fully functional, in demo mode.
 $config['LicenseName'] = '';
 $config['LicenseKey'] = '';
+
+/*
+ Uncomment lines below to enable PHP error reporting and displaying PHP errors.
+ Do not do this on a production server. Might be helpful when debugging why CKFinder does not work as expected.
+*/
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 
 /*
 To make it easy to configure CKFinder, the $baseUrl and $baseDir can be used.
@@ -54,10 +62,8 @@ Examples:
 	$baseUrl = '/userfiles/';
 
 ATTENTION: The trailing slash is required.
- */
-
+*/
 $baseUrl = $GLOBAL_PREFIX.'data/';
-
 /*
 $baseDir : the path to the local directory (in the server) which points to the
 above $baseUrl URL. This is the path used by CKFinder to handle the files in
@@ -68,12 +74,13 @@ Examples:
 	$baseDir = '/home/login/public_html/ckfinder/files/';
 	$baseDir = 'C:/SiteDir/CKFinder/userfiles/';
 
-	// Or you may let CKFinder discover the path, based on $baseUrl:
+	// Or you may let CKFinder discover the path, based on $baseUrl.
+	// WARNING: resolveUrl() *will not work* if $baseUrl does not start with a slash ("/"),
+	// for example if $baseDir is set to  http://example.com/ckfinder/files/
 	$baseDir = resolveUrl($baseUrl);
 
 ATTENTION: The trailing slash is required.
 */
-#$baseDir = resolveUrl($baseUrl);
 $baseDir = $GLOBAL_PREFIX_FS.'data/';
 
 /*
@@ -151,6 +158,12 @@ $config['AccessControl'][] = Array(
 		'resourceType' => 'Images',
 		'folder' => '/Logos',
 
+		'folderView' => true,
+		'folderCreate' => true,
+		'folderRename' => true,
+		'folderDelete' => true,
+
+		'fileView' => true,
 		'fileUpload' => false,
 		'fileRename' => false,
 		'fileDelete' => false);
@@ -180,15 +193,15 @@ $config['ResourceType'][] = Array(
 		'url' => $baseUrl . 'files',
 		'directory' => $baseDir . 'files',
 		'maxSize' => 0,
-		'allowedExtensions' => '7z,aiff,asf,avi,bmp,csv,doc,fla,flv,gif,gz,gzip,jpeg,jpg,mid,mov,mp3,mp4,mpc,mpeg,mpg,ods,odt,pdf,png,ppt,pxd,qt,ram,rar,rm,rmi,rmvb,rtf,sdc,sitd,swf,sxc,sxw,tar,tgz,tif,tiff,txt,vsd,wav,wma,wmv,xls,zip',
+		'allowedExtensions' => '7z,aiff,asf,avi,bmp,csv,doc,docx,fla,flv,gif,gz,gzip,jpeg,jpg,mid,mov,mp3,mp4,mpc,mpeg,mpg,ods,odt,pdf,png,ppt,pptx,pxd,qt,ram,rar,rm,rmi,rmvb,rtf,sdc,sitd,swf,sxc,sxw,tar,tgz,tif,tiff,txt,vsd,wav,wma,wmv,xls,xlsx,zip',
 		'deniedExtensions' => '');
 
 $config['ResourceType'][] = Array(
 		'name' => 'Images',
 		'url' => $baseUrl . 'images',
 		'directory' => $baseDir . 'images',
-		'maxSize' => 0,
-		'allowedExtensions' => 'bmp,gif,jpeg,jpg,png',
+		'maxSize' => "16M",
+		'allowedExtensions' => 'bmp,gif,jpeg,jpg,png,avi,iso,mp3',
 		'deniedExtensions' => '');
 
 $config['ResourceType'][] = Array(
@@ -272,10 +285,25 @@ If possible, it is recommended to set more restrictive permissions, like 0755.
 Set to 0 to disable this feature.
 Note: not needed on Windows-based servers.
 */
-$config['ChmodFiles'] = 0644 ;
+$config['ChmodFiles'] = 0777 ;
 
 /*
 See comments above.
 Used when creating folders that does not exist.
 */
 $config['ChmodFolders'] = 0755 ;
+
+/*
+Force ASCII names for files and folders.
+If enabled, characters with diactric marks, like å, ä, ö, ć, č, đ, š
+will be automatically converted to ASCII letters.
+*/
+$config['ForceAscii'] = false;
+
+
+include_once "plugins/imageresize/plugin.php";
+include_once "plugins/fileeditor/plugin.php";
+
+$config['plugin_imageresize']['smallThumb'] = '90x90';
+$config['plugin_imageresize']['mediumThumb'] = '120x120';
+$config['plugin_imageresize']['largeThumb'] = '180x180';
