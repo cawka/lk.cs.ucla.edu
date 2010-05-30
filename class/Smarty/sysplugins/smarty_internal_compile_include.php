@@ -43,10 +43,17 @@ class Smarty_Internal_Compile_Include extends Smarty_Internal_CompileBase {
                     if ($tpl->resource_object->usesCompiler && $tpl->isExisting()) {
                         // make sure that template is up to date and merge template properties
                         $tpl->renderTemplate(); 
+                        // compiled code for {function} tags
+                        $compiler->template->properties['function'] = array_merge($compiler->template->properties['function'], $tpl->properties['function']);
                         // get compiled code
                         $compiled_tpl = $tpl->getCompiledTemplate(); 
                         // remove header code
-                        $compiled_tpl = preg_replace('/(<\?php \/\*%%SmartyHeaderCode%%\*\/(.+?)\/\*\/%%SmartyHeaderCode%%\*\/\?>\n)/s', '', $compiled_tpl);
+                        $compiled_tpl = preg_replace("/(<\?php \/\*%%SmartyHeaderCode:{$tpl->properties['nocache_hash']}%%\*\/(.+?)\/\*\/%%SmartyHeaderCode%%\*\/\?>\n)/s", '', $compiled_tpl);
+                        if ($tpl->has_nocache_code) {
+                            // replace nocache_hash
+                            $compiled_tpl = preg_replace("/{$tpl->properties['nocache_hash']}/", $compiler->template->properties['nocache_hash'], $compiled_tpl);
+                            $compiler->template->has_nocache_code = true;
+                        } 
                         $has_compiled_template = true;
                     } 
                 } 
@@ -100,7 +107,7 @@ class Smarty_Internal_Compile_Include extends Smarty_Internal_CompileBase {
             } 
         } 
         // create template object
-        $_output = "<?php \$_template = new {$compiler->smarty->template_class}($include_file, \$_smarty_tpl->smarty, \$_smarty_tpl, \$_smarty_tpl->cache_id, \$_smarty_tpl->compile_id, $_caching, $_cache_lifetime);"; 
+        $_output = "<?php \$_template = new {$compiler->smarty->template_class}($include_file, \$_smarty_tpl->smarty, \$_smarty_tpl, \$_smarty_tpl->cache_id, \$_smarty_tpl->compile_id, $_caching, $_cache_lifetime);\n"; 
         // delete {include} standard attributes
         unset($_attr['file'], $_attr['assign'], $_attr['cache_lifetime'], $_attr['nocache'], $_attr['caching'], $_attr['scope'], $_attr['inline']); 
         // remaining attributes must be assigned as smarty variable
@@ -119,17 +126,18 @@ class Smarty_Internal_Compile_Include extends Smarty_Internal_CompileBase {
             $_output .= "\$_smarty_tpl->assign($_assign,\$_template->getRenderedTemplate());?>";
         } else {
             if ($has_compiled_template && !($compiler->template->caching && ($this->compiler->tag_nocache || $this->compiler->nocache))) {
+                $_output .= "\$_template->properties['nocache_hash']  = '{$compiler->template->properties['nocache_hash']}';\n";
                 $_output .= "\$_tpl_stack[] = \$_smarty_tpl; \$_smarty_tpl = \$_template;?>\n";
                 $_output .= $compiled_tpl;
-                $_output .= "<?php \$_smarty_tpl->updateParentVariables($_parent_scope);?>";
-                $_output .= "<?php /*  End of included template \"" . $tpl->getTemplateFilepath() . "\" */ ?>";
+                $_output .= "<?php \$_smarty_tpl->updateParentVariables($_parent_scope);?>\n";
+                $_output .= "<?php /*  End of included template \"" . $tpl->getTemplateFilepath() . "\" */ ?>\n";
                 $_output .= "<?php \$_smarty_tpl = array_pop(\$_tpl_stack);?>";
             } else {
                 $_output .= " echo \$_template->getRenderedTemplate();?>";
                 $_output .= "<?php \$_template->updateParentVariables($_parent_scope);?>";
             } 
         } 
-        $_output .= "<?php unset(\$_template);?>";
+        $_output .= "<?php unset(\$_template);?>\n";
         return $_output;
     } 
 } 

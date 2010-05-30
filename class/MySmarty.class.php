@@ -24,11 +24,11 @@ class MySmarty extends Smarty
 	    
 	    $this->assign( "HTTP_HOST", $_SERVER['HTTP_HOST'] );
 		
-		$this->assign_by_ref( "SETTINGS", $SETTINGS );
+		$this->assign( "SETTINGS", $SETTINGS );
 		$this->assign( "GLOBAL_PREFIX", $GLOBAL_PREFIX ); 
 		    
 //		$this->register_function( "isAdmin", "isAdmin" );
-		$this->register_function( "isUserLogged", "isUserLogged" );
+		$this->register->templateFunction( "isUserLogged", "isUserLogged" );
 			
 		$this->assign( "menu", new MainMenuHelper() );
 	

@@ -70,7 +70,7 @@ class TableController extends BaseController
 		}
 		$this->myModel->save_add( $request );
 
-		$tmpl->clear_all_cache( );
+		$tmpl->cache->clearAll( );
 		$this->postSave( $tmpl,$request );
 	}
 	
@@ -85,7 +85,7 @@ class TableController extends BaseController
 		}
 		$this->myModel->save_edit( $request );
 
-		$tmpl->clear_all_cache( );
+		$tmpl->cache->clearAll( );
 		$this->postSave( $tmpl,$request );
 	}
 }

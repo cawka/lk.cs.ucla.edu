@@ -47,10 +47,10 @@ class BaseController
 		
 		if( !$cache ) { $tmpl->clear_cache( $template,$this->cacheId($request) ); }
 
-		if( !$tmpl->is_cached($template,$this->cacheId($request)) )
+		if( !$tmpl->isCached($template,$this->cacheId($request)) )
 		{
 			if( $model_method!="" ) call_user_method( $model_method, $this->myModel, $request );
-			$tmpl->assign_by_ref( "this", $this->myModel );
+			$tmpl->assign( "this", $this->myModel );
 			
 			if( isset($request['error']) ) $tmpl->assign( "error", $request['error'] );
 		}
@@ -76,7 +76,7 @@ class BaseController
 		}
 		
 		if( !$cache ) { $tmpl->clear_cache( $template,"($static_page_id)".$this->cacheId($request) ); }
-		if( !$tmpl->is_cached($template,"($static_page_id)".$this->cacheId( $request )) )
+		if( !$tmpl->isCached($template,"($static_page_id)".$this->cacheId( $request )) )
 		{
 			if( $model_method!="" ) call_user_method( $model_method, $this->myModel, $request );
 
@@ -88,7 +88,7 @@ class BaseController
 			$this->myModel->myStaticPage->getRowToShow( $params );
 			///////////////////////////////////////////////
 			
-			$tmpl->assign_by_ref( "this", $this->myModel );
+			$tmpl->assign( "this", $this->myModel );
 			
 			if( isset($request['error']) ) $tmpl->assign( "error", $request['error'] );
 		}

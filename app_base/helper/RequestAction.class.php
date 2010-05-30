@@ -29,7 +29,7 @@ class RequestAction
 		$Auth=new AuthNoDBHelper( $controller );
 		$this->myAuth=&$Auth;
 
-		$this->myTemplate->assign_by_ref( "Auth", $this->myAuth );
+		$this->myTemplate->assign( "Auth", $this->myAuth );
 
 		if( !isset($_REQUEST['action']) || $_REQUEST['action']=='' ) $_REQUEST['action']='index';
 		if( $nodelay ) $this->parseInput( $class );
@@ -37,7 +37,7 @@ class RequestAction
 	
 	function parseInput( &$class )
 	{
-		$this->myTemplate->assign_by_ref( "helper", $class->myHelper );
+		$this->myTemplate->assign( "helper", $class->myHelper );
 		
 		if( isIn($_REQUEST['action'],get_class_methods($class)) ) 
 		{
