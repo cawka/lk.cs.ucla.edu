@@ -12,26 +12,5 @@
 
 {include file="common/form_pure.tpl" method="post" name="kform" action=$myaction data=$this->myData columns=$this->myColumns parent_request=$smarty.request._p ajax=$smarty.request.ajax}
 
-{*<script type="text/javascript">
-{if isset($smarty.request.ajax)}
-//alter_submit( $("kform"),$("TB_ajaxContent") );
-{literal}
-	new FormCheck('kform', {
-							submitByAjax : true,
-							ajaxEvalScripts : true,
-							ajaxResponseDiv : $("TB_ajaxContent"),
-							display: { indicateErrors : 2, errorsLocation : 3 }
-						   } );
-{/literal}
-{else}
-{literal}
-	new FormCheck('kform', {
-							display: { indicateErrors : 2, errorsLocation : 3 }
-						   } );
-{/literal}
-{/if}
-</script>
-*}
-
 {/strip}
 {include file="common/foot.tpl"}

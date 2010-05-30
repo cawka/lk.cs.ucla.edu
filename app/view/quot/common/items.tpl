@@ -9,12 +9,20 @@
 	</div>
 	{/if}
 	<h4 class="job_year">{$i.years}</h4>
+	{if isset($i.image)}<a href="{$i.image}" class="smoothbox"><p style="float:left; margin:4px;"><img src="{$i.image}" title="{$i.title}" style="height:50px" /></a><p>{/if}
 	<div class="job">
 	<h2>{$i.bold_title}</h2>
-	<h3>{if isset($i.link)}<a href="{$i.link}" target="_blank">{/if}{$i.title}{if isset($i.link)}</a>{/if}</h3>
-	<p>{$i.descr}</p>
+	<h3>{if isset($i.link)}
+			<a href="{$i.link}" target="_blank">{$i.title}</a>
+		{else if isset($i.image)}
+			<a href="{$i.image}" class="smoothbox">{$i.title}</a>
+		{else}
+			{$i.title}
+		{/if}</h3>
+	<p><small>{$i.descr}</small></p>
 
 	</div>
+	<div class="line"></div>
 
 {/foreach}
 </div>

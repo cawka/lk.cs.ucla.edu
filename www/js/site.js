@@ -51,7 +51,11 @@ function BrowserPopup( name )
 	finder=new CKFinder();
 	
 	finder.basePath='/lib/ckfinder/';
-	finder.selectActionFunction="set_"+name;
+	finder.selectActionFunction=function( fileUrl, data ) 
+		{
+			eval( "set_"+name+"('"+fileUrl+"')");
+//			eval( "set_"+name+"(" fileUrl+")" );
+		};
 	finder.rememberLastFolder=true;
 
 	finder.popup( );

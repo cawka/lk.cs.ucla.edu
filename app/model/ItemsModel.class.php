@@ -30,5 +30,11 @@ class ItemsModel extends TableModel
 //			array( "column"=>new TextColumn("u_login","Логин содержит"),"type"=>"like" ),
 //		);
 	}
+
+	public function collectData( &$request )
+	{
+		$this->myExtraWhere="type=".$this->myDB->qstr($request['type']);
+		return parent::collectData( $request );
+	}
 }
 
