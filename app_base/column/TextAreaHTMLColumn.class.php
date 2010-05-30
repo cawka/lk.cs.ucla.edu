@@ -27,7 +27,7 @@ window.addEvent('domready',function(){
 		var editor=CKEDITOR.replace( '$this->myName', {height: 400} );
 		CKEditors.set( '$this->myName', '$this->myName' );
 
-		CKFinder.SetupCKEditor( editor, '".$GLOBAL_PREFIX."lib/ckfinder/' );
+		CKFinder.setupCKEditor( editor, '".$GLOBAL_PREFIX."lib/ckfinder/' );
 		CKEDITOR.config.contentsCss='".$GLOBAL_PREFIX."css/$SETTINGS[theme]/site.css';
 	} );
 		</script>";
