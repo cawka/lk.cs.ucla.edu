@@ -212,6 +212,14 @@ $config['ResourceType'][] = Array(
 		'allowedExtensions' => 'swf,flv',
 		'deniedExtensions' => '');
 
+$config['ResourceType'][] = Array(
+	'name' => 'Videos',
+	'url' => $baseUrl . 'videos',
+	'directory' => $baseDir . 'videos',
+	'maxSize' => 0,
+	'allowedExtensions' => 'flv',
+	'deniedExtensions' => '');
+
 /*
  Due to security issues with Apache modules, it is recommended to leave the
  following setting enabled.

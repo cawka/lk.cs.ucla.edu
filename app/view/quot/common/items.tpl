@@ -1,3 +1,7 @@
+{if isUserLogged()}
+<a href="items/add?type={$type}" title="Add" class="smoothbox">Add</a><br/><br/>
+{/if}
+
 <div class="yui-u">
 {foreach from=$this->myData item=i}
 	{if isUserLogged()}
@@ -9,7 +13,7 @@
 	</div>
 	{/if}
 	<h4 class="job_year">{$i.years}</h4>
-	{if isset($i.image)}<a href="{$i.image}" class="smoothbox"><p style="float:left; margin:4px;"><img src="{$i.image}" title="{$i.title}" style="height:50px" /></a><p>{/if}
+	{if isset($i.image)}<div style="float:right"><a href="{$i.image}" class="smoothbox"><p style="float:left; margin:4px;"><img src="{$i.image}" title="{$i.title}" style="height:50px" /></a><p></div>{/if}
 	<div class="job">
 	<h2>{$i.bold_title}</h2>
 	<h3>{if isset($i.link)}
@@ -27,7 +31,4 @@
 {/foreach}
 </div>
 
-{if isUserLogged()}
-<a href="items/add?type={$type}" title="Add" class="smoothbox">Add</a>
-{/if}
 

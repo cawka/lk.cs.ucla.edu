@@ -12,6 +12,7 @@ function smarty_function_getItems( $params,&$smarty )
 	$controller->myUseSmartyFetch=true;
 
 	$smarty->assign( "type", $params['type'] );
+	$smarty->caching=false;
 	return $controller->index( $smarty, $params ); 
 }
 

@@ -1,5 +1,10 @@
 <li>
+	{if strpos($item.link,"http://")===0}
+	<a {if !isset($item.parent_id)}class="main"{/if} {if $item.link!=""}href="{$item.link}"{/if} {if $item.target!=""}target="{$item.target}"}{/if}>{$item.name}</a>
+	{else}
 	<a {if !isset($item.parent_id)}class="main"{/if} {if $item.link!=""}href="{$GLOBAL_PREFIX}{$item.link}"{/if} {if $item.target!=""}target="{$item.target}"}{/if}>{$item.name}</a>
+	{/if}
+
 	{if isset($item.sublevel) && (!isset($level) || $level>0)}
 	<ul>
 		{if isUserLogged()}

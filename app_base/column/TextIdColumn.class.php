@@ -16,9 +16,9 @@ class TextIdColumn extends TextColumn
 				$src[$i]=='-' || $src[$i]=='_'  || $src[$i]=='.' || $src[$i]=='/' )
 				$ret.=$src[$i];
 		}
-		if( strlen($ret)<4 )
+		if( strlen($ret)<2 )
 		{
-			for( $i=0; $i<4; $i++ ) 
+			for( $i=0; $i<2; $i++ ) 
 			{
 				$ret.=substr( $this->ALPH,rand()%$this->ALPH_SIZE,1 );
 			}
@@ -29,6 +29,14 @@ class TextIdColumn extends TextColumn
 	function getId( )
 	{
 			return "new_$this->myName";
+	}
+
+	function getValue( &$row )
+	{
+		if( isset($row[$this->myName]) )
+			return $row[$this->myName];
+		else
+			return $_REQUEST[$this->myName];
 	}
 	
 	function getInput( &$row )

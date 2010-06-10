@@ -21,3 +21,5 @@ RewriteRule ^([a-z0-9A-Z_\-]+)/([a-z0-9A-Z_\-]+)$	index.php?_m=$1&action=$2	[L,q
 RewriteCond %{REQUEST_fileNAME} !-d
 RewriteRule ^([a-z0-9A-Z_\-]+)/$			index.php?_m=$1&action=index	[L,qsappend]
 
+RewriteRule ^([a-z0-9A-Z_\-]+)\.vhtml$   index.php?_m=videos&page=$1  [L,qsappend]
+

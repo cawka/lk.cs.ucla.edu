@@ -306,6 +306,7 @@ class BibwikiModel extends TableModel
 //		$this->myDB->debug=true;
 		$this->preprocessData( $request );
 
+		StaticPagesHelper::updateLastModifiedStatic( "bibwiki-".$request['biblio_type'] );
 		return parent::save_add( $request );
 	}
 	
@@ -313,6 +314,7 @@ class BibwikiModel extends TableModel
 	{
 		$this->preprocessData( $request );
 
+		StaticPagesHelper::updateLastModifiedStatic( "bibwiki-".$request['biblio_type'] );
 		return parent::save_edit( $request );
 	}
 

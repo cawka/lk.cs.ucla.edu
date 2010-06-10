@@ -81,6 +81,14 @@ a:hover {
 
 /********************************************************************************************/
 
+hr {
+	border: 0;
+	background-image: url(../../images/quot/dotline.png);
+	background-repeat: repeat-x;
+	height: 5px;
+	width: 100%;
+}
+
 .dotline {
 	height: 5px;
 	width: 100%;

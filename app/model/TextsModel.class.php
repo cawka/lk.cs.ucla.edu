@@ -46,22 +46,22 @@ class TextsModel extends TableModel
 		}
 
 
-		protected function updateLastModifiedStatic( $static_id )
-		{
-			if( !isset($static_id) ) return;
-			$this->myDB->Execute( "UPDATE static_pages SET lastmodified=NOW() WHERE id=".
-										$this->myDB->qstr($static_id) ); 
-		}
+//		protected function updateLastModifiedStatic( $static_id )
+//		{
+//			if( !isset($static_id) ) return;
+//			$this->myDB->Execute( "UPDATE static_pages SET lastmodified=NOW() WHERE id=".
+//										$this->myDB->qstr($static_id) ); 
+//		}
 
 		public function save_add( &$request )
 		{
-			$this->updateLastModifiedStatic( $request['page_id'] ); 
+			StaticPagesHelper::updateLastModifiedStatic( $request['page_id'] ); 
 			return parent::save_add( $request );
 		}
 
 		public function save_edit( &$request )
 		{
-			$this->updateLastModifiedStatic( $request['page_id'] );
+			StaticPagesHelper::updateLastModifiedStatic( $request['page_id'] );
 
 /**
  * Simple procedure to check whether text was modified or not.

@@ -42,10 +42,10 @@ class BaseController
 		{
 			$tmpl->assign( "error", "Template [$template] not found" );
 			$template="common/error.tpl";
-			$tmpl->clear_cache( $template,$this->cacheId($request) );
+			$tmpl->cache->clear( $template,$this->cacheId($request) );
 		}
 		
-		if( !$cache ) { $tmpl->clear_cache( $template,$this->cacheId($request) ); }
+		if( !$cache ) { $tmpl->cache->clear( $template,$this->cacheId($request) ); }
 
 		if( !$tmpl->isCached($template,$this->cacheId($request)) )
 		{
@@ -72,10 +72,10 @@ class BaseController
 		{
 			$tmpl->assign( "error", "Template [$template] not found" );
 			$template="common/error.tpl";
-			$tmpl->clear_cache( $template,"($static_page_id)".$this->cacheId($request) );
+			$tmpl->cache->clear( $template,"($static_page_id)".$this->cacheId($request) );
 		}
 		
-		if( !$cache ) { $tmpl->clear_cache( $template,"($static_page_id)".$this->cacheId($request) ); }
+		if( !$cache ) { $tmpl->cache->clear( $template,"($static_page_id)".$this->cacheId($request) ); }
 		if( !$tmpl->isCached($template,"($static_page_id)".$this->cacheId( $request )) )
 		{
 			if( $model_method!="" ) call_user_method( $model_method, $this->myModel, $request );
