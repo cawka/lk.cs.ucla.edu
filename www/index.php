@@ -1,15 +1,20 @@
 <?php
-#error_reporting(E_ALL & ~E_NOTICE);
-#ini_set('display_errors', '1');
 
-include_once( "../inc/init.php" );
-include_once( BASEDIR . "/app_base/helper/RequestAction.class.php" );
+include_once( "../_config.php" );
+include_once( "helper/RequestAction.class.php" );
 
-//$DB->debug=true;
 $module=isset($_REQUEST['_m'])?$_REQUEST['_m']:'index';
 
 new PermissionsHelper();
 new NavHelper();
+
+if( isAdmin() )
+{
+    error_reporting(E_ALL & ~E_NOTICE);
+    ini_set('display_errors', '1');
+	//$DB->debug=true;
+}
+//$DB->debug=true;
 
 $controller=str_replace( " ", "", ucwords("$module controller") );
 $model=str_replace( " ", "", ucwords("$module model") );
@@ -34,4 +39,3 @@ new RequestAction(
 	)
 );
 
-?>

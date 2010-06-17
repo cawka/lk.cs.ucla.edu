@@ -1,0 +1,3 @@
+function ToolTips(){$$(".tooltip").each(function(c,b){var e=c.get("title");if(e){var d=e.split("::");c.store("tip:title",d[0]);
+c.store("tip:text",d[1])}});var a=new TipsFixed($$(".tooltip"),{showDelay:400,hideDelay:10});a.addEvents({show:function(b){b.fade("in")
+},hide:function(b){b.fade("out")}})}window.addEvent("domready",function(){ToolTips()});

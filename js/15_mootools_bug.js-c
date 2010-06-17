@@ -1,0 +1,3 @@
+var TipsFixed=new Class({Extends:Tips,fireForParent:function(b,a){if(a&&typeof a.getParent()=="function"){parentNode=a.getParent();
+if(parentNode==document.body){return}if(parentNode.retrieve("tip:enter")){parentNode.fireEvent("mouseenter",b)}else{this.fireForParent(parentNode,b)
+}}else{return}}});

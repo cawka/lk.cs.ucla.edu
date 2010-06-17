@@ -1,0 +1,9 @@
+.validation-failed {
+	border: 1px solid #F30000;
+}
+
+.validation-advice { 
+	background-color: #cc9999; color: white; margin: 3px; padding: 3px; 
+	font-size: 10pt;  	
+}
+

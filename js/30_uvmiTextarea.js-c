@@ -1,0 +1,28 @@
+var UvumiTextarea=new Class({Implements:Options,options:{selector:"textarea",maxChar:400,resizeDuration:250,minSize:false,catchTab:true,classPrefix:"tb",txtLimit:"Достигнут лимит символов",txtRemainsPrefix:"Осталось ",txtRemainsPostfix:" символ(ов)"},initialize:function(a){this.setOptions(a);
+this.tbDummies=[];this.tbCounters=[];this.tbProgress=[];this.tbProgressBar=[];document.addEvent("domready",this.domReady.bind(this))
+},domReady:function(){if($(this.options.selector)){this.options.selector=$(this.options.selector)}this.textareas=$$(this.options.selector);
+this.textareas.each(this.buildProgress,this);if(this.options.maxChar){this.tbProgressEffects=new Fx.Elements(this.tbProgressBar,{duration:"short",link:"cancel"})
+}this.tbEffects=new Fx.Elements(this.textareas,{duration:this.options.resizeDuration,link:"cancel"});this.textareas.each(function(e,d){var g=e.get("value");
+this.previousLength=g.length;if(this.options.maxChar){if(this.previousLength>this.options.maxChar){g=g.substring(0,this.options.maxChar);
+this.previousLength=g.length;e.set("value",g)}var f=this.options.maxChar-this.previousLength;var b=(f*this.tbProgress[d].getSize().x/this.options.maxChar).toInt();
+this.tbProgressBar[d].setStyle("width",b);if(!f){var c=this.options.txtLimit}else{var c=this.options.txtRemainsPrefix+f+this.options.txtRemainsPostfix
+}this.tbCounters[d].set("text",c)}this.tbDummies[d].set("value",g);var a=(this.tbDummies[d].getScrollSize().y>this.options.minSize?this.tbDummies[d].getScrollSize().y:this.options.minSize);
+if(this.tbDummies[d].retrieve("height")!=a){this.tbDummies[d].store("height",a);e.setStyle("height",a)}},this)},buildProgress:function(a,b){a.setStyle("overflow","hidden");
+if(!this.options.minSize){this.options.minSize=a.getSize().y}this.tbDummies[b]=a.clone().setStyles({width:a.getStyle("width").toInt(),position:"absolute",top:0,height:this.options.minSize,left:-3000}).store("height",0).inject($(document.body));
+a.addEvents({keydown:this.onKeyPress.bindWithEvent(this,[b,this.options.catchTab]),keyup:this.onKeyPress.bindWithEvent(this,b),focus:this.startObserver.bind(this,b),blur:this.stopObserver.bind(this)});
+if(this.options.maxChar){this.tbProgress[b]=new Element("div",{"class":this.options.classPrefix+"Progress",styles:{position:"relative",overflow:"hidden",display:"block",position:"relative",width:a.getSize().x-1,margin:"5px 0 0px 0px"}}).inject(a,"after");
+this.tbProgressBar[b]=new Element("div",{"class":this.options.classPrefix+"ProgressBar",styles:{position:"absolute",top:0,left:0,height:"100%",width:"100%"}}).inject(this.tbProgress[b]);
+this.tbCounters[b]=new Element("div",{"class":this.options.classPrefix+"Counter",styles:{position:"absolute",top:0,left:0,height:"100%",width:"100%","text-align":"center"}}).inject(this.tbProgress[b]);
+this.update=this.updateCounter}else{this.update=this.updateNoCounter}},onKeyPress:function(c,a,b){if(b&&c.key=="tab"){c.preventDefault();
+this.insertTab(a)}if(!c.shift&&!c.control&&!c.alt&&!c.meta){this.update(a)}this.startObserver(a)},startObserver:function(a){$clear(this.observer);
+this.observer=this.observe.periodical(500,this,a)},stopObserver:function(){$clear(this.observer)},observe:function(a){if(this.textareas[a].get("value").length!=this.previousLength){this.previousLength=this.textareas[a].get("value").length;
+this.update(a)}},updateCounter:function(c){var f=this.textareas[c].get("value");if(f.length>this.options.maxChar){f=f.substring(0,this.options.maxChar);
+this.textareas[c].set("value",f)}this.previousLength=f.length;var e=this.options.maxChar-this.previousLength;var a=(e*this.tbProgress[c].getSize().x/this.options.maxChar).toInt();
+var d={};d[c]={width:a};this.tbProgressEffects.start(d);if(e==0){var b=this.options.txtLimit;this.tbProgress[c].highlight("#f66")
+}else{var b=this.options.txtRemainsPrefix+e+this.options.txtRemainsPostfix}this.tbCounters[c].set("text",b);this.updateHeight(c,f)
+},updateNoCounter:function(a){var b=this.textareas[a].get("value");this.previousLength=b.length;this.updateHeight(a,b)},updateHeight:function(b,c){this.tbDummies[b].set("value",c);
+var a=(this.tbDummies[b].getScrollSize().y>this.options.minSize?this.tbDummies[b].getScrollSize().y:this.options.minSize);
+if(this.tbDummies[b].retrieve("height")!=a){this.tbDummies[b].store("height",a);effect={};effect[b]={height:a};this.tbEffects.start(effect)
+}},insertTab:function(c){if(Browser.Engine.trident){var b=document.selection.createRange();b.text="\t"}else{var e=this.textareas[c].selectionStart;
+var a=this.textareas[c].selectionEnd;var d=this.textareas[c].get("value");this.textareas[c].set("value",d.substring(0,e)+"\t"+d.substring(a,d.length));
+e++;this.textareas[c].setSelectionRange(e,e)}}});
