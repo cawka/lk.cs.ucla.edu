@@ -1,6 +1,6 @@
 <?php
 
-$CMS_PATH="../CMS/"; //relative to BASEDIR
+$CMS_PATH="CMS/"; //relative to BASEDIR
 $PREFIX="/"; //prefix in URL path
 
 $dbengine="mysql";

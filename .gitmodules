@@ -1,0 +1,3 @@
+[submodule "CMS"]
+	path = CMS
+	url = git://github.com/cawka/YaCMS.git
