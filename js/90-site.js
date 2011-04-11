@@ -61,6 +61,70 @@ function BrowserPopup( name )
 	finder.popup( );
 }
 
+function checkAll( fields )
+{
+    fields.each( function(field){
+            field.set( 'checked', true );
+            } );
+    return false;
+}
+
+function uncheckAll( fields )
+{
+    fields.each( function(field){
+            field.set( 'checked', false );
+            } );
+    return false;
+}
+
+function add( name )
+{
+    value = $(name).get( 'value' );
+    if( value!=parseInt(value) ) return;
+
+    $$("."+name).each( function(e){
+        try
+        {
+            v=e.get('value');
+            if( v )
+            {
+                va = v.split( " " );
+                va.each( function(x){ if(x==value) throw "break"; } );
+                e.set( 'value',v+" "+value );
+            }
+            else
+                e.set( 'value',value );
+        }
+        catch( e )
+        {
+            return;
+        }
+    } );
+}
+
+function remove( name )
+{
+    value=$(name).get( 'value' );
+    if( value!=parseInt(value) ) return;
+
+    $$("."+name).each( function(e){
+        v=e.get('value');
+        if( v )
+        {
+            va = v.split(' ');
+            vb = new Array();
+            va.each( function(x){ if(x!=value) vb.push(x); } );
+
+            e.set( 'value', vb.join(' ') );
+        }
+    } );
+}
+
+var syncImgValues=function()
+{
+    if( arguments[0]!=undefined ) arguments[0].set( 'src', arguments[1].get('value') );
+}
+
 var BibTexHash=new Hash();
 
 function changeBibtexType( field, biblio_type )
@@ -85,4 +149,14 @@ function changeBibtexType( field, biblio_type )
 		}
 	} ).send();
 }
+
+// Form Validation
+window.addEvent('domready', function() {
+    $$("form.validate").each( function(form){
+        new Form.Validator.Inline( form, {
+                useTitles: true,
+                stopOnFailure: true
+            } );
+    } );
+} );
 

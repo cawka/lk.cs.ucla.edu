@@ -62,7 +62,7 @@
 <ul class="menulist" id="menuSpecial" >
 <li>
 {if isUserLogged()}
-<a style="float:right" class="smoothbox" href="/menu/" name='Edit' ><img style='margin:0;padding:0;display:inline' height='12px' src='/images/admin/edit.gif' alt='Edit menu items' onmouseover="Tip('Edit menu')" /></a>
+<a style="float:right" class="smoothbox" href="/menu/" name='Edit' ><img style='margin:0;padding:0;display:inline' height='12px' src='/images/admin/edit.gif' alt='Edit menu items' /></a>
 </li>
 	</ul>
 </td>

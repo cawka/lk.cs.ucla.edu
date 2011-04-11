@@ -2,8 +2,14 @@ function hide_edit_form(){TB_remove()}function del(a,c,b){new Request.HTML({url:
 }function cancel(){hide_edit_form()}CKEditors=new Hash();function refresh_list(c,b,f,a){var d="frame_"+f;var e="";if(b!=""){e=b+"="+f+"&"
 }e+="ajax=true";if(a!=""){e+="&"+a}new Request.HTML({url:c,method:"get",data:e,update:$(d),onComplete:TB_init}).send()}function updateImage(a,b){$(a+"_pic").src=b;
 $(a).value=b}function BrowserPopup(name){finder=new CKFinder();finder.basePath=PREFIX+"lib/ckfinder/";finder.selectActionFunction=function(fileUrl,data){eval("set_"+name+"('"+fileUrl+"')")
-};finder.rememberLastFolder=true;finder.popup()}var BibTexHash=new Hash();function changeBibtexType(c,a){var b=c.getParent("form");
-b.getElements("input").each(function(f){if(f.get("type")=="text"||f.get("type")=="hidden"){BibTexHash.set(f.get("name"),f.get("value"))
+};finder.rememberLastFolder=true;finder.popup()}function checkAll(a){a.each(function(b){b.set("checked",true)});return false
+}function uncheckAll(a){a.each(function(b){b.set("checked",false)});return false}function add(a){value=$(a).get("value");
+if(value!=parseInt(value)){return}$$("."+a).each(function(b){try{v=b.get("value");if(v){va=v.split(" ");va.each(function(c){if(c==value){throw"break"
+}});b.set("value",v+" "+value)}else{b.set("value",value)}}catch(b){return}})}function remove(a){value=$(a).get("value");if(value!=parseInt(value)){return
+}$$("."+a).each(function(b){v=b.get("value");if(v){va=v.split(" ");vb=new Array();va.each(function(c){if(c!=value){vb.push(c)
+}});b.set("value",vb.join(" "))}})}var syncImgValues=function(){if(arguments[0]!=undefined){arguments[0].set("src",arguments[1].get("value"))
+}};var BibTexHash=new Hash();function changeBibtexType(c,a){var b=c.getParent("form");b.getElements("input").each(function(f){if(f.get("type")=="text"||f.get("type")=="hidden"){BibTexHash.set(f.get("name"),f.get("value"))
 }});var d="bibtex="+c.options[c.selectedIndex].value+"&biblio_type="+a+"&ajax=true";if(BibTexHash.has("id")){d+="&id="+BibTexHash.get("id")
 }new Request.HTML({url:PREFIX+"bibwiki/fields",method:"get",data:d,update:$("TB_ajaxContent"),onComplete:function(){BibTexHash.each(function(f,e){if($(e)){$(e).set("value",f)
-}})}}).send()};
+}})}}).send()}window.addEvent("domready",function(){$$("form.validate").each(function(a){new Form.Validator.Inline(a,{useTitles:true,stopOnFailure:true})
+})});

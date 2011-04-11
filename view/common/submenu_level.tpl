@@ -26,7 +26,7 @@
 			<a class="smoothbox" href="/menu/?parent_id={$item.id}">
 				<img style='margin:0;padding:0;display:inline' 
 					height='12px' src='/images/admin/edit.gif' 
-					alt='Edit menu items' onmouseover="Tip('Edit menu')" />
+					alt='Edit menu items' />
 			</a>
 		</li>
 	{/if}

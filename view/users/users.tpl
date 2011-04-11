@@ -5,8 +5,8 @@
 <table summary="" width="100%">
 <tr class='ann_header'>
 	<td>&nbsp;</td>
-	<td>{$this->getSortHeaderLinkNewStyle("name","Name")}</td>
-	<td>{$this->getSortHeaderLinkNewStyle("login","Login")}</td>
+	<td>{$this->getSort("name","Name")}</td>
+	<td>{$this->getSort("login","Login")}</td>
 	<td>&nbsp;</td>
 	<td>&nbsp;</td>
 	<td>&nbsp;</td>

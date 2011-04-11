@@ -1,5 +1,5 @@
 {form_ctrl name=$name|default:"kform" action=$action validate=$validate|default:"true" id=$name|default:"kform" model=$this data=$data method=$method}
-{if isset($ajax)}<input type="hidden" name="ajax" value="true">{/if}
+{if isset($ajax)}<input type="hidden" name="ajax" value="true" />{/if}
 {if isset($parent_request)}
 <input type="hidden" name="_p" value="{$parent_request}" />
 {/if}
@@ -46,6 +46,8 @@
 	</td>
 </tr>
 </table>
+
+</form>
 
 <script type="text/javascript"><!--
 $('{$name|default:"kform"}').{literal}addEvent( 'submit', function(){

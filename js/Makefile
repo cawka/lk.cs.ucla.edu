@@ -1,7 +1,7 @@
 JS := $(wildcard *.js)
 JSC := $(JS:.js=.js-c)
 
-YUM := java -jar ../../CMS/lib/yuicompressor.jar --line-break 120
+YUM := java -jar ../CMS/lib/yuicompressor.jar --line-break 120
 #YUM := cat
 
 all: $(JSC)

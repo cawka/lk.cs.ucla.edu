@@ -1,7 +1,7 @@
 {strip}
 {if !isset($smarty.request.ajax) && isUserLogged()}
 <div style="float:left">
-<a class="smoothbox" href="{$GLOBAL_PREFIX}staticPages/edit?id=videos-{$smarty.request.page}"><img style="margin: 0pt; padding: 0pt; display: inline;" src="{$GLOBAL_PREFIX}images/admin/edit.gif" alt="" onmouseover="Tip('Edit')" height="12px"></a>
+<a class="smoothbox" href="{$GLOBAL_PREFIX}staticPages/edit?id=videos-{$smarty.request.page}"><img style="margin: 0pt; padding: 0pt; display: inline;" src="{$GLOBAL_PREFIX}images/admin/edit.gif" alt="Edit" height="12px"></a>
 </div>
 <div style="float:right"><a href="{$GLOBAL_PREFIX}login/logout">Logout</a></div>
 <div style="clear:both"></div>
@@ -29,9 +29,9 @@
 	{if isUserLogged()}
 	<div style="float:right">
 		&nbsp;&nbsp;
-		<a name="Edit" href="/videos/edit?id={$i.id}&amp;page={$i.page}" class="smoothbox"><img height="12px" onmouseover="Tip('Edit')" alt="" src="/images/admin/edit.gif" style="margin: 0pt; padding: 0pt; display: inline;"/></a>
+		<a name="Edit" href="/videos/edit?id={$i.id}&amp;page={$i.page}" class="smoothbox"><img height="12px" alt="Edit" src="/images/admin/edit.gif" style="margin: 0pt; padding: 0pt; display: inline;"/></a>
 
-		<a onclick="if( confirm('Are you sure?') ) del('videos/delete','id={$i.id}','frame_')" href="javascript:;"><img height="12px" onmouseover="Tip('Delete')" alt="" src="/images/admin/delete.gif" style="margin: 0pt; padding: 0pt; display: inline;"/></a>	
+		<a onclick="if( confirm('Are you sure?') ) del('videos/delete','id={$i.id}','frame_')" href="javascript:;"><img height="12px" alt="Delete" src="/images/admin/delete.gif" style="margin: 0pt; padding: 0pt; display: inline;"/></a>	
 	</div>
 	{/if}
 
