@@ -6,9 +6,9 @@
 {if $item.isselected}<strong>{/if}
 
 {if strpos($item.link, "http://")===0}
-<a {if $item.target!=""}target="{$item.target}"}{/if} href="{$item.link}">
+<a {if $item.target!=""}target="{$item.target}"{/if} href="{$item.link}">
 {else}
-<a {if $item.target!=""}target="{$item.target}"}{/if} href="{$GLOBAL_PREFIX}{$item.link}">
+<a {if $item.target!=""}target="{$item.target}"{/if} href="{$GLOBAL_PREFIX}{$item.link}">
 {/if}
 {$item.name}</a> {if isset($item.description)}<br/><small>{$item.description}</small>{/if}
 

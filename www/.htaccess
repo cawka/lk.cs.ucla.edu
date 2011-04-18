@@ -1,13 +1,13 @@
 ## Redirect 301 from all domains without www
 
+ErrorDocument 404 http://www.lk.cs.ucla.edu/index.html
+
 #Options +FollowSymlinks 
 RewriteEngine on
 RewriteBase /
 
-#rewritecond %{http_host} ^www.lasr.cs.ucla.edu [OR]
-#rewritecond %{http_host} ^lever.cs.ucla.edu [OR]
-#rewritecond %{http_host} ^www.lever.cs.ucla.edu [nc]
-#rewriterule ^(.*)$ http://lasr.cs.ucla.edu/afanasyev/$1 [r=301,nc]
+RewriteCond %{http_host} ^lk.cs.ucla.edu 
+RewriteRule ^(.*)$ http://www.lk.cs.ucla.edu/$1 [r=301,nc]
 
 RewriteRule ^lo$							index.php?_m=login&action=index
 
