@@ -39,6 +39,7 @@ if( !defined("TEMPDIR") )   define( "TEMPDIR", BASEDIR . "/.tmp/" );
 if( !defined("CMSDIR") )    define( "CMSDIR",  BASEDIR . "/".$CMS_PATH );
 
 $GLOBAL_PREFIX_FS=BASEDIR . "/www/";
+$GLOBAL_PREFIX="/";
 
 set_include_path( BASEDIR . PATH_SEPARATOR . 
 				  BASEDIR . "/".$CMS_PATH . PATH_SEPARATOR . 
