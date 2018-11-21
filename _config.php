@@ -3,7 +3,7 @@
 $CMS_PATH="CMS/"; //relative to BASEDIR
 $PREFIX="/"; //prefix in URL path
 
-$dbengine="mysql";
+$dbengine="mysqli";
 $dbuser  ="lk";
 $dbpasswd="=ra8rav9jasW";
 $dbhost  ="localhost";

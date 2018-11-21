@@ -5,7 +5,7 @@
 {else}
 {if $item.isselected}<strong>{/if}
 
-{if strpos($item.link, "http://")===0}
+{if strpos($item.link, "http")===0}
 <a {if $item.target!=""}target="{$item.target}"{/if} href="{$item.link}">
 {else}
 <a {if $item.target!=""}target="{$item.target}"{/if} href="{$GLOBAL_PREFIX}{$item.link}">
